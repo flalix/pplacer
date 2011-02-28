@@ -1,0 +1,17 @@
+=======
+bootviz
+=======
+
+`bootviz` makes a phyloXML tree showing the bootstrap values.
+
+::
+
+  usage: bootviz [options] -b boot_trees cluster_tree
+
+Options
+=======
+
+-b  A single Newick file containing the bootstrapped trees, one per line.
+-o  Specify an out file. Default: cluster_boot.xml
+--cutoff  Specify the cutoff for writing out the bootstrap value. Default: 0.
+

@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>classify &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="up" title="guppy" href="../guppy.html" />
+    <link rel="next" title="cluster" href="cluster.html" />
+    <link rel="prev" title="bootviz" href="bootviz.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cluster.html" title="cluster"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bootviz.html" title="bootviz"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="classify">
+<h1>classify<a class="headerlink" href="#classify" title="Permalink to this headline">¶</a></h1>
+<p><cite>classify</cite> outputs classification information in a tabular format.</p>
+<div class="highlight-python"><pre>usage: classify [options] placefile[s]</pre>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path. Required.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for our criteria.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>This subcommand outputs the classifications made by <cite>pplacer</cite> in a tabular format appropriate for use with R or SQL.
+For example, here is a classification list made for one read.
+The columns are as follows: read name, attempted rank for classification, actual rank for classification, taxonomic identifier, and confidence.
+You can see that in this example, there is some uncertainty at and below species, but only one classification at the genus level.</p>
+<div class="highlight-python"><pre>GLKT0ZE01CQ2BU                      root          root       1          1
+GLKT0ZE01CQ2BU                below_root    below_root  131567          1
+GLKT0ZE01CQ2BU              superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU        below_superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU  below_below_superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU               superphylum  superkingdom       2          1
+GLKT0ZE01CQ2BU                    phylum        phylum    1239          1
+GLKT0ZE01CQ2BU                 subphylum        phylum    1239          1
+GLKT0ZE01CQ2BU                     class         class  186801          1
+GLKT0ZE01CQ2BU                  subclass         class  186801          1
+GLKT0ZE01CQ2BU                     order         order  186802          1
+GLKT0ZE01CQ2BU               below_order         order  186802          1
+GLKT0ZE01CQ2BU         below_below_order         order  186802          1
+GLKT0ZE01CQ2BU                  suborder         order  186802          1
+GLKT0ZE01CQ2BU                    family        family  186804          1
+GLKT0ZE01CQ2BU              below_family        family  186804          1
+GLKT0ZE01CQ2BU                     genus         genus    1257          1
+GLKT0ZE01CQ2BU             species_group         genus    1257          1
+GLKT0ZE01CQ2BU          species_subgroup         genus    1257          1
+GLKT0ZE01CQ2BU                   species         genus    1257  0.0732247
+GLKT0ZE01CQ2BU                   species       species    1261   0.853561
+GLKT0ZE01CQ2BU                   species       species  341694   0.073214
+GLKT0ZE01CQ2BU             below_species         genus    1257  0.0732247
+GLKT0ZE01CQ2BU             below_species       species    1261   0.853561
+GLKT0ZE01CQ2BU             below_species       species  341694   0.073214</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference external" href="#">classify</a><ul>
+<li><a class="reference external" href="#options">Options</a></li>
+<li><a class="reference external" href="#details">Details</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bootviz.html"
+                        title="previous chapter">bootviz</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cluster.html"
+                        title="next chapter">cluster</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/classify.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cluster.html" title="cluster"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bootviz.html" title="bootviz"
+             >previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0pre.
+    </div>
+  </body>
+</html>

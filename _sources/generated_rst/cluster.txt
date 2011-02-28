@@ -1,0 +1,30 @@
+=======
+cluster
+=======
+
+`cluster` performs squash clustering.
+
+::
+
+  usage: cluster [options] placefiles
+
+Options
+=======
+
+--pp  Use posterior probability for the weight.
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+-c  Reference package path. Required.
+--seed  Set the random seed, an integer > 0. Default is 1.
+-o  The output directory. Required
+--bootstrap  the number of bootstrap replicates to run
+--tax-cluster  Perform taxonomic clustering rather than phylogenetic.Specify "unit" or "inv" for the two different modes.
+
+Details
+=======
+
+Perform squash clustering.
+Bootstrapping is available, and is performed by resampling directly on placements.
+Note that the bootstrap values for clustering are calculated in a rooted way.
+That means that you may observe different bootstrap values on either side of the root, especially if a whole clade from one side of the root likes to flip to a location distal to the clade on the other side of the root.
+

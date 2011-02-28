@@ -1,0 +1,14 @@
+=======
+to_json
+=======
+
+`to_json` converts .place files to .json files.
+
+::
+
+  usage: to_json placefile[s]
+
+Options
+=======
+
+

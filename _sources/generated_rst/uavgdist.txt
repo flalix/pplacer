@@ -1,0 +1,20 @@
+========
+uavgdist
+========
+
+`uavgdist` calculates the average pairwise distance within place files.
+
+::
+
+  usage: uavgdist [options] placefile(s)
+
+Options
+=======
+
+-o  Set the filename to write to. Otherwise write to stdout.
+--pp  Use posterior probability for the weight.
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+--exp  The exponent for the integration, i.e. the value of p in Z_p.
+--list-out  Output the avgdist results as a list rather than a matrix.
+

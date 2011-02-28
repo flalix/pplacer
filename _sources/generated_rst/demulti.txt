@@ -1,0 +1,15 @@
+=======
+demulti
+=======
+
+`demulti` splits apart placements with multiplicity, undoing a round procedure..
+
+::
+
+  usage: demulti [options] placefile[s]
+
+Options
+=======
+
+-o  Set the prefix to write to. Required.
+

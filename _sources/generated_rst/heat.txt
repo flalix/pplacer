@@ -1,0 +1,35 @@
+====
+heat
+====
+
+`heat` makes a heat tree.
+
+::
+
+  usage: heat [options] ex1.place ex2.place
+
+Options
+=======
+
+--pp  Use posterior probability for the weight.
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+-c  Reference package path. Required.
+--exp  The exponent for the integration, i.e. the value of p in Z_p.
+-o  Output file. Default is derived from the input filenames.
+--color-gradiation  Use color gradation as well as thickness to represent mass transport.
+--gray-black  Use gray and black in place of red and blue to signify the sign of the KR along that edge.
+--white-bg  Make colors for the heat tree which are compatible with a white background.
+--gray-level  Specify the amount of gray to mix into the color scheme. Default is 5.
+--min-width  Specify the minimum width of the branches in a heat tree. Default is 0.5.
+--max-width  Specify the maximum width of the branches in a heat tree. Default is 13.
+
+Details
+=======
+
+Draw a "heat tree" in phyloXML format.
+A heat tree shows the optimal movement of dirt in the "earth movers" interpretation of the Kantorovich-Rubinstein distance. 
+Imagine that the dirt is moving from the placement distribution corresponding to the first .place file to that in the second.
+Dirt moving on an edge towards the root is marked in red, and that moving away from the root is colored in blue.
+Said another way, clades which are upregulated in the first sample are colored red, and the others blue.
+

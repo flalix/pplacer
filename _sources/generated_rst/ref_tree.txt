@@ -1,0 +1,16 @@
+========
+ref_tree
+========
+
+`ref_tree` writes a taxonomically annotated reference tree and an induced taxonomic tree.
+
+::
+
+  usage: ref_tree -o my.xml my1.refpkg [my2.refpkg ...]
+
+Options
+=======
+
+-o  Set the filename to write to. Otherwise write to stdout.
+-c  Reference package path. Required.
+

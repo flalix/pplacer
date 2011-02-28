@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pca &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="up" title="guppy" href="../guppy.html" />
+    <link rel="next" title="ref_tree" href="ref_tree.html" />
+    <link rel="prev" title="kr" href="kr.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ref_tree.html" title="ref_tree"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="kr.html" title="kr"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pca">
+<h1>pca<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h1>
+<p><cite>pca</cite> performs edge principal components.</p>
+<div class="highlight-python"><pre>usage: pca [options] placefiles</pre>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o</span></kbd></td>
+<td>Set the prefix to write to. Required.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--unweighted</span></kbd></td>
+<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--transform</span></kbd></td>
+<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path. Required.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--write-n</span></kbd></td>
+<td>The number of principal coordinates to write out (default is 5).</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--scale</span></kbd></td>
+<td>Scale variances to one before performing principal components.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--multiplier</span></kbd></td>
+<td>The factor by which we multiply the principal component eigenvectors to get branch thickness. Default: 50.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Perform edge principal components analysis (&#8220;edge PCA&#8221;).
+Edge PCA takes the special structure of phylogenetic placement data into account.
+Consequently, it is possible to visualize the principal component eigenvectors, and it can find consistent differences between samples which may not be so far apart in the tree.</p>
+<p>Running this command produces the following files for a run with out prefix set to &#8220;out&#8221;:</p>
+<dl class="docutils">
+<dt>out.rot</dt>
+<dd>The top eigenvalues (first column) then their corresponding eigenvectors.</dd>
+<dt>out.trans</dt>
+<dd>The samples projected into principal coordinate space.</dd>
+<dt>out.xml</dt>
+<dd>The eigenvectors visualized as fattened and colored trees.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference external" href="#">pca</a><ul>
+<li><a class="reference external" href="#options">Options</a></li>
+<li><a class="reference external" href="#details">Details</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="kr.html"
+                        title="previous chapter">kr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ref_tree.html"
+                        title="next chapter">ref_tree</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/pca.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ref_tree.html" title="ref_tree"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="kr.html" title="kr"
+             >previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0pre.
+    </div>
+  </body>
+</html>
