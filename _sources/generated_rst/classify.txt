@@ -13,6 +13,8 @@ Options
 
 -c  Reference package path. Required.
 --pp  Use posterior probability for our criteria.
+--csv  Write .class.csv files containing CSV data.
+--sqlite  Write .class.sqlite files containing sqlite insert statements.
 
 Details
 =======

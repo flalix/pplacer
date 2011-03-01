@@ -1,0 +1,16 @@
+========
+taxtable
+========
+
+`taxtable` makes sql for a reference package.
+
+::
+
+  usage: taxtable [options] -c <refpkg>
+
+Options
+=======
+
+-c  Reference package path. Required.
+-o  Set the filename to write to. Otherwise write to stdout.
+
