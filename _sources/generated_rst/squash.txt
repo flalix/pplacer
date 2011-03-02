@@ -1,12 +1,12 @@
-=======
-cluster
-=======
+======
+squash
+======
 
-`cluster` performs squash clustering.
+`squash` performs squash clustering.
 
 ::
 
-  usage: cluster [options] placefiles
+  usage: squash [options] placefiles
 
 Options
 =======
