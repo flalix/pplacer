@@ -1,0 +1,15 @@
+============
+check_refpkg
+============
+
+`check_refpkg` check a reference package.
+
+::
+
+  usage: check_refpkg -c <refpkg>
+
+Options
+=======
+
+-c  Reference package path. Required.
+

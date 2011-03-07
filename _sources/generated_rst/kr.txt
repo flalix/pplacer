@@ -14,13 +14,13 @@ Options
 --pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
--c  Reference package path. Required.
+-c  Reference package path.
 -o  Set the filename to write to. Otherwise write to stdout.
 -p  The exponent for the integration, i.e. the value of p in Z_p.
 --seed  Set the random seed, an integer > 0. Default is 1.
 --list-out  Output the KR results as a list rather than a matrix.
 --density  Make density plots showing the distribution of randomized values with the calculated values
--s  Set how many samples to use for significance calculation (0 means calculate distance only). Default is 1.
+-s  Set how many samples to use for significance calculation (0 means calculate distance only). Default is 0.
 --verbose  Verbose running.
 --normal  Use the Gaussian process approximation for p-value estimation
 

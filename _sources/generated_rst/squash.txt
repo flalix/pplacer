@@ -14,7 +14,7 @@ Options
 --pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
--c  Reference package path. Required.
+-c  Reference package path.
 --seed  Set the random seed, an integer > 0. Default is 1.
 -o  The output directory. Required
 --bootstrap  the number of bootstrap replicates to run

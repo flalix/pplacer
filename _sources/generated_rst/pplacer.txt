@@ -1,0 +1,70 @@
+=======
+pplacer
+=======
+
+`pplacer` performs phylogenetic placement.
+
+::
+
+  pplacer [options] [alignment]
+
+Options
+=======
+
+-c  Specify the path to the reference package.
+-t  Specify the reference tree filename.
+-r  Specify the reference alignment filename.
+-s  Supply a phyml stats.txt or a RAxML info file giving the model parameters.
+-d  Specify the directory containing the reference information.
+-p  Calculate posterior probabilities.
+-m  Substitution model. Protein: are LG, WAG, or JTT. Nucleotides: GTR.
+--model-freqs  Use model frequencies instead of reference alignment frequencies.
+--gamma-cats  Number of categories for discrete gamma model.
+--gamma-alpha  Specify the shape parameter for a discrete gamma model.
+--ml-tolerance  1st stage branch len optimization tolerance (2nd stage to 1e-5). Default: 0.01.
+--pp-rel-err  Relative error for the posterior probability calculation. Default is 0.01.
+--unif-prior  Use a uniform prior rather than exponential.
+--start-pend  Starting pendant branch length. Default is 0.1.
+--max-pend  Set the maximum ML pendant branch length. Default is 2.
+--max-strikes  Maximum number of strikes for baseball. 0 -> no ball playing. Default is 6.
+--strike-box  Set the size of the strike box in log likelihood units. Default is 3.
+--max-pitches  Set the maximum number of pitches for baseball. Default is 40.
+--fantasy  Desired likelihood cutoff for fantasy baseball mode. 0 -> no fantasy.
+--fantasy-frac  Fraction of fragments to use when running fantasy baseball. Default is 0.1.
+--write-masked  Write alignment masked to the region without gaps in the query.
+--verbosity  Set verbosity level. 0 is silent, and 2 is quite a lot. Default is 1.
+--unfriendly  Do not run friend finder pre-analysis.
+--out-dir  Specify the directory to write place files to.
+--pretend  Only check out the files then report. Do not run the analysis.
+--csv  Make a CSV file with the results.
+--old-format  Make an old-format placefile with the resuls.
+--diagnostic  Write file describing the 'diagnostic' mutations for various clades.
+--check-like  Write out the likelihood of the reference tree, calculated two ways.
+--version  Write out the version number and exit.
+
+Details
+=======
+
+
+Introduction
+------------
+Pplacer places query sequences on a fixed reference phylogenetic tree according to a reference alignment. 
+In maximum likelihood (ML) mode, pplacer tries to find the attachement location and the pendant branch length which maximize the likelihood of the tree with pendant branch length attached.
+In Bayesian posterior probability (PP) mode, pplacer tries to find the edge attachment which maximizes the posterior probability of a fragment placement on an edge conditioned on the reference tree (with branch lengths). 
+
+A basic pplacer run looks like::
+
+  pplacer -c my.refpkg aln.fasta
+
+with a reference package (preferred), or without a reference package::
+
+  pplacer -t reference_tree -s statistics_file aln.fasta
+
+
+.. Fantasy baseball
+.. ----------------
+.. 
+.. Set to a nonzero value to run in fantasy baseball mode. 
+.. The value given will be the desired average difference between the likelihood of the best placement with the given baseball parameters and that evaluating all
+.. max-pitches pitches. 
+

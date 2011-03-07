@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pplacer &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="up" title="guppy" href="../guppy.html" />
+    <link rel="next" title="ref_tree" href="ref_tree.html" />
+    <link rel="prev" title="pca" href="pca.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ref_tree.html" title="ref_tree"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pca.html" title="pca"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pplacer">
+<h1>pplacer<a class="headerlink" href="#pplacer" title="Permalink to this headline">¶</a></h1>
+<p><cite>pplacer</cite> performs phylogenetic placement.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pplacer</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="p">[</span><span class="n">alignment</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Specify the path to the reference package.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span></kbd></td>
+<td>Specify the reference tree filename.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-r</span></kbd></td>
+<td>Specify the reference alignment filename.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span></kbd></td>
+<td>Supply a phyml stats.txt or a RAxML info file giving the model parameters.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span></kbd></td>
+<td>Specify the directory containing the reference information.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-p</span></kbd></td>
+<td>Calculate posterior probabilities.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-m</span></kbd></td>
+<td>Substitution model. Protein: are LG, WAG, or JTT. Nucleotides: GTR.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--model-freqs</span></kbd></td>
+<td>Use model frequencies instead of reference alignment frequencies.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--gamma-cats</span></kbd></td>
+<td>Number of categories for discrete gamma model.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--gamma-alpha</span></kbd></td>
+<td>Specify the shape parameter for a discrete gamma model.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--ml-tolerance</span></kbd></td>
+<td>1st stage branch len optimization tolerance (2nd stage to 1e-5). Default: 0.01.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pp-rel-err</span></kbd></td>
+<td>Relative error for the posterior probability calculation. Default is 0.01.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--unif-prior</span></kbd></td>
+<td>Use a uniform prior rather than exponential.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--start-pend</span></kbd></td>
+<td>Starting pendant branch length. Default is 0.1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--max-pend</span></kbd></td>
+<td>Set the maximum ML pendant branch length. Default is 2.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--max-strikes</span></kbd></td>
+<td>Maximum number of strikes for baseball. 0 -&gt; no ball playing. Default is 6.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--strike-box</span></kbd></td>
+<td>Set the size of the strike box in log likelihood units. Default is 3.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--max-pitches</span></kbd></td>
+<td>Set the maximum number of pitches for baseball. Default is 40.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--fantasy</span></kbd></td>
+<td>Desired likelihood cutoff for fantasy baseball mode. 0 -&gt; no fantasy.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--fantasy-frac</span></kbd></td>
+<td>Fraction of fragments to use when running fantasy baseball. Default is 0.1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--write-masked</span></kbd></td>
+<td>Write alignment masked to the region without gaps in the query.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--verbosity</span></kbd></td>
+<td>Set verbosity level. 0 is silent, and 2 is quite a lot. Default is 1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--unfriendly</span></kbd></td>
+<td>Do not run friend finder pre-analysis.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--out-dir</span></kbd></td>
+<td>Specify the directory to write place files to.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pretend</span></kbd></td>
+<td>Only check out the files then report. Do not run the analysis.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--csv</span></kbd></td>
+<td>Make a CSV file with the results.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--old-format</span></kbd></td>
+<td>Make an old-format placefile with the resuls.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--diagnostic</span></kbd></td>
+<td>Write file describing the &#8216;diagnostic&#8217; mutations for various clades.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--check-like</span></kbd></td>
+<td>Write out the likelihood of the reference tree, calculated two ways.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--version</span></kbd></td>
+<td>Write out the version number and exit.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>Pplacer places query sequences on a fixed reference phylogenetic tree according to a reference alignment.
+In maximum likelihood (ML) mode, pplacer tries to find the attachement location and the pendant branch length which maximize the likelihood of the tree with pendant branch length attached.
+In Bayesian posterior probability (PP) mode, pplacer tries to find the edge attachment which maximizes the posterior probability of a fragment placement on an edge conditioned on the reference tree (with branch lengths).</p>
+<p>A basic pplacer run looks like:</p>
+<div class="highlight-python"><pre>pplacer -c my.refpkg aln.fasta</pre>
+</div>
+<p>with a reference package (preferred), or without a reference package:</p>
+<div class="highlight-python"><pre>pplacer -t reference_tree -s statistics_file aln.fasta</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pplacer</a><ul>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pca.html"
+                        title="previous chapter">pca</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ref_tree.html"
+                        title="next chapter">ref_tree</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/pplacer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ref_tree.html" title="ref_tree"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pca.html" title="pca"
+             >previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

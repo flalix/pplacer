@@ -15,7 +15,7 @@ Options
 --pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
--c  Reference package path. Required.
+-c  Reference package path.
 --write-n  The number of principal coordinates to write out (default is 5).
 --scale  Scale variances to one before performing principal components.
 --multiplier  The factor by which we multiply the principal component eigenvectors to get branch thickness. Default: 50.

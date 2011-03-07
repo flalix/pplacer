@@ -14,10 +14,10 @@ Options
 --pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
--c  Reference package path. Required.
+-c  Reference package path.
 -p  The exponent for the integration, i.e. the value of p in Z_p.
 -o  Output file. Default is derived from the input filenames.
---color-gradiation  Use color gradation as well as thickness to represent mass transport.
+--color-grad  Use color gradation as well as thickness to represent mass transport.
 --gray-black  Use gray and black in place of red and blue to signify the sign of the KR along that edge.
 --white-bg  Make colors for the heat tree which are compatible with a white background.
 --gray-level  Specify the amount of gray to mix into the color scheme. Default is 5.

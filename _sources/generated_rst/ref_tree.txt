@@ -12,5 +12,4 @@ Options
 =======
 
 -o  Set the filename to write to. Otherwise write to stdout.
--c  Reference package path. Required.
 
