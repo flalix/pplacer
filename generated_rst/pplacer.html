@@ -23,9 +23,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
-    <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="ref_tree" href="ref_tree.html" />
-    <link rel="prev" title="pca" href="pca.html" /> 
+    <link rel="next" title="guppy" href="../guppy.html" />
+    <link rel="prev" title="Welcome to pplacer’s documentation!" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,13 +34,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ref_tree.html" title="ref_tree"
+          <a href="../guppy.html" title="guppy"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pca.html" title="pca"
+          <a href="../index.html" title="Welcome to pplacer’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
-          <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -160,13 +158,79 @@
 <div class="section" id="introduction">
 <h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
 <p>Pplacer places query sequences on a fixed reference phylogenetic tree according to a reference alignment.
-In maximum likelihood (ML) mode, pplacer tries to find the attachement location and the pendant branch length which maximize the likelihood of the tree with pendant branch length attached.
+In maximum likelihood (ML) mode, pplacer tries to find the attachment location and the pendant branch length which maximize the likelihood of the tree with pendant branch length attached.
 In Bayesian posterior probability (PP) mode, pplacer tries to find the edge attachment which maximizes the posterior probability of a fragment placement on an edge conditioned on the reference tree (with branch lengths).</p>
 <p>A basic pplacer run looks like:</p>
 <div class="highlight-python"><pre>pplacer -c my.refpkg aln.fasta</pre>
 </div>
 <p>with a reference package (preferred), or without a reference package:</p>
 <div class="highlight-python"><pre>pplacer -t reference_tree -s statistics_file aln.fasta</pre>
+</div>
+</div>
+<div class="section" id="making-alignments-for-use-with-pplacer">
+<h3>Making alignments for use with pplacer<a class="headerlink" href="#making-alignments-for-use-with-pplacer" title="Permalink to this headline">¶</a></h3>
+<p>There are several options and formats for providing alignments of reference and query sequences.
+Examples below illustrate various steps in the sequence alignment process.</p>
+<div class="section" id="examples-using-infernal">
+<h4>Examples using Infernal<a class="headerlink" href="#examples-using-infernal" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://infernal.janelia.org/">Infernal</a> is an excellent package for searching and aligning sequences using RNA secondary structure information.</p>
+<div class="section" id="creating-a-reference-alignment">
+<h5>Creating a reference alignment<a class="headerlink" href="#creating-a-reference-alignment" title="Permalink to this headline">¶</a></h5>
+<p>The first step in any pipeline involving Infernal (assuming you already have an alignment profile but are not working from a reference package) is to create an alignment of reference sequences.
+See the Infernal docs for a description of options not mentioned here.
+For example:</p>
+<div class="highlight-python"><pre>cmalign --hbanded --sub --dna -1 -o refalign.sto profile.cm refseqs.fasta</pre>
+</div>
+<p>Inputs to this command include an alignment profile (<tt class="docutils literal"><span class="pre">profile.cm</span></tt>) and unaligned reference sequences (<tt class="docutils literal"><span class="pre">refs.fasta</span></tt>).
+The output file, identified using the <tt class="docutils literal"><span class="pre">-o</span></tt> option, contains the aligned reference sequences in Stockholm format.
+The <tt class="docutils literal"><span class="pre">-1</span></tt> (that&#8217;s a one, not an L) specifies non-interleaved output, one sequence per line.</p>
+</div>
+<div class="section" id="merging-reference-and-query-sequences">
+<h5>Merging reference and query sequences<a class="headerlink" href="#merging-reference-and-query-sequences" title="Permalink to this headline">¶</a></h5>
+<p>Query sequences must be aligned with respect to the reference sequences.
+This is easily accomplished using two calls to cmalign.
+First, align the query sequences just like the reference sequences above:</p>
+<div class="highlight-python"><pre>cmalign --hbanded --sub --dna -1 -o qalign.sto profile.cm qseqs.fasta</pre>
+</div>
+<p>Next, merge the reference and query alignments using the <tt class="docutils literal"><span class="pre">--merge</span></tt> option:</p>
+<div class="highlight-python"><pre>cmalign --merge --hbanded --sub --dna -1 -o merged.sto profile.cm refalign.sto qalign.sto</pre>
+</div>
+<p>Now <tt class="docutils literal"><span class="pre">merged.sto</span></tt> contains a single alignment of both reference and query sequences, and can be used with pplacer as follows after making a reference tree and accompanying statistics file:</p>
+<div class="highlight-python"><pre>pplacer -t reference_tree -a statistics_file merged.sto</pre>
+</div>
+</div>
+<div class="section" id="using-a-reference-package">
+<h5>Using a reference package<a class="headerlink" href="#using-a-reference-package" title="Permalink to this headline">¶</a></h5>
+<p>A closely related example involves alignment with the profile and reference sequences included in a reference package (<tt class="docutils literal"><span class="pre">my.refpkg</span></tt> - note that names may vary in a reference package).
+So now we skip creation of the reference alignment.
+First, create the query alignment:</p>
+<div class="highlight-python"><pre>cmalign --hbanded --sub --dna -1 -o qalign.sto my.refpkg/profile.cm qseqs.fasta</pre>
+</div>
+<p>...then merge:</p>
+<div class="highlight-python"><pre>cmalign --merge --hbanded --sub --dna -1 \
+  -o mergedWithRefpkg.sto \
+  my.refpkg/profile.cm my.refpkg/refalign.sto qalign.sto</pre>
+</div>
+<p>Now it is even easier to write the pplacer command:</p>
+<div class="highlight-python"><pre>pplacer -c my.refpkg mergedWithRefpkg.sto</pre>
+</div>
+</div>
+</div>
+<div class="section" id="examples-using-hmmer">
+<h4>Examples using HMMER<a class="headerlink" href="#examples-using-hmmer" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://hmmer.janelia.org/">HMMER</a> is another excellent package for searching and aligning sequences by the Eddy group, which can align amino acid and nucleotide sequences.</p>
+<p>Assume that we have a reference alignment <tt class="docutils literal"><span class="pre">refseqs.sto</span></tt> in Stockholm format. We first build an HMM:</p>
+<div class="highlight-python"><pre>hmmbuild refseqs.hmm refseqs.sto</pre>
+</div>
+<p>Then we can use it to make a combined alignment with the reference sequences and the reads:</p>
+<div class="highlight-python"><pre>hmmalign -o combo.sto --mapali refseqs.sto refseqs.hmm qseqs.fasta</pre>
+</div>
+<p>Now we can run pplacer:</p>
+<div class="highlight-python"><pre>pplacer -t rpoB.tre -s RAxML_info.rpoB combo.sto</pre>
+</div>
+<p>... or with a reference package:</p>
+<div class="highlight-python"><pre>pplacer -c rpoB.refpkg combo.sto</pre>
+</div>
 </div>
 </div>
 </div>
@@ -184,6 +248,16 @@ In Bayesian posterior probability (PP) mode, pplacer tries to find the edge atta
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a><ul>
+<li><a class="reference internal" href="#examples-using-infernal">Examples using Infernal</a><ul>
+<li><a class="reference internal" href="#creating-a-reference-alignment">Creating a reference alignment</a></li>
+<li><a class="reference internal" href="#merging-reference-and-query-sequences">Merging reference and query sequences</a></li>
+<li><a class="reference internal" href="#using-a-reference-package">Using a reference package</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-hmmer">Examples using HMMER</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -191,11 +265,11 @@ In Bayesian posterior probability (PP) mode, pplacer tries to find the edge atta
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="pca.html"
-                        title="previous chapter">pca</a></p>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Welcome to pplacer&#8217;s documentation!</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ref_tree.html"
-                        title="next chapter">ref_tree</a></p>
+  <p class="topless"><a href="../guppy.html"
+                        title="next chapter">guppy</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/generated_rst/pplacer.txt"
@@ -225,13 +299,12 @@ In Bayesian posterior probability (PP) mode, pplacer tries to find the edge atta
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ref_tree.html" title="ref_tree"
+          <a href="../guppy.html" title="guppy"
              >next</a> |</li>
         <li class="right" >
-          <a href="pca.html" title="pca"
+          <a href="../index.html" title="Welcome to pplacer’s documentation!"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
-          <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

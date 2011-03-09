@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="index.html" />
-    <link rel="next" title="bary" href="generated_rst/bary.html" />
+    <link rel="next" title="bary" href="generated_rst/guppy_bary.html" />
     <link rel="prev" title="pplacer" href="generated_rst/pplacer.html" /> 
   </head>
   <body>
@@ -34,7 +34,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="generated_rst/bary.html" title="bary"
+          <a href="generated_rst/guppy_bary.html" title="bary"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="generated_rst/pplacer.html" title="pplacer"
@@ -58,7 +58,7 @@
 </tr>
 <tr class="field"><th class="field-name">Title:</th><td class="field-body">mokaphy</td>
 </tr>
-<tr class="field"><th class="field-name">Version:</th><td class="field-body">0.4</td>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">0.1</td>
 </tr>
 <tr class="field"><th class="field-name">License:</th><td class="field-body">GPL v3</td>
 </tr>
@@ -76,10 +76,11 @@
 <li><a class="reference internal" href="#usage" id="id3">Usage</a><ul>
 <li><a class="reference internal" href="#command-line-interface" id="id4">Command line interface</a></li>
 <li><a class="reference internal" href="#batch-mode" id="id5">Batch mode</a></li>
-<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id6">phyloXML viewing notes</a></li>
+<li><a class="reference internal" href="#about-multiplicities" id="id6">About multiplicities</a></li>
+<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id7">phyloXML viewing notes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#list-of-subcommands" id="id7">List of subcommands</a></li>
+<li><a class="reference internal" href="#list-of-subcommands" id="id8">List of subcommands</a></li>
 </ul>
 </li>
 </ul>
@@ -87,7 +88,7 @@
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>To use the statistical comparison features of <tt class="docutils literal"><span class="pre">guppy</span></tt>, it&#8217;s a good idea to have a basic understanding of what the Kantorovich-Rubinstein (KR, a.k.a. earth-mover&#8217;s distance) is doing, and how the edge PCA and squash clustering algorithms work.
-There is a gentle introduction in <a class="reference external" href="http://matsen.fhcrc.org/papers/11MatsenEvansEdgeSquash.pdf">MatsenEvans2011</a>, and a more full treatment in <a class="reference external" href="http://arxiv.org/abs/1005.1699">EvansMatsen2010</a>.</p>
+There is a gentle introduction in <a class="reference external" href="http://matsen.fhcrc.org/papers/11MatsenEvansEdgeSquash.pdf">Matsen and Evans</a>, and a more full treatment in <a class="reference external" href="http://arxiv.org/abs/1005.1699">Evans and Matsen</a>.</p>
 <p>Here&#8217;s a table to demonstrate the relation of <tt class="docutils literal"><span class="pre">guppy</span></tt> concepts to ones which may be more familiar to the reader:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -131,18 +132,33 @@ For example:</p>
 </div>
 <div class="section" id="batch-mode">
 <h3><a class="toc-backref" href="#id5">Batch mode</a><a class="headerlink" href="#batch-mode" title="Permalink to this headline">¶</a></h3>
-<p>It&#8217;s easy to run lots of commands at once with batch mode.
-However, unlike running the equivalent set of commands on the command line, <em>.place files are only loaded once per batch file run</em>.
-You don&#8217;t have to specify loading them or anything; <tt class="docutils literal"><span class="pre">guppy</span></tt> just loads a given file the first time it is used in a command.</p>
-<p>To use the batch mode, just put the commands, options, and placefiles you want into a file.
-One line per command, and it&#8217;s not necessary to write <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">COMMAND</span></tt>.
-So the equivalent command to the above run in a batch file would be
-<tt class="docutils literal"><span class="pre">heat</span> <span class="pre">--gray-black</span> <span class="pre">coastal.place</span> <span class="pre">DCM.place</span></tt> .
-Note that you need to specify each option each time you run a command&#8211; they don&#8217;t carry between lines of a batch file.
-That&#8217;s on purpose.</p>
+<p>It&#8217;s easy to run lots of commands at once with batch mode.  However, unlike
+running the equivalent set of commands on the command line, <em>placefiles are
+only loaded once per batch file run</em>. <tt class="docutils literal"><span class="pre">guppy</span></tt> will load a given file the first
+time it is used in a command.</p>
+<p>Batch files are files with one guppy command per line, specified exactly as
+would be written in a shell, except without the leading <tt class="docutils literal"><span class="pre">guppy</span></tt>. Arguments
+can be enclosed in double quotes to preserve whitespace, and double quotes
+within quoted strings are quoted by doubling (e.g. <tt class="docutils literal"><span class="pre">&quot;spam</span> <span class="pre">&quot;&quot;and&quot;&quot;</span>
+<span class="pre">eggs&quot;</span></tt>. Globbing (e.g. <tt class="docutils literal"><span class="pre">*.json</span></tt>) is not allowed. Comments are also allowed
+in batch files; everything on a line after a <tt class="docutils literal"><span class="pre">#</span></tt> is ignored.</p>
+<p>An example batch file:</p>
+<div class="highlight-python"><pre># Whole-line comment.
+pca -o pca -c some.refpkg src/a.json src/b.json
+squash -c some.refpkg -o squash_out src/a.json src/b.json
+classify -c some.refpkg some.json  # inline comment</pre>
+</div>
+</div>
+<div class="section" id="about-multiplicities">
+<h3><a class="toc-backref" href="#id6">About multiplicities</a><a class="headerlink" href="#about-multiplicities" title="Permalink to this headline">¶</a></h3>
+<p>The new versions of pplacer and guppy support &#8220;multiplicities,&#8221; i.e. multiple reads being treated as one.
+For example, if some reads are identical, they can be treated as a group.
+Doing so makes guppy operations <em>much</em> faster.</p>
+<p>By default, they are used &#8220;as is&#8221; for guppy calculations&#8211; a single placement with multiplicity four is the same as four reads placed individually.
+However, if one would like to decrease the impact of multiplicities on downstream analysis (e.g. if PCR artifacts are suspected) one can use the <tt class="docutils literal"><span class="pre">--transform</span></tt> option to choose a transform for the multiplicies before use.</p>
 </div>
 <div class="section" id="phyloxml-viewing-notes">
-<h3><a class="toc-backref" href="#id6">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
 <p><tt class="docutils literal"><span class="pre">guppy</span></tt> makes fattened and annotated trees to visualize the results of various analyses.
 We have chosen to use phyloXML as the format for these trees, as it has width and color tags for edges; if you see .xml files coming out of a guppy analysis that&#8217;s what they are for.
 We like looking at these trees using the tree viewer <a class="reference external" href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a>.
@@ -152,70 +168,73 @@ If you don&#8217;t see those check boxes, then use <a class="reference external"
 </div>
 </div>
 <div class="section" id="list-of-subcommands">
-<h2><a class="toc-backref" href="#id7">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/bary.html">bary</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/bary.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/bary.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_bary.html">bary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_bary.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_bary.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/check_refpkg.html">check_refpkg</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/check_refpkg.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_bootviz.html">bootviz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_bootviz.html#options">Options</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/classify.html">classify</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/classify.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/classify.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_check_refpkg.html">check_refpkg</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_check_refpkg.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_check_refpkg.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/demulti.html">demulti</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/demulti.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_classify.html">classify</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_classify.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_classify.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/fat.html">fat</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/fat.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_demulti.html">demulti</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_demulti.html#options">Options</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/heat.html">heat</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/heat.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/heat.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_fat.html">fat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_fat.html#options">Options</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/kr.html">kr</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/kr.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/kr.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_heat.html">heat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_heat.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_heat.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/pca.html">pca</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/pca.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/pca.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_kr.html">kr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_kr.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_kr.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/pplacer.html">pplacer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/pplacer.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/pplacer.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_pca.html">pca</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_pca.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_pca.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/ref_tree.html">ref_tree</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/ref_tree.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_ref_tree.html">ref_tree</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_ref_tree.html#options">Options</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/round.html">round</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/round.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_round.html">round</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_round.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_round.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/squash.html">squash</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/squash.html#options">Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/squash.html#details">Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_squash.html">squash</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_squash.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_squash.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/taxtable.html">taxtable</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/taxtable.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_taxtable.html">taxtable</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_taxtable.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_taxtable.html#details">Details</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generated_rst/to_json.html">to_json</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated_rst/to_json.html#options">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated_rst/guppy_to_json.html">to_json</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_to_json.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated_rst/guppy_to_json.html#details">Details</a></li>
 </ul>
 </li>
 </ul>
@@ -236,6 +255,7 @@ If you don&#8217;t see those check boxes, then use <a class="reference external"
 <li><a class="reference internal" href="#usage">Usage</a><ul>
 <li><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
 <li><a class="reference internal" href="#batch-mode">Batch mode</a></li>
+<li><a class="reference internal" href="#about-multiplicities">About multiplicities</a></li>
 <li><a class="reference internal" href="#phyloxml-viewing-notes">phyloXML viewing notes</a></li>
 </ul>
 </li>
@@ -250,7 +270,7 @@ If you don&#8217;t see those check boxes, then use <a class="reference external"
   <p class="topless"><a href="generated_rst/pplacer.html"
                         title="previous chapter">pplacer</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="generated_rst/bary.html"
+  <p class="topless"><a href="generated_rst/guppy_bary.html"
                         title="next chapter">bary</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
@@ -281,7 +301,7 @@ If you don&#8217;t see those check boxes, then use <a class="reference external"
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="generated_rst/bary.html" title="bary"
+          <a href="generated_rst/guppy_bary.html" title="bary"
              >next</a> |</li>
         <li class="right" >
           <a href="generated_rst/pplacer.html" title="pplacer"
