@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pca &mdash; pplacer v1.1 documentation</title>
+    <title>bootviz &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="pplacer" href="pplacer.html" />
-    <link rel="prev" title="kr" href="kr.html" /> 
+    <link rel="next" title="check_refpkg" href="guppy_check_refpkg.html" />
+    <link rel="prev" title="bary" href="guppy_bary.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="pplacer.html" title="pplacer"
+          <a href="guppy_check_refpkg.html" title="check_refpkg"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="kr.html" title="kr"
+          <a href="guppy_bary.html" title="bary"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="pca">
-<h1>pca<a class="headerlink" href="#pca" title="Permalink to this headline">¶</a></h1>
-<p><cite>pca</cite> performs edge principal components.</p>
-<div class="highlight-python"><pre>usage: pca [options] placefiles</pre>
+  <div class="section" id="bootviz">
+<h1>bootviz<a class="headerlink" href="#bootviz" title="Permalink to this headline">¶</a></h1>
+<p><cite>bootviz</cite> makes a phyloXML tree showing the bootstrap values.</p>
+<div class="highlight-python"><pre>usage: bootviz [options] -b boot_trees cluster_tree</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -62,46 +62,16 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
+<kbd><span class="option">-b</span></kbd></td>
+<td>A single Newick file containing the bootstrapped trees, one per line.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
-<td>Set the prefix to write to. Required.</td></tr>
+<td>Specify an out file. Default: cluster_boot.xml</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-c</span></kbd></td>
-<td>Reference package path.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--write-n</span></kbd></td>
-<td>The number of principal coordinates to write out (default is 5).</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--scale</span></kbd></td>
-<td>Scale variances to one before performing principal components.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--multiplier</span></kbd></td>
-<td>The factor by which we multiply the principal component eigenvectors to get branch thickness. Default: 50.</td></tr>
+<kbd><span class="option">--cutoff</span></kbd></td>
+<td>Specify the cutoff for writing out the bootstrap value. Default: 0.</td></tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Perform edge principal components analysis (&#8220;edge PCA&#8221;).
-Edge PCA takes the special structure of phylogenetic placement data into account.
-Consequently, it is possible to visualize the principal component eigenvectors, and it can find consistent differences between samples which may not be so far apart in the tree.</p>
-<p>Running this command produces the following files for a run with out prefix set to &#8220;out&#8221;:</p>
-<dl class="docutils">
-<dt>out.rot</dt>
-<dd>The top eigenvalues (first column) then their corresponding eigenvectors.</dd>
-<dt>out.trans</dt>
-<dd>The samples projected into principal coordinate space.</dd>
-<dt>out.xml</dt>
-<dd>The eigenvectors visualized as fattened and colored trees.</dd>
-</dl>
 </div>
 </div>
 
@@ -113,22 +83,21 @@ Consequently, it is possible to visualize the principal component eigenvectors, 
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">pca</a><ul>
+<li><a class="reference internal" href="#">bootviz</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
-<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="kr.html"
-                        title="previous chapter">kr</a></p>
+  <p class="topless"><a href="guppy_bary.html"
+                        title="previous chapter">bary</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pplacer.html"
-                        title="next chapter">pplacer</a></p>
+  <p class="topless"><a href="guppy_check_refpkg.html"
+                        title="next chapter">check_refpkg</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/pca.txt"
+    <li><a href="../_sources/generated_rst/guppy_bootviz.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -155,10 +124,10 @@ Consequently, it is possible to visualize the principal component eigenvectors, 
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="pplacer.html" title="pplacer"
+          <a href="guppy_check_refpkg.html" title="check_refpkg"
              >next</a> |</li>
         <li class="right" >
-          <a href="kr.html" title="kr"
+          <a href="guppy_bary.html" title="bary"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

@@ -1,0 +1,20 @@
+============
+check_refpkg
+============
+
+`check_refpkg` check a reference package.
+
+::
+
+  usage: check_refpkg -c <refpkg>
+
+Options
+=======
+
+-c  Reference package path. Required.
+
+Details
+=======
+
+
+``check_refpkg`` checks that all of the necessary elements are present, as well as verifying that the taxomomy information is sensible and that it meshes with the names in the reference tree.

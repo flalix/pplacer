@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>kr &mdash; pplacer v1.1 documentation</title>
+    <title>classify &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="pca" href="pca.html" />
-    <link rel="prev" title="heat" href="heat.html" /> 
+    <link rel="next" title="demulti" href="guppy_demulti.html" />
+    <link rel="prev" title="check_refpkg" href="guppy_check_refpkg.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="pca.html" title="pca"
+          <a href="guppy_demulti.html" title="demulti"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="heat.html" title="heat"
+          <a href="guppy_check_refpkg.html" title="check_refpkg"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="kr">
-<h1>kr<a class="headerlink" href="#kr" title="Permalink to this headline">¶</a></h1>
-<p><cite>kr</cite> calculates the Kantorovich-Rubinstein distance and corresponding p-values.</p>
-<div class="highlight-python"><pre>usage: kr [options] placefiles</pre>
+  <div class="section" id="classify">
+<h1>classify<a class="headerlink" href="#classify" title="Permalink to this headline">¶</a></h1>
+<p><cite>classify</cite> outputs classification information in a tabular format.</p>
+<div class="highlight-python"><pre>usage: classify [options] placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -62,59 +62,53 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
 <kbd><span class="option">-c</span></kbd></td>
-<td>Reference package path.</td></tr>
+<td>Reference package path. Required.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>Set the filename to write to. Otherwise write to stdout.</td></tr>
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for our criteria.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">-p</span></kbd></td>
-<td>The exponent for the integration, i.e. the value of p in Z_p.</td></tr>
+<kbd><span class="option">--csv</span></kbd></td>
+<td>Write .class.csv files containing CSV data.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--seed</span></kbd></td>
-<td>Set the random seed, an integer &gt; 0. Default is 1.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--list-out</span></kbd></td>
-<td>Output the KR results as a list rather than a matrix.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--density</span></kbd></td>
-<td>Make density plots showing the distribution of randomized values with the calculated values</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-s</span></kbd></td>
-<td>Set how many samples to use for significance calculation (0 means calculate distance only). Default is 0.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--verbose</span></kbd></td>
-<td>Verbose running.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--normal</span></kbd></td>
-<td>Use the Gaussian process approximation for p-value estimation</td></tr>
+<kbd><span class="option">--sqlite</span></kbd></td>
+<td>Write .class.sqlite files containing sqlite insert statements.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p><cite>kr</cite> calculates the Katorovich-Rubinstein distance between collections of placements (given by their place files).</p>
-<div class="math">
-<p><img src="../_images/math/f1bed5695826614525c1cd80eda2c1151c479519.png" alt="Z(P,Q) : = \inf\left\{ \int_{S \times S} r(x,y) \, R(dx,dy) : R \in \mathcal{R}(P,Q) \right\}" /></p>
-</div><p>by its closed form formula</p>
-<div class="math">
-<p><img src="../_images/math/f9ae7229be4f9799b5e25e80cd9c44024ac339ca.png" alt="Z(P,Q) =
-\int_T \left| P(\tau(y)) - Q(\tau(y)) \right| \, \lambda(dy)." /></p>
-</div><p>This generalizes to an <img class="math" src="../_images/math/61ad138a2b9696aae806c55235ce1679e66888d4.png" alt="L^p"/> Zolotarev-type version:
-for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73488.png" alt="0 &lt; p &lt; \infty"/> we have the distances</p>
-<div class="math">
-<p><img src="../_images/math/93a6f1f8ca989121f060961eab6e5b61b00d27ac.png" alt="Z_p(P,Q) =
-\left[\int_T \left| P(\tau(y)) - Q(\tau(y)) \right|^p \, \lambda(dy)\right]^{\frac{1}{p} \wedge 1}" /></p>
-</div></div>
+<p>This subcommand outputs the classifications made by pplacer in a tabular format appropriate for use with R or SQL.
+For example, here is a classification list made for one read.
+The columns are as follows: read name, attempted rank for classification, actual rank for classification, taxonomic identifier, and confidence.
+You can see that in this example, there is some uncertainty at and below species, but only one classification at the genus level.</p>
+<div class="highlight-python"><pre>GLKT0ZE01CQ2BU                      root          root       1          1
+GLKT0ZE01CQ2BU                below_root    below_root  131567          1
+GLKT0ZE01CQ2BU              superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU        below_superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU  below_below_superkingdom  superkingdom       2          1
+GLKT0ZE01CQ2BU               superphylum  superkingdom       2          1
+GLKT0ZE01CQ2BU                    phylum        phylum    1239          1
+GLKT0ZE01CQ2BU                 subphylum        phylum    1239          1
+GLKT0ZE01CQ2BU                     class         class  186801          1
+GLKT0ZE01CQ2BU                  subclass         class  186801          1
+GLKT0ZE01CQ2BU                     order         order  186802          1
+GLKT0ZE01CQ2BU               below_order         order  186802          1
+GLKT0ZE01CQ2BU         below_below_order         order  186802          1
+GLKT0ZE01CQ2BU                  suborder         order  186802          1
+GLKT0ZE01CQ2BU                    family        family  186804          1
+GLKT0ZE01CQ2BU              below_family        family  186804          1
+GLKT0ZE01CQ2BU                     genus         genus    1257          1
+GLKT0ZE01CQ2BU             species_group         genus    1257          1
+GLKT0ZE01CQ2BU          species_subgroup         genus    1257          1
+GLKT0ZE01CQ2BU                   species         genus    1257  0.0732247
+GLKT0ZE01CQ2BU                   species       species    1261   0.853561
+GLKT0ZE01CQ2BU                   species       species  341694   0.073214
+GLKT0ZE01CQ2BU             below_species         genus    1257  0.0732247
+GLKT0ZE01CQ2BU             below_species       species    1261   0.853561
+GLKT0ZE01CQ2BU             below_species       species  341694   0.073214</pre>
+</div>
+</div>
 </div>
 
 
@@ -125,7 +119,7 @@ for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">kr</a><ul>
+<li><a class="reference internal" href="#">classify</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -133,14 +127,14 @@ for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="heat.html"
-                        title="previous chapter">heat</a></p>
+  <p class="topless"><a href="guppy_check_refpkg.html"
+                        title="previous chapter">check_refpkg</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pca.html"
-                        title="next chapter">pca</a></p>
+  <p class="topless"><a href="guppy_demulti.html"
+                        title="next chapter">demulti</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/kr.txt"
+    <li><a href="../_sources/generated_rst/guppy_classify.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -167,10 +161,10 @@ for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="pca.html" title="pca"
+          <a href="guppy_demulti.html" title="demulti"
              >next</a> |</li>
         <li class="right" >
-          <a href="heat.html" title="heat"
+          <a href="guppy_check_refpkg.html" title="check_refpkg"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

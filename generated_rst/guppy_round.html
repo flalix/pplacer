@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>fat &mdash; pplacer v1.1 documentation</title>
+    <title>round &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="heat" href="heat.html" />
-    <link rel="prev" title="demulti" href="demulti.html" /> 
+    <link rel="next" title="squash" href="guppy_squash.html" />
+    <link rel="prev" title="ref_tree" href="guppy_ref_tree.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="heat.html" title="heat"
+          <a href="guppy_squash.html" title="squash"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="demulti.html" title="demulti"
+          <a href="guppy_ref_tree.html" title="ref_tree"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="fat">
-<h1>fat<a class="headerlink" href="#fat" title="Permalink to this headline">¶</a></h1>
-<p><cite>fat</cite> makes trees with edges fattened in proportion to the number of reads.</p>
-<div class="highlight-python"><pre>usage: fat [options] placefile[s]</pre>
+  <div class="section" id="round">
+<h1>round<a class="headerlink" href="#round" title="Permalink to this headline">¶</a></h1>
+<p><cite>round</cite> clusters the placements by rounding branch lengths.</p>
+<div class="highlight-python"><pre>usage: round [options] placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -65,37 +65,26 @@
 <kbd><span class="option">-o</span></kbd></td>
 <td>Set the prefix to write to. Required.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--out-dir</span></kbd></td>
-<td>Specify the directory to write place files to.</td></tr>
+<kbd><span class="option">--sig-figs</span></kbd></td>
+<td>Set the number of significant figures used for rounding (default 3).</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-c</span></kbd></td>
-<td>Reference package path.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--white-bg</span></kbd></td>
-<td>Make colors appropriate for a white background.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--min-fat</span></kbd></td>
-<td>The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--total-width</span></kbd></td>
-<td>Set the total number of pixels for all of the mass. Default: 400</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unit-width</span></kbd></td>
-<td>Set the number of pixels for a single placement (will override total-width if set).</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--log</span></kbd></td>
-<td>Set to a nonzero value to perform a logarithmic transform of the branch width.</td></tr>
+<kbd><span class="option">--cutoff</span></kbd></td>
+<td>Set the rounding inclusion cutoff for the ML weight ratio (default 0.01).</td></tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>This subcommand provides very basic &#8220;clustering&#8221; functionality.
+This is not meant to derive &#8220;species level&#8221; or analogous groupings, but rather to group placements which will have essentially identical impact in a guppy analysis.</p>
+<p>Rounding is done as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>throw out the placement mass below the <tt class="docutils literal"><span class="pre">--cutoff</span></tt> level</li>
+<li>round the branch lengths to <tt class="docutils literal"><span class="pre">--sig-figs</span></tt> significant figures</li>
+<li>group placements that are identical after this process.</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -107,21 +96,22 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">fat</a><ul>
+<li><a class="reference internal" href="#">round</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="demulti.html"
-                        title="previous chapter">demulti</a></p>
+  <p class="topless"><a href="guppy_ref_tree.html"
+                        title="previous chapter">ref_tree</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="heat.html"
-                        title="next chapter">heat</a></p>
+  <p class="topless"><a href="guppy_squash.html"
+                        title="next chapter">squash</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/fat.txt"
+    <li><a href="../_sources/generated_rst/guppy_round.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -148,10 +138,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="heat.html" title="heat"
+          <a href="guppy_squash.html" title="squash"
              >next</a> |</li>
         <li class="right" >
-          <a href="demulti.html" title="demulti"
+          <a href="guppy_ref_tree.html" title="ref_tree"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

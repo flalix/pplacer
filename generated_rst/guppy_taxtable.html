@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>bavgdist &mdash; pplacer v1.1 documentation</title>
+    <title>taxtable &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="bootviz" href="bootviz.html" />
-    <link rel="prev" title="bary" href="bary.html" /> 
+    <link rel="next" title="to_json" href="guppy_to_json.html" />
+    <link rel="prev" title="squash" href="guppy_squash.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="bootviz.html" title="bootviz"
+          <a href="guppy_to_json.html" title="to_json"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="bary.html" title="bary"
+          <a href="guppy_squash.html" title="squash"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="bavgdist">
-<h1>bavgdist<a class="headerlink" href="#bavgdist" title="Permalink to this headline">¶</a></h1>
-<p><cite>bavgdist</cite> calculates the average pairwise distance between place files.</p>
-<div class="highlight-python"><pre>usage: bavgdist [options] placefiles</pre>
+  <div class="section" id="taxtable">
+<h1>taxtable<a class="headerlink" href="#taxtable" title="Permalink to this headline">¶</a></h1>
+<p><cite>taxtable</cite> makes SQL enabling taxonomic querying of placement results.</p>
+<div class="highlight-python"><pre>usage: taxtable [options] -c &lt;refpkg&gt;</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -62,25 +62,21 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path. Required.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
 <td>Set the filename to write to. Otherwise write to stdout.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-p</span></kbd></td>
-<td>The exponent for the integration, i.e. the value of p in Z_p.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--list-out</span></kbd></td>
-<td>Output the avgdist results as a list rather than a matrix.</td></tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Creates two SQL tables: <tt class="docutils literal"><span class="pre">taxa</span></tt> and <tt class="docutils literal"><span class="pre">ranks</span></tt>.
+<tt class="docutils literal"><span class="pre">taxa</span></tt> maps between taxon IDs, taxon names, and rank names.
+<tt class="docutils literal"><span class="pre">rank</span></tt> maps between rank names and rank levels.</p>
+<p>The databases made from these tables can then be used in conjunction with <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span> <span class="pre">--sqlite</span></tt>.</p>
+<p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples.</p>
 </div>
 </div>
 
@@ -92,21 +88,22 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">bavgdist</a><ul>
+<li><a class="reference internal" href="#">taxtable</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="bary.html"
-                        title="previous chapter">bary</a></p>
+  <p class="topless"><a href="guppy_squash.html"
+                        title="previous chapter">squash</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="bootviz.html"
-                        title="next chapter">bootviz</a></p>
+  <p class="topless"><a href="guppy_to_json.html"
+                        title="next chapter">to_json</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/bavgdist.txt"
+    <li><a href="../_sources/generated_rst/guppy_taxtable.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -133,10 +130,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="bootviz.html" title="bootviz"
+          <a href="guppy_to_json.html" title="to_json"
              >next</a> |</li>
         <li class="right" >
-          <a href="bary.html" title="bary"
+          <a href="guppy_squash.html" title="squash"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

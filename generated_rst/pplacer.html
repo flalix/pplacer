@@ -196,7 +196,7 @@ First, align the query sequences just like the reference sequences above:</p>
 <div class="highlight-python"><pre>cmalign --merge --hbanded --sub --dna -1 -o merged.sto profile.cm refalign.sto qalign.sto</pre>
 </div>
 <p>Now <tt class="docutils literal"><span class="pre">merged.sto</span></tt> contains a single alignment of both reference and query sequences, and can be used with pplacer as follows after making a reference tree and accompanying statistics file:</p>
-<div class="highlight-python"><pre>pplacer -t reference_tree -a statistics_file merged.sto</pre>
+<div class="highlight-python"><pre>pplacer -t reference_tree -s statistics_file merged.sto</pre>
 </div>
 </div>
 <div class="section" id="using-a-reference-package">

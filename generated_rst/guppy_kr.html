@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>bary &mdash; pplacer v1.1 documentation</title>
+    <title>kr &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="check_refpkg" href="check_refpkg.html" />
-    <link rel="prev" title="guppy" href="../guppy.html" /> 
+    <link rel="next" title="pca" href="guppy_pca.html" />
+    <link rel="prev" title="heat" href="guppy_heat.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="check_refpkg.html" title="check_refpkg"
+          <a href="guppy_pca.html" title="pca"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../guppy.html" title="guppy"
+          <a href="guppy_heat.html" title="heat"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="bary">
-<h1>bary<a class="headerlink" href="#bary" title="Permalink to this headline">¶</a></h1>
-<p><cite>bary</cite> draws the barycenter of a placement collection on the reference tree.</p>
-<div class="highlight-python"><pre>usage: bary [options] placefile[s]</pre>
+  <div class="section" id="kr">
+<h1>kr<a class="headerlink" href="#kr" title="Permalink to this headline">¶</a></h1>
+<p><cite>kr</cite> calculates the Kantorovich-Rubinstein distance and corresponding p-values.</p>
+<div class="highlight-python"><pre>usage: kr [options] placefiles</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -71,16 +71,51 @@
 <kbd><span class="option">--transform</span></kbd></td>
 <td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
-<td>The file to write out to. Defaults to the concatenation of the input file names.</td></tr>
+<td>Set the filename to write to. Otherwise write to stdout.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-p</span></kbd></td>
+<td>The exponent for the integration, i.e. the value of p in Z_p.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--seed</span></kbd></td>
+<td>Set the random seed, an integer &gt; 0. Default is 1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--list-out</span></kbd></td>
+<td>Output the KR results as a list rather than a matrix.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--density</span></kbd></td>
+<td>Make density plots showing the distribution of randomized values with the calculated values</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span></kbd></td>
+<td>Set how many samples to use for significance calculation (0 means calculate distance only). Default is 0.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--verbose</span></kbd></td>
+<td>Verbose running.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--normal</span></kbd></td>
+<td>Use the Gaussian process approximation for p-value estimation</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Calculate the center of mass of the placement distribution and write it out to a phyloXML file for viewing.
-When several place files are given, calculate the barycenter for each, and mark them on the same tree.
-Because phyloxml isn&#8217;t actually designed to show points on the tree, the phyloXML is a kluge at the moment&#8211; using &#8220;speciation&#8221; and &#8220;duplication&#8221; tags.</p>
+<p><tt class="docutils literal"><span class="pre">kr</span></tt> calculates the Kantorovich-Rubinstein distance between collections of placements (given by their place files).</p>
+<div class="math">
+<p><img src="../_images/math/f1bed5695826614525c1cd80eda2c1151c479519.png" alt="Z(P,Q) : = \inf\left\{ \int_{S \times S} r(x,y) \, R(dx,dy) : R \in \mathcal{R}(P,Q) \right\}" /></p>
+</div><p>by its closed form formula</p>
+<div class="math">
+<p><img src="../_images/math/f9ae7229be4f9799b5e25e80cd9c44024ac339ca.png" alt="Z(P,Q) =
+\int_T \left| P(\tau(y)) - Q(\tau(y)) \right| \, \lambda(dy)." /></p>
+</div><p>This is a generalization of the UniFrac distance (UniFrac can only place mass at leaves and cannot accomodate uncertainty).
+There is a further generalization to an <img class="math" src="../_images/math/61ad138a2b9696aae806c55235ce1679e66888d4.png" alt="L^p"/> Zolotarev-type version:
+for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73488.png" alt="0 &lt; p &lt; \infty"/> we have the distances</p>
+<div class="math">
+<p><img src="../_images/math/93a6f1f8ca989121f060961eab6e5b61b00d27ac.png" alt="Z_p(P,Q) =
+\left[\int_T \left| P(\tau(y)) - Q(\tau(y)) \right|^p \, \lambda(dy)\right]^{\frac{1}{p} \wedge 1}" /></p>
+</div><p>which can be used to vary the impact of mass relative to transport.</p>
 </div>
 </div>
 
@@ -92,7 +127,7 @@ Because phyloxml isn&#8217;t actually designed to show points on the tree, the p
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">bary</a><ul>
+<li><a class="reference internal" href="#">kr</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -100,14 +135,14 @@ Because phyloxml isn&#8217;t actually designed to show points on the tree, the p
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../guppy.html"
-                        title="previous chapter">guppy</a></p>
+  <p class="topless"><a href="guppy_heat.html"
+                        title="previous chapter">heat</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="check_refpkg.html"
-                        title="next chapter">check_refpkg</a></p>
+  <p class="topless"><a href="guppy_pca.html"
+                        title="next chapter">pca</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/bary.txt"
+    <li><a href="../_sources/generated_rst/guppy_kr.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -134,10 +169,10 @@ Because phyloxml isn&#8217;t actually designed to show points on the tree, the p
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="check_refpkg.html" title="check_refpkg"
+          <a href="guppy_pca.html" title="pca"
              >next</a> |</li>
         <li class="right" >
-          <a href="../guppy.html" title="guppy"
+          <a href="guppy_heat.html" title="heat"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
