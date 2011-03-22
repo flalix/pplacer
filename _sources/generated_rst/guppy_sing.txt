@@ -1,0 +1,22 @@
+====
+sing
+====
+
+`sing` single placement: make one tree for each placement.
+
+::
+
+  usage: sing [options] placefile[s]
+
+Options
+=======
+
+--pp  Use posterior probability for the weight.
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+-o  Set the prefix to write to. Required.
+--unit-width  Set the number of pixels for a single placement (will override total-width if set).
+--total-width  Set the total number of pixels for all of the mass. Default: 400
+--xml  Write phyloXML (with colors) for all visualizations.
+--node-numbers  Put the node numbers in where the bootstraps usually go.
+

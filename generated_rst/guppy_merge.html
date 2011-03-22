@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>squash &mdash; pplacer v1.1 documentation</title>
+    <title>merge &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="taxtable" href="guppy_taxtable.html" />
-    <link rel="prev" title="sing" href="guppy_sing.html" /> 
+    <link rel="next" title="pca" href="guppy_pca.html" />
+    <link rel="prev" title="kr" href="guppy_kr.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_taxtable.html" title="taxtable"
+          <a href="guppy_pca.html" title="pca"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_sing.html" title="sing"
+          <a href="guppy_kr.html" title="kr"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="squash">
-<h1>squash<a class="headerlink" href="#squash" title="Permalink to this headline">¶</a></h1>
-<p><cite>squash</cite> performs squash clustering.</p>
-<div class="highlight-python"><pre>usage: squash [options] placefiles</pre>
+  <div class="section" id="merge">
+<h1>merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h1>
+<p><cite>merge</cite> merges placefiles together.</p>
+<div class="highlight-python"><pre>usage: merge [options] ex1.place [ex2.place [...]]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -62,37 +62,10 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-c</span></kbd></td>
-<td>Reference package path.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--seed</span></kbd></td>
-<td>Set the random seed, an integer &gt; 0. Default is 1.</td></tr>
-<tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
-<td>The output directory. Required</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--bootstrap</span></kbd></td>
-<td>the number of bootstrap replicates to run</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--tax-cluster</span></kbd></td>
-<td>Perform taxonomic clustering rather than phylogenetic.Specify &#8220;unit&#8221; or &#8220;inv&#8221; for the two different modes.</td></tr>
+<td>Output file. Default is derived from the input filenames.</td></tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Bootstrapping is performed by resampling directly on placements.
-Note that the bootstrap values for clustering are calculated in a rooted way.
-That means that you may observe different bootstrap values on either side of the root, especially if a whole clade from one side of the root likes to flip to a location distal to the clade on the other side of the root.</p>
 </div>
 </div>
 
@@ -104,22 +77,21 @@ That means that you may observe different bootstrap values on either side of the
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">squash</a><ul>
+<li><a class="reference internal" href="#">merge</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
-<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_sing.html"
-                        title="previous chapter">sing</a></p>
+  <p class="topless"><a href="guppy_kr.html"
+                        title="previous chapter">kr</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_taxtable.html"
-                        title="next chapter">taxtable</a></p>
+  <p class="topless"><a href="guppy_pca.html"
+                        title="next chapter">pca</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_squash.txt"
+    <li><a href="../_sources/generated_rst/guppy_merge.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -146,10 +118,10 @@ That means that you may observe different bootstrap values on either side of the
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_taxtable.html" title="taxtable"
+          <a href="guppy_pca.html" title="pca"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_sing.html" title="sing"
+          <a href="guppy_kr.html" title="kr"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
