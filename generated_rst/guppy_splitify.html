@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sing &mdash; pplacer v1.1 documentation</title>
+    <title>splitify &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="splitify" href="guppy_splitify.html" />
-    <link rel="prev" title="round" href="guppy_round.html" /> 
+    <link rel="next" title="squash" href="guppy_squash.html" />
+    <link rel="prev" title="sing" href="guppy_sing.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_splitify.html" title="splitify"
+          <a href="guppy_squash.html" title="squash"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_sing.html" title="sing"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="sing">
-<h1>sing<a class="headerlink" href="#sing" title="Permalink to this headline">¶</a></h1>
-<p><cite>sing</cite> single placement: make one tree for each placement.</p>
-<div class="highlight-python"><pre>usage: sing [options] placefile[s]</pre>
+  <div class="section" id="splitify">
+<h1>splitify<a class="headerlink" href="#splitify" title="Permalink to this headline">¶</a></h1>
+<p><cite>splitify</cite> write out splits of masses.</p>
+<div class="highlight-python"><pre>usage: splitify [options] placefile</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -61,6 +61,9 @@
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o</span></kbd></td>
+<td>Set the filename to write to. Otherwise write to stdout.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for the weight.</td></tr>
@@ -70,21 +73,6 @@
 <tr><td class="option-group">
 <kbd><span class="option">--transform</span></kbd></td>
 <td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>Set the prefix to write to. Required.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unit-width</span></kbd></td>
-<td>Set the number of pixels for a single placement (will override total-width if set).</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--total-width</span></kbd></td>
-<td>Set the total number of pixels for all of the mass. Default: 400</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--xml</span></kbd></td>
-<td>Write phyloXML (with colors) for all visualizations.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--node-numbers</span></kbd></td>
-<td>Put the node numbers in where the bootstraps usually go.</td></tr>
 </tbody>
 </table>
 </div>
@@ -98,21 +86,21 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">sing</a><ul>
+<li><a class="reference internal" href="#">splitify</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_round.html"
-                        title="previous chapter">round</a></p>
+  <p class="topless"><a href="guppy_sing.html"
+                        title="previous chapter">sing</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_splitify.html"
-                        title="next chapter">splitify</a></p>
+  <p class="topless"><a href="guppy_squash.html"
+                        title="next chapter">squash</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_sing.txt"
+    <li><a href="../_sources/generated_rst/guppy_splitify.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -139,10 +127,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_splitify.html" title="splitify"
+          <a href="guppy_squash.html" title="squash"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_sing.html" title="sing"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

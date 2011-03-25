@@ -1,0 +1,18 @@
+========
+splitify
+========
+
+`splitify` write out splits of masses.
+
+::
+
+  usage: splitify [options] placefile
+
+Options
+=======
+
+-o  Set the filename to write to. Otherwise write to stdout.
+--pp  Use posterior probability for the weight.
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+
