@@ -6,7 +6,7 @@ merge
 
 ::
 
-  usage: merge [options] ex1.place [ex2.place [...]]
+  usage: merge [options] placefiles
 
 Options
 =======

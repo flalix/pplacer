@@ -2,7 +2,7 @@
 demulti
 =======
 
-`demulti` splits apart placements with multiplicity, undoing a round procedure..
+`demulti` splits apart placements with multiplicity, undoing a round procedure.
 
 ::
 

@@ -2,7 +2,7 @@
 classify
 ========
 
-`classify` outputs classification information in a tabular format.
+`classify` outputs classification information in a tabular or SQLite format.
 
 ::
 

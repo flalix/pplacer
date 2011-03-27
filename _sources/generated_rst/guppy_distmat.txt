@@ -2,11 +2,11 @@
 distmat
 =======
 
-`distmat` prints out a pairwise distance matrix between the edges..
+`distmat` prints out a pairwise distance matrix between the edges.
 
 ::
 
-  usage: distmat -o my.tab my1.json [my2.json ...]
+  usage: distmat -o my.tab placefile[s]
 
 Options
 =======

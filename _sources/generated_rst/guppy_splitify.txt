@@ -2,11 +2,11 @@
 splitify
 ========
 
-`splitify` write out splits of masses.
+`splitify` writes out differences of masses for the splits of the tree.
 
 ::
 
-  usage: splitify [options] placefile
+  usage: splitify [options] placefile(s)
 
 Options
 =======
@@ -16,3 +16,10 @@ Options
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
 
+Details
+=======
+
+
+The first step to perform edge PCA is to make a matrix with rows indexed by the samples, and columns by the edges of the tree.
+The :math:`(s,e)` entry of this matrix is the difference between the distribution of mass on either side of edge :math:`e` for the sample :math:`s`.
+The ``splitify`` subcommand simply writes out this matrix.

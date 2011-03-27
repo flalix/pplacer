@@ -6,7 +6,7 @@ filter
 
 ::
 
-  usage: filter [options] ex1.place [ex2.place [...]]
+  usage: filter [options] placefile[s]
 
 Options
 =======

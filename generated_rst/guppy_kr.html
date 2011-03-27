@@ -102,10 +102,7 @@
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">kr</span></tt> calculates the Kantorovich-Rubinstein distance between collections of placements (given by their place files).</p>
-<div class="math">
-<p><img src="../_images/math/f1bed5695826614525c1cd80eda2c1151c479519.png" alt="Z(P,Q) : = \inf\left\{ \int_{S \times S} r(x,y) \, R(dx,dy) : R \in \mathcal{R}(P,Q) \right\}" /></p>
-</div><p>by its closed form formula</p>
+<p><tt class="docutils literal"><span class="pre">kr</span></tt> calculates the Kantorovich-Rubinstein distance between collections of placements (given by their place files) by its closed form formula</p>
 <div class="math">
 <p><img src="../_images/math/f9ae7229be4f9799b5e25e80cd9c44024ac339ca.png" alt="Z(P,Q) =
 \int_T \left| P(\tau(y)) - Q(\tau(y)) \right| \, \lambda(dy)." /></p>
@@ -115,7 +112,8 @@ for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73
 <div class="math">
 <p><img src="../_images/math/93a6f1f8ca989121f060961eab6e5b61b00d27ac.png" alt="Z_p(P,Q) =
 \left[\int_T \left| P(\tau(y)) - Q(\tau(y)) \right|^p \, \lambda(dy)\right]^{\frac{1}{p} \wedge 1}" /></p>
-</div><p>which can be used to vary the impact of mass relative to transport.</p>
+</div><p>which can be used to vary the impact of mass relative to transport.
+A larger <span class="math">p</span> increases the impact of differences of mass, while a smaller <span class="math">p</span> emphasizes distance traveled.</p>
 </div>
 </div>
 

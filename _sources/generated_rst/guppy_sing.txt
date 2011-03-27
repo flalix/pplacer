@@ -2,7 +2,7 @@
 sing
 ====
 
-`sing` single placement: make one tree for each placement.
+`sing` makes one tree for each query sequence, showing uncertainty.
 
 ::
 
@@ -20,3 +20,7 @@ Options
 --xml  Write phyloXML (with colors) for all visualizations.
 --node-numbers  Put the node numbers in where the bootstraps usually go.
 
+Details
+=======
+
+Only suggested for detailed analysis of a few sequences: because this makes one tree per query sequence, it can easily make very big files.

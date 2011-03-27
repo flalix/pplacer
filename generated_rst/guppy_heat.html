@@ -53,7 +53,7 @@
   <div class="section" id="heat">
 <h1>heat<a class="headerlink" href="#heat" title="Permalink to this headline">¶</a></h1>
 <p><cite>heat</cite> makes a heat tree.</p>
-<div class="highlight-python"><pre>usage: heat [options] ex1.place ex2.place</pre>
+<div class="highlight-python"><pre>usage: heat [options] placefile1 placefile2</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -104,7 +104,8 @@
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
 <p>Draw a &#8220;heat tree&#8221; in phyloXML format.
 A heat tree shows the optimal movement of dirt in the &#8220;earth movers&#8221; interpretation of the Kantorovich-Rubinstein distance.
-Imagine that the dirt is moving from the placement distribution corresponding to the first .place file to that in the second.
+Imagine that the dirt is moving from the placement distribution corresponding to the first place file to that in the second.
+The branches are thickened in proportion to the amount of dirt which moves through that edge.
 Dirt moving on an edge towards the root is marked in red, and that moving away from the root is colored in blue.
 Said another way, clades which are upregulated in the first sample are colored red, and the others blue.</p>
 </div>

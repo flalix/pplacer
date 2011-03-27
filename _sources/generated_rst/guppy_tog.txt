@@ -2,7 +2,7 @@
 tog
 ===
 
-`tog` make a tree with each of the fragments represented as a pendant edge.
+`tog` makes a tree with each of the reads represented as a pendant edge.
 
 ::
 
@@ -19,4 +19,9 @@ Options
 --total-width  Set the total number of pixels for all of the mass. Default: 400
 --xml  Write phyloXML (with colors) for all visualizations.
 --node-numbers  Put the node numbers in where the bootstraps usually go.
+
+Details
+=======
+
+Only the best placement is used.
 
