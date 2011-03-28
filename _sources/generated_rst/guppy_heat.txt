@@ -16,6 +16,7 @@ Options
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
 -c  Reference package path.
 -p  The exponent for the integration, i.e. the value of p in Z_p.
+--normalize  Divide KR by a given value. Legal arguments are "tree-length".
 -o  Output file. Default is derived from the input filenames.
 --color-grad  Use color gradation as well as thickness to represent mass transport.
 --gray-black  Use gray and black in place of red and blue to signify the sign of the KR along that edge.
