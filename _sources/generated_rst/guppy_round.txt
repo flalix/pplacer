@@ -12,8 +12,8 @@ Options
 =======
 
 -o  Set the prefix to write to. Required.
---sig-figs  Set the number of significant figures used for rounding (default 3).
---cutoff  Set the rounding inclusion cutoff for the ML weight ratio (default 0.01).
+--sig-figs  Set the number of significant figures used for rounding. Specify 0 for no rounding. Default: 3.
+--cutoff  Set the rounding inclusion cutoff for the ML weight ratio. Default: 0.01.
 
 Details
 =======
