@@ -33,13 +33,11 @@ Options
 --fantasy-frac  Fraction of fragments to use when running fantasy baseball. Default is 0.1.
 --write-masked  Write alignment masked to the region without gaps in the query.
 --verbosity  Set verbosity level. 0 is silent, and 2 is quite a lot. Default is 1.
---unfriendly  Do not run friend finder pre-analysis.
 --out-dir  Specify the directory to write place files to.
 --pretend  Only check out the files then report. Do not run the analysis.
---csv  Make a CSV file with the results.
---old-format  Make an old-format placefile with the resuls.
 --diagnostic  Write file describing the 'diagnostic' mutations for various clades.
 --check-like  Write out the likelihood of the reference tree, calculated two ways.
+-j  The number of child processes to spawn when doing placements. Default is 2.
 --version  Write out the version number and exit.
 
 Details
