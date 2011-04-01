@@ -193,6 +193,109 @@ Running pplacer in this way will diable the taxonomic annotation features of ppl
 <li><tt class="docutils literal"><span class="pre">placeviz</span></tt>, <tt class="docutils literal"><span class="pre">placeutil</span></tt> and <tt class="docutils literal"><span class="pre">mokaphy</span></tt> have been replaced by a single binary called <tt class="docutils literal"><span class="pre">guppy</span></tt></li>
 </ul>
 </div>
+<div class="section" id="json-format-specificaiton">
+<h3><a class="reference external" href="http://www.json.org/">JSON</a> format specificaiton<a class="headerlink" href="#json-format-specificaiton" title="Permalink to this headline">¶</a></h3>
+<p>The new JSON format is very simple. Each document is a JSON object with a minimum of four keys: <tt class="docutils literal"><span class="pre">tree</span></tt>, <tt class="docutils literal"><span class="pre">fields</span></tt>,
+<tt class="docutils literal"><span class="pre">placements</span></tt>, and <tt class="docutils literal"><span class="pre">version</span></tt>. Another key, <tt class="docutils literal"><span class="pre">metadata</span></tt>, is optional. Other keys in the root object are ignored.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Key</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">version</span></tt></td>
+<td>The version of the JSON format as an integer. Currently only <tt class="docutils literal"><span class="pre">1</span></tt> is allowed.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">tree</span></tt></td>
+<td>The reference tree as a string, in Newick format.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">placements</span></tt></td>
+<td>An array of placements.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">fields</span></tt></td>
+<td>An array of strings corresponding to the data given in the placements array.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">metadata</span></tt></td>
+<td>An object containing metadata about the generation of this collection of placements.</td>
+</tr>
+</tbody>
+</table>
+<p>The pplacer suite currently uses the following field names:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">edge_num</span></tt></td>
+<td>The edge number from the provided <tt class="docutils literal"><span class="pre">tree</span></tt> as an integer.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">likelihood</span></tt></td>
+<td>ML log likelihood as a float.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt></td>
+<td>ML likelihood weight ratio as a float.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">distal_length</span></tt></td>
+<td>ML distance from the distal side of the edge as a float.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">pendant_length</span></tt></td>
+<td>ML pendant branch length as a float.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
+<td>The <tt class="docutils literal"><span class="pre">tax_id</span></tt> from a reference package as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>For <tt class="docutils literal"><span class="pre">guppy</span></tt> to be able to load a JSON file, it must have <tt class="docutils literal"><span class="pre">edge_num</span></tt>, <tt class="docutils literal"><span class="pre">likelihood</span></tt>, <tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt>,
+<tt class="docutils literal"><span class="pre">distal_length</span></tt>, and <tt class="docutils literal"><span class="pre">pendant_length</span></tt> fields.</p>
+<p>Each entry in the <tt class="docutils literal"><span class="pre">placements</span></tt> array is an object with the following keys:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="95%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Key</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">n</span></tt></td>
+<td>A string or array of strings corresponding to the name or names of the sequences placed here.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">p</span></tt></td>
+<td>An array of arrays containing placement data in the same order as <tt class="docutils literal"><span class="pre">fields</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+<p>An example JSON document follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;tree&quot;</span><span class="p">:</span> <span class="s">&quot;((A:2[0],B:9[1]):7[2],C:5[3],D:1[4]):0[5];&quot;</span><span class="p">,</span>
+  <span class="s">&quot;placements&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.830000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">10.000000</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;one_x&quot;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.830000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">2.000000</span><span class="p">,</span> <span class="mf">10.000000</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;one_y&quot;</span><span class="p">]}</span>
+  <span class="p">],</span>
+  <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;invocation&quot;</span><span class="p">:</span> <span class="s">&quot;guppy to_json&quot;</span><span class="p">},</span>
+  <span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;edge_num&quot;</span><span class="p">,</span> <span class="s">&quot;likelihood&quot;</span><span class="p">,</span> <span class="s">&quot;like_weight_ratio&quot;</span><span class="p">,</span> <span class="s">&quot;distal_length&quot;</span><span class="p">,</span>
+    <span class="s">&quot;pendant_length&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="making-alignments-for-use-with-pplacer">
 <h3>Making alignments for use with pplacer<a class="headerlink" href="#making-alignments-for-use-with-pplacer" title="Permalink to this headline">¶</a></h3>
 <p>There are several options and formats for providing alignments of reference and query sequences.
@@ -361,6 +464,7 @@ Here&#8217;s an example, with three hypothetical locations for a given query seq
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
+<li><a class="reference internal" href="#json-format-specificaiton">JSON format specificaiton</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a><ul>
 <li><a class="reference internal" href="#examples-using-infernal">Examples using Infernal</a><ul>
 <li><a class="reference internal" href="#creating-a-reference-alignment">Creating a reference alignment</a></li>
