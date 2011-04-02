@@ -174,7 +174,7 @@ The alignment can be in FASTA format (with a <tt class="docutils literal"><span 
 <div class="highlight-python"><pre>pplacer -t reference_tree -s statistics_file aln.fasta</pre>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">statistics_file</span></tt> is a file describing the evolutionary model used to make the reference tree (described in the section on reference tree below).
-Running pplacer in this way will diable the taxonomic annotation features of pplacer v1.1.</p>
+Running pplacer in this way will disable the taxonomic annotation features of pplacer v1.1.</p>
 </div>
 <div class="section" id="migrating-from-pplacer-v1-0">
 <h3>Migrating from pplacer v1.0<a class="headerlink" href="#migrating-from-pplacer-v1-0" title="Permalink to this headline">¶</a></h3>
@@ -187,8 +187,8 @@ Running pplacer in this way will diable the taxonomic annotation features of ppl
 <li><tt class="docutils literal"><span class="pre">placeviz</span></tt>, <tt class="docutils literal"><span class="pre">placeutil</span></tt> and <tt class="docutils literal"><span class="pre">mokaphy</span></tt> have been replaced by a single binary called <tt class="docutils literal"><span class="pre">guppy</span></tt></li>
 </ul>
 </div>
-<div class="section" id="json-format-specificaiton">
-<h3><a class="reference external" href="http://www.json.org/">JSON</a> format specificaiton<a class="headerlink" href="#json-format-specificaiton" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="json-format-specification">
+<h3><a class="reference external" href="http://www.json.org/">JSON</a> format specification<a class="headerlink" href="#json-format-specification" title="Permalink to this headline">¶</a></h3>
 <p>The new JSON format is very simple. Each document is a JSON object with a minimum of four keys: <tt class="docutils literal"><span class="pre">tree</span></tt>, <tt class="docutils literal"><span class="pre">fields</span></tt>,
 <tt class="docutils literal"><span class="pre">placements</span></tt>, and <tt class="docutils literal"><span class="pre">version</span></tt>. Another key, <tt class="docutils literal"><span class="pre">metadata</span></tt>, is optional. Other keys in the root object are ignored.</p>
 <table border="1" class="docutils">
@@ -390,7 +390,7 @@ We are currently considering ways to work around these issues.</p>
 <div class="highlight-python"><pre>Warning: pplacer results make the most sense when the given tree is multifurcating
 at the root. See manual for details.</pre>
 </div>
-<p>In pplacer the two edges coming off of the root have the same status as the rest of the edges; therefore they are be artifically counted as two separate edges.
+<p>In pplacer the two edges coming off of the root have the same status as the rest of the edges; therefore they are be artificially counted as two separate edges.
 That will lead to artifactually low likelihood weight ratio and posterior probabilities for query sequences placed on those edges.
 This doesn&#8217;t matter if your query sequences do not get placed next to the root, but you can avoid the problem altogether by rooting the tree at an internal node, or by leaving the outgroup in and rerooting the placeviz trees.</p>
 </div>
@@ -460,7 +460,7 @@ Here&#8217;s an example, with three hypothetical locations for a given query seq
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
-<li><a class="reference internal" href="#json-format-specificaiton">JSON format specificaiton</a></li>
+<li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a><ul>
 <li><a class="reference internal" href="#examples-using-infernal">Examples using Infernal</a><ul>
 <li><a class="reference internal" href="#creating-a-reference-alignment">Creating a reference alignment</a></li>
