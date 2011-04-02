@@ -206,7 +206,7 @@ Running pplacer in this way will diable the taxonomic annotation features of ppl
 <td>The version of the JSON format as an integer. Currently only <tt class="docutils literal"><span class="pre">1</span></tt> is allowed.</td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">tree</span></tt></td>
-<td>The reference tree as a string, in Newick format.</td>
+<td>The reference tree as a string, in &#8220;edge-numbered Newick&#8221; format.</td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">placements</span></tt></td>
 <td>An array of placements.</td>
@@ -219,6 +219,8 @@ Running pplacer in this way will diable the taxonomic annotation features of ppl
 </tr>
 </tbody>
 </table>
+<p>An &#8220;edge-numbered Newick&#8221; tree is simply a Newick format tree with edge labels in square brackets which provide a well-defined numbering of edges.
+These edge numbers are used to specify the edges on which the placements lie.</p>
 <p>The pplacer suite currently uses the following field names:</p>
 <table border="1" class="docutils">
 <colgroup>
