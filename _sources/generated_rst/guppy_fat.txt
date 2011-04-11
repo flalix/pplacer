@@ -17,9 +17,7 @@ Options
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
 -c  Reference package path.
---white-bg  Make colors appropriate for a white background.
 --min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
---total-width  Set the total number of pixels for all of the mass. Default: 400
---unit-width  Set the number of pixels for a single placement (will override total-width if set).
---log  Set to a nonzero value to perform a logarithmic transform of the branch width.
+--total-width  Set the total pixel width for all of the branches of the tree. Default: 300
+--width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
 

@@ -2,36 +2,35 @@
 heat
 ====
 
-`heat` makes a heat tree.
+`heat` maps an an arbitrary vector of the correct length to the tree.
 
 ::
 
-  usage: heat [options] placefile1 placefile2
+  usage: heat -o my.xml -c my.refpkg matrix.csv
 
 Options
 =======
 
---pp  Use posterior probability for the weight.
---unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
---transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
--c  Reference package path.
--p  The exponent for the integration, i.e. the value of p in Z_p.
---normalize  Divide KR by a given value. Legal arguments are "tree-length".
--o  Output file. Default is derived from the input filenames.
---color-grad  Use color gradation as well as thickness to represent mass transport.
---gray-black  Use gray and black in place of red and blue to signify the sign of the KR along that edge.
---white-bg  Make colors for the heat tree which are compatible with a white background.
---gray-level  Specify the amount of gray to mix into the color scheme. Default is 5.
---min-width  Specify the minimum width of the branches in a heat tree. Default is 0.5.
---max-width  Specify the maximum width of the branches in a heat tree. Default is 13.
+-o  Set the filename to write to. Otherwise write to stdout.
+-c  Reference package path. Required.
+--min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
+--total-width  Set the total pixel width for all of the branches of the tree. Default: 300
+--width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
+--gray-black  Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.
+--min-width  Specify the minimum width for a branch to be colored and thickened. Default is 1.
 
 Details
 =======
 
-Draw a "heat tree" in phyloXML format.
-A heat tree shows the optimal movement of dirt in the "earth movers" interpretation of the Kantorovich-Rubinstein distance.
-Imagine that the dirt is moving from the placement distribution corresponding to the first place file to that in the second.
-The branches are thickened in proportion to the amount of dirt which moves through that edge.
-Dirt moving on an edge towards the root is marked in red, and that moving away from the root is colored in blue.
-Said another way, clades which are upregulated in the first sample are colored red, and the others blue.
+Makes
+
+For example, given a tree like so::
+
+((A:2[0],B:9[1]):7[2],C:5[3],D:1[4]):0[5];
+
+and a CSV line::
+
+"test",0,3,0,0,-6,1
+
+this command run with a total width of 300 will put width 90 in red on the edge leading to B, width 180 in blue on the edge leading to D, and width 30 in red on the root edge.
 

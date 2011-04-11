@@ -16,6 +16,9 @@ Options
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
 -c  Reference package path.
 --seed  Set the random seed, an integer > 0. Default is 1.
+--min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
+--total-width  Set the total pixel width for all of the branches of the tree. Default: 300
+--width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
 -o  The output directory. Required
 --bootstrap  the number of bootstrap replicates to run
 --tax-cluster  Perform taxonomic clustering rather than phylogenetic.Specify "unit" or "inv" for the two different modes.

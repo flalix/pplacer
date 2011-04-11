@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sing &mdash; pplacer v1.1 documentation</title>
+    <title>kr_heat &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="splitify" href="guppy_splitify.html" />
-    <link rel="prev" title="round" href="guppy_round.html" /> 
+    <link rel="next" title="merge" href="guppy_merge.html" />
+    <link rel="prev" title="kr" href="guppy_kr.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_splitify.html" title="splitify"
+          <a href="guppy_merge.html" title="merge"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_kr.html" title="kr"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="sing">
-<h1>sing<a class="headerlink" href="#sing" title="Permalink to this headline">¶</a></h1>
-<p><cite>sing</cite> makes one tree for each query sequence, showing uncertainty.</p>
-<div class="highlight-python"><pre>usage: sing [options] placefile[s]</pre>
+  <div class="section" id="kr-heat">
+<h1>kr_heat<a class="headerlink" href="#kr-heat" title="Permalink to this headline">¶</a></h1>
+<p><cite>kr_heat</cite> makes a heat tree.</p>
+<div class="highlight-python"><pre>usage: heat [options] placefile1 placefile2</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -71,8 +71,14 @@
 <kbd><span class="option">--transform</span></kbd></td>
 <td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>Set the prefix to write to. Required.</td></tr>
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-p</span></kbd></td>
+<td>The exponent for the integration, i.e. the value of p in Z_p.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--normalize</span></kbd></td>
+<td>Divide KR by a given value. Legal arguments are &#8220;tree-length&#8221;.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--min-fat</span></kbd></td>
 <td>The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01</td></tr>
@@ -82,12 +88,26 @@
 <tr><td class="option-group">
 <kbd><span class="option">--width-factor</span></kbd></td>
 <td>Override total-width by directly setting the number of pixels per unit of thing displayed.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--gray-black</span></kbd></td>
+<td>Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--min-width</span></kbd></td>
+<td>Specify the minimum width for a branch to be colored and thickened. Default is 1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span></kbd></td>
+<td>Output file. Default is derived from the input filenames.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Only suggested for detailed analysis of a few sequences: because this makes one tree per query sequence, it can easily make very big files.</p>
+<p>Draw a &#8220;heat tree&#8221; in phyloXML format.
+A heat tree shows the optimal movement of dirt in the &#8220;earth movers&#8221; interpretation of the Kantorovich-Rubinstein distance.
+Imagine that the dirt is moving from the placement distribution corresponding to the first place file to that in the second.
+The branches are thickened in proportion to the amount of dirt which moves through that edge.
+Dirt moving on an edge towards the root is marked in red, and that moving away from the root is colored in blue.
+Said another way, clades which are upregulated in the first sample are colored red, and the others blue.</p>
 </div>
 </div>
 
@@ -99,7 +119,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">sing</a><ul>
+<li><a class="reference internal" href="#">kr_heat</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -107,14 +127,14 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_round.html"
-                        title="previous chapter">round</a></p>
+  <p class="topless"><a href="guppy_kr.html"
+                        title="previous chapter">kr</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_splitify.html"
-                        title="next chapter">splitify</a></p>
+  <p class="topless"><a href="guppy_merge.html"
+                        title="next chapter">merge</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_sing.txt"
+    <li><a href="../_sources/generated_rst/guppy_kr_heat.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -141,10 +161,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_splitify.html" title="splitify"
+          <a href="guppy_merge.html" title="merge"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_kr.html" title="kr"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

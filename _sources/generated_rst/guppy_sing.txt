@@ -15,10 +15,9 @@ Options
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
 -o  Set the prefix to write to. Required.
---unit-width  Set the number of pixels for a single placement (will override total-width if set).
---total-width  Set the total number of pixels for all of the mass. Default: 400
---xml  Write phyloXML (with colors) for all visualizations.
---node-numbers  Put the node numbers in where the bootstraps usually go.
+--min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
+--total-width  Set the total pixel width for all of the branches of the tree. Default: 300
+--width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
 
 Details
 =======

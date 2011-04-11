@@ -77,14 +77,26 @@
 <kbd><span class="option">-c</span></kbd></td>
 <td>Reference package path.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">--min-fat</span></kbd></td>
+<td>The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--total-width</span></kbd></td>
+<td>Set the total pixel width for all of the branches of the tree. Default: 300</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--width-factor</span></kbd></td>
+<td>Override total-width by directly setting the number of pixels per unit of thing displayed.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--gray-black</span></kbd></td>
+<td>Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--min-width</span></kbd></td>
+<td>Specify the minimum width for a branch to be colored and thickened. Default is 1.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--write-n</span></kbd></td>
 <td>The number of principal coordinates to write out (default is 5).</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--scale</span></kbd></td>
 <td>Scale variances to one before performing principal components.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--multiplier</span></kbd></td>
-<td>The factor by which we multiply the principal component eigenvectors to get branch thickness. Default: 50.</td></tr>
 </tbody>
 </table>
 </div>

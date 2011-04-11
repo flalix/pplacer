@@ -52,8 +52,8 @@
             
   <div class="section" id="heat">
 <h1>heat<a class="headerlink" href="#heat" title="Permalink to this headline">¶</a></h1>
-<p><cite>heat</cite> makes a heat tree.</p>
-<div class="highlight-python"><pre>usage: heat [options] placefile1 placefile2</pre>
+<p><cite>heat</cite> maps an an arbitrary vector of the correct length to the tree.</p>
+<div class="highlight-python"><pre>usage: heat -o my.xml -c my.refpkg matrix.csv</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -62,55 +62,40 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
+<kbd><span class="option">-o</span></kbd></td>
+<td>Set the filename to write to. Otherwise write to stdout.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-c</span></kbd></td>
-<td>Reference package path.</td></tr>
+<td>Reference package path. Required.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">-p</span></kbd></td>
-<td>The exponent for the integration, i.e. the value of p in Z_p.</td></tr>
+<kbd><span class="option">--min-fat</span></kbd></td>
+<td>The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--normalize</span></kbd></td>
-<td>Divide KR by a given value. Legal arguments are &#8220;tree-length&#8221;.</td></tr>
+<kbd><span class="option">--total-width</span></kbd></td>
+<td>Set the total pixel width for all of the branches of the tree. Default: 300</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>Output file. Default is derived from the input filenames.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--color-grad</span></kbd></td>
-<td>Use color gradation as well as thickness to represent mass transport.</td></tr>
+<kbd><span class="option">--width-factor</span></kbd></td>
+<td>Override total-width by directly setting the number of pixels per unit of thing displayed.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--gray-black</span></kbd></td>
-<td>Use gray and black in place of red and blue to signify the sign of the KR along that edge.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--white-bg</span></kbd></td>
-<td>Make colors for the heat tree which are compatible with a white background.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--gray-level</span></kbd></td>
-<td>Specify the amount of gray to mix into the color scheme. Default is 5.</td></tr>
+<td>Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--min-width</span></kbd></td>
-<td>Specify the minimum width of the branches in a heat tree. Default is 0.5.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--max-width</span></kbd></td>
-<td>Specify the maximum width of the branches in a heat tree. Default is 13.</td></tr>
+<td>Specify the minimum width for a branch to be colored and thickened. Default is 1.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Draw a &#8220;heat tree&#8221; in phyloXML format.
-A heat tree shows the optimal movement of dirt in the &#8220;earth movers&#8221; interpretation of the Kantorovich-Rubinstein distance.
-Imagine that the dirt is moving from the placement distribution corresponding to the first place file to that in the second.
-The branches are thickened in proportion to the amount of dirt which moves through that edge.
-Dirt moving on an edge towards the root is marked in red, and that moving away from the root is colored in blue.
-Said another way, clades which are upregulated in the first sample are colored red, and the others blue.</p>
+<p>Makes</p>
+<p>For example, given a tree like so:</p>
+<div class="highlight-python"><pre>((A:2[0],B:9[1]):7[2],C:5[3],D:1[4]):0[5];</pre>
+</div>
+<p>and a CSV line:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;test&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>this command run with a total width of 300 will put width 90 in red on the edge leading to B, width 180 in blue on the edge leading to D, and width 30 in red on the root edge.</p>
 </div>
 </div>
 
