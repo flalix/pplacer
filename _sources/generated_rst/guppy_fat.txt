@@ -12,7 +12,6 @@ Options
 =======
 
 -o  Set the prefix to write to. Required.
---out-dir  Specify the directory to write place files to.
 --pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
 --transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
