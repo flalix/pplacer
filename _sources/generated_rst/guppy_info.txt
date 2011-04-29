@@ -1,0 +1,15 @@
+====
+info
+====
+
+`info` writes the number of leaves of the reference tree and the number of pqueries.
+
+::
+
+  usage: info [options] placefile[s]
+
+Options
+=======
+
+-o  Set the filename to write to. Otherwise write to stdout.
+
