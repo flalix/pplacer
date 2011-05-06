@@ -12,7 +12,7 @@ Options
 =======
 
 -c  Reference package path. Required.
--o  Set the filename to write to. Otherwise write to stdout.
+--sqlite  Specify the database file to use. (default: :memory:)
 
 Details
 =======
