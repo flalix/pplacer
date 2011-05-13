@@ -66,17 +66,23 @@
 <td>Reference package path. Required.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--sqlite</span></kbd></td>
-<td>Specify the database file to use. (default: :memory:)</td></tr>
+<td>Specify the database file to use.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Creates two SQL tables: <tt class="docutils literal"><span class="pre">taxa</span></tt> and <tt class="docutils literal"><span class="pre">ranks</span></tt>.
-<tt class="docutils literal"><span class="pre">taxa</span></tt> maps between taxon IDs, taxon names, and rank names.
-<tt class="docutils literal"><span class="pre">rank</span></tt> maps between rank names and rank levels.</p>
-<p>The databases made from these tables can then be used in conjunction with <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span> <span class="pre">--sqlite</span></tt>.</p>
-<p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples.</p>
+<p>Creates and populates tables in the specified sqlite3 database, initializing
+the database if it doesn&#8217;t already exist. All of the tables created by this
+command are:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">ranks</span></tt> &#8211; all of the ranks contained in the provided reference package.</li>
+<li><tt class="docutils literal"><span class="pre">taxa</span></tt> &#8211; all of the taxa in the provided reference package.</li>
+<li><tt class="docutils literal"><span class="pre">placements</span></tt>, <tt class="docutils literal"><span class="pre">placement_names</span></tt>, <tt class="docutils literal"><span class="pre">placement_classifications</span></tt> &#8211; empty
+tables for <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> to insert data into.</li>
+</ul>
+<p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples of using <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">taxtable</span></tt> and
+<tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> together.</p>
 </div>
 </div>
 

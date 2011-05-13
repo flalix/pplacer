@@ -66,7 +66,7 @@
 <td>Reference package path. Required.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--sqlite</span></kbd></td>
-<td>Specify the database file to use. (default: :memory:)</td></tr>
+<td>Specify the database file to use.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for our criteria.</td></tr>
@@ -78,7 +78,7 @@
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand outputs the classifications made by pplacer in a tabular format appropriate for use with R or SQL.
+<p>This subcommand outputs the classifications made by pplacer in a tabular format appropriate for use with R.
 For example, here is a classification list made for one read.
 The columns are as follows: read name, attempted rank for classification, actual rank for classification, taxonomic identifier, and confidence.
 You can see that in this example, there is some uncertainty at and below species, but only one classification at the genus level.</p>
@@ -109,6 +109,13 @@ GLKT0ZE01CQ2BU             below_species       species    1261   0.853561
 GLKT0ZE01CQ2BU             below_species       species  341694   0.073214</pre>
 </div>
 </div>
+<div class="section" id="sqlite">
+<h2>Sqlite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> can also write its output into a sqlite3 database. The
+argument to the <tt class="docutils literal"><span class="pre">--sqlite</span></tt> flag is the sqlite3 database into which the
+results should be put. This database must have first been intialized using
+<tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">taxtable</span></tt>.</p>
+</div>
 </div>
 
 
@@ -122,6 +129,7 @@ GLKT0ZE01CQ2BU             below_species       species  341694   0.073214</pre>
 <li><a class="reference internal" href="#">classify</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
+<li><a class="reference internal" href="#sqlite">Sqlite</a></li>
 </ul>
 </li>
 </ul>
