@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ref_tree &mdash; pplacer v1.1 documentation</title>
+    <title>redup &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="../guppy.html" />
-    <link rel="next" title="round" href="guppy_round.html" />
-    <link rel="prev" title="redup" href="guppy_redup.html" /> 
+    <link rel="next" title="ref_tree" href="guppy_ref_tree.html" />
+    <link rel="prev" title="pca" href="guppy_pca.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_ref_tree.html" title="ref_tree"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_redup.html" title="redup"
+          <a href="guppy_pca.html" title="pca"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -50,10 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="ref-tree">
-<h1>ref_tree<a class="headerlink" href="#ref-tree" title="Permalink to this headline">¶</a></h1>
-<p><cite>ref_tree</cite> writes a taxonomically annotated reference tree and an induced taxonomic tree.</p>
-<div class="highlight-python"><pre>usage: ref_tree -o my.xml my1.refpkg [my2.refpkg ...]</pre>
+  <div class="section" id="redup">
+<h1>redup<a class="headerlink" href="#redup" title="Permalink to this headline">¶</a></h1>
+<p><cite>redup</cite> restores duplicates to deduped placefiles.</p>
+<div class="highlight-python"><pre>usage: redup -d dupfile placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -63,7 +63,10 @@
 <tbody valign="top">
 <tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
-<td>Set the filename to write to. Otherwise write to stdout.</td></tr>
+<td>Set the prefix to write to. Required.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span></kbd></td>
+<td>The dedup file to use to restore duplicates</td></tr>
 </tbody>
 </table>
 </div>
@@ -77,21 +80,21 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">ref_tree</a><ul>
+<li><a class="reference internal" href="#">redup</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_redup.html"
-                        title="previous chapter">redup</a></p>
+  <p class="topless"><a href="guppy_pca.html"
+                        title="previous chapter">pca</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_round.html"
-                        title="next chapter">round</a></p>
+  <p class="topless"><a href="guppy_ref_tree.html"
+                        title="next chapter">ref_tree</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_ref_tree.txt"
+    <li><a href="../_sources/generated_rst/guppy_redup.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -118,10 +121,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_round.html" title="round"
+          <a href="guppy_ref_tree.html" title="ref_tree"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_redup.html" title="redup"
+          <a href="guppy_pca.html" title="pca"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="../guppy.html" >guppy</a> &raquo;</li> 

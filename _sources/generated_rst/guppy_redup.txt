@@ -1,0 +1,16 @@
+=====
+redup
+=====
+
+`redup` restores duplicates to deduped placefiles.
+
+::
+
+  usage: redup -d dupfile placefile[s]
+
+Options
+=======
+
+-o  Set the prefix to write to. Required.
+-d  The dedup file to use to restore duplicates
+
