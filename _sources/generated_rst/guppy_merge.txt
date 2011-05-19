@@ -11,5 +11,7 @@ merge
 Options
 =======
 
--o  Output file. Default is derived from the input filenames.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
 

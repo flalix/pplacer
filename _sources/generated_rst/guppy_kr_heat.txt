@@ -22,7 +22,9 @@ Options
 --width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
 --gray-black  Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.
 --min-width  Specify the minimum width for a branch to be colored and thickened. Default is 1.
--o  Output file. Default is derived from the input filenames.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
 
 Details
 =======

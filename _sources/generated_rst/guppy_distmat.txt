@@ -11,7 +11,9 @@ distmat
 Options
 =======
 
--o  Set the filename to write to. Otherwise write to stdout.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
 
 Details
 =======

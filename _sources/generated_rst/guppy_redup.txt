@@ -11,6 +11,7 @@ redup
 Options
 =======
 
--o  Set the prefix to write to. Required.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
 -d  The dedup file to use to restore duplicates
 
