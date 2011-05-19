@@ -81,6 +81,13 @@ command are:</p>
 <li><tt class="docutils literal"><span class="pre">placements</span></tt>, <tt class="docutils literal"><span class="pre">placement_names</span></tt>, <tt class="docutils literal"><span class="pre">placement_classifications</span></tt> &#8211; empty
 tables for <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> to insert data into.</li>
 </ul>
+<p>In addition to the tables above, a view is also created:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">best_classifications</span></tt> &#8211; for each placement, the <tt class="docutils literal"><span class="pre">tax_id</span></tt>, <tt class="docutils literal"><span class="pre">rank</span></tt>, and
+<tt class="docutils literal"><span class="pre">likelihood</span></tt> which represent the best classification. The best
+classification is the classification with the most specific rank and highest
+likelihood, where <tt class="docutils literal"><span class="pre">rank</span> <span class="pre">=</span> <span class="pre">desired_rank</span></tt>.</li>
+</ul>
 <p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples of using <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">taxtable</span></tt> and
 <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> together.</p>
 </div>
