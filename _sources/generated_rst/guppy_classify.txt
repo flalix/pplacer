@@ -15,6 +15,7 @@ Options
 --sqlite  Specify the database file to use.
 --pp  Use posterior probability for our criteria.
 --csv  Write .class.csv files containing CSV data.
+--mrca-stats  Print the number of placements just proximal to MRCAs.
 
 Details
 =======
