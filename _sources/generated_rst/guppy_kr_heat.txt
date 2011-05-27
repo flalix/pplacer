@@ -1,5 +1,7 @@
 :tocdepth: 3
 
+.. _guppy_kr_heat:
+
 =======
 kr_heat
 =======

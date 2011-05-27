@@ -1,5 +1,7 @@
 :tocdepth: 3
 
+.. _guppy_ref_tree:
+
 ========
 ref_tree
 ========
