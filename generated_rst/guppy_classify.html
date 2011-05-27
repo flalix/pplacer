@@ -119,8 +119,19 @@
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand outputs the classifications made by pplacer in a tabular format appropriate for use with R.
-For example, here is a classification list made for one read.
+<p>This subcommand outputs the classifications made by pplacer in a database or in a tabular format appropriate for use with R.</p>
+<p><em>The classifications made by the current implementation of pplacer are done with a simple, root-dependent algorithm.
+We are currently working on improved algorithms.</em>
+For best results, first taxonomically root the tree in your reference package (so that the root of the tree corresponds to the &#8220;deepest&#8221; evolutionary event according to the taxonomy).
+This can be done automatically the <cite>taxit reroot</cite> command in taxtastic.
+(Note that as of 27 May 2011, this requires the dev version of biopython available on github.)</p>
+<p>The classifications are simply done by containment.
+Say clade <em>A</em> of the reference tree is the smallest such that contains a given placement.
+The most specific classification for that read will be the lowest common ancestor of the taxonomic classifications for the leaves of <em>A</em>.
+If the desired classification is more specific than that, then we get a disconnect between the desired and the actual classification.
+For example, if we try to classify at the species level and the clade LCA is a genus, then we will get a genus name.
+If there is uncertainty in read placement, then there is uncertainty in classification.</p>
+<p>For example, here is a classification list made for one read using the tabular output.
 The columns are as follows: read name, attempted rank for classification, actual rank for classification, taxonomic identifier, and confidence.
 You can see that in this example, there is some uncertainty at and below species, but only one classification at the genus level.</p>
 <div class="highlight-python"><pre>GLKT0ZE01CQ2BU                      root          root       1          1
