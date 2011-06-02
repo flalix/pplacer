@@ -41,6 +41,7 @@ Options
 --pretend  Only check out the files then report. Do not run the analysis.
 --check-like  Write out the likelihood of the reference tree, calculated two ways.
 -j  The number of child processes to spawn when doing placements. Default is 2.
+--timing  Display timing information after the pplacer run finishes.
 --version  Write out the version number and exit.
 
 Details
