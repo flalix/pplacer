@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>distmat &mdash; pplacer v1.1 documentation</title>
+    <title>edpl &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="edpl" href="guppy_edpl.html" />
-    <link rel="prev" title="demulti" href="guppy_demulti.html" /> 
+    <link rel="next" title="fat" href="guppy_fat.html" />
+    <link rel="prev" title="distmat" href="guppy_distmat.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="guppy_fat.html" title="fat"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy_distmat.html" title="distmat"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -48,7 +48,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">distmat</a><ul>
+<li><a class="reference internal" href="#">edpl</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -56,14 +56,14 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_demulti.html"
-                        title="previous chapter">demulti</a></p>
+  <p class="topless"><a href="guppy_distmat.html"
+                        title="previous chapter">distmat</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_edpl.html"
-                        title="next chapter">edpl</a></p>
+  <p class="topless"><a href="guppy_fat.html"
+                        title="next chapter">fat</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_distmat.txt"
+    <li><a href="../_sources/generated_rst/guppy_edpl.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -87,10 +87,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="distmat">
-<span id="guppy-distmat"></span><h1>distmat<a class="headerlink" href="#distmat" title="Permalink to this headline">¶</a></h1>
-<p><cite>distmat</cite> prints out a pairwise distance matrix between the edges.</p>
-<div class="highlight-python"><pre>usage: distmat -o my.tab placefile[s]</pre>
+  <div class="section" id="edpl">
+<span id="guppy-edpl"></span><h1>edpl<a class="headerlink" href="#edpl" title="Permalink to this headline">¶</a></h1>
+<p><cite>edpl</cite> calculates the EDPL uncertainty values for a collection of pqueries.</p>
+<div class="highlight-python"><pre>usage: edpl [options] placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -99,56 +99,33 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>Specify the filename to write to.</td></tr>
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--out-dir</span></kbd></td>
-<td>Specify the directory to write files to.</td></tr>
+<kbd><span class="option">--unweighted</span></kbd></td>
+<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--prefix</span></kbd></td>
-<td>Specify a string to be prepended to filenames.</td></tr>
+<kbd><span class="option">--transform</span></kbd></td>
+<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--first-only</span></kbd></td>
+<td>Only print the first name for each pquery.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand provides distances calculated as the sum of branch
-lengths between all pairs of edges in a reference tree. The format of
-the output is a lower-triangular matrix of pairwise distances, in
-which margins correspond to edge numbers. Each distance is prefixed by
-either an S (&#8220;serial&#8221;) or a P (&#8220;parallel&#8221;). Definition of these terms,
-as well as the procedure for calculating the distance from an
-arbitrary placement on the tree to any edge is as follows.</p>
-<p>A placement on an edge looks like this:</p>
-<div class="highlight-python"><pre>proximal
- |
- |   d_p
- |
- |---- x
- |
- |   d_d
- |
- |
-distal</pre>
-</div>
-<p>d<sub>p</sub> is the distance from the placement <cite>x</cite> to the proximal side of the
-edge, and d<sub>d</sub> the distance to the distal side.</p>
-<p>If the distance from <cite>x</cite> to a leaf <cite>y</cite> is an S-distance Q, then the path
-from <cite>x</cite> to <cite>y</cite> will go through the distal side of the edge and we will
-need to add d<sub>d</sub> to Q to get the distance from <cite>x</cite> to <cite>y</cite>.  If the distance
-from <cite>x</cite> to a leaf <cite>y</cite> is a P-distance Q, then the path from <cite>x</cite> to <cite>y</cite> will
-go through the proximal side of the edge, and we will need to subtract
-d<sub>d</sub> from Q to get the distance from <cite>x</cite> to <cite>y</cite>. In either case, we
-always need to add the length of the pendant edge, which is the second
-column.</p>
-<p>To review, say the values of the two leftmost columns are a and b for
-a given placement <cite>x</cite>, and that it is on an edge <cite>i</cite>.  We are interested
-in the distance of <cite>x</cite> to a leaf <cite>y</cite>, which is on edge <cite>j</cite>.  We look at the
-distance matrix, entry (<cite>i</cite>, <cite>j</cite>), and say it is an S-distance Q. Then our
-distance is Q+a+b.  If it is a P-distance Q, then the distance is
-Q-a+b.</p>
-<p>The distances between leaves should always be P-distances, and there
-we need no trickery.</p>
+<p>The expected distance between placement locations (EDPL) is a means of understanding the uncertainty of a placement using pplacer.
+The motivation for using such a metric comes from when there are a number of closely-related sequences present in the reference alignment.
+In this case, there may be considerable uncertainty about which edge is best as measured by posterior probability or likelihood weight ratio.
+However, the actual uncertainty as to the best region of the tree for that query sequence may be quite small.
+For instance, we may have a number of very similar subspecies of a given species in the alignment, and although it may not be possible to be sure to match a given query to a subspecies, one might be quite sure that it is one of them.</p>
+<p>The EDPL metric is one way of resolving this problem by considering the distances between the possible placements for a given query.
+It works as follows.
+Say the query bounces around to the different placement positions according to their posterior probability; i.e. the query lands with location one with probability <img class="math" src="../_images/math/e01486dcc7cb25518b89692706b17389dc67c92b.png" alt="p_1"/>, location two with probability <img class="math" src="../_images/math/a2e8bc2235f5b0094bc37f2ef74f7dc647f0a406.png" alt="p_2"/>, and so on.
+Then the EDPL value is simply the expected distance it will travel in one of those bounces (if you don&#8217;t like probabilistic language, it&#8217;s simply the average distance it will travel per bounce when allowed to bounce between the placements for a long time with their assigned probabilities).
+Here&#8217;s an example, with three hypothetical locations for a given query sequence:</p>
+<img alt="../_images/edpl_formula.png" src="../_images/edpl_formula.png" />
 </div>
 </div>
 
@@ -165,10 +142,10 @@ we need no trickery.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="guppy_fat.html" title="fat"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy_distmat.html" title="distmat"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 
