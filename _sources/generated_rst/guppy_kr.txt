@@ -1,7 +1,3 @@
-:tocdepth: 3
-
-.. _guppy_kr:
-
 ==
 kr
 ==
@@ -28,6 +24,7 @@ Options
 --list-out  Output the KR results as a list rather than a matrix.
 --density  Make density plots showing the distribution of randomized values with the calculated values
 -s  Set how many samples to use for significance calculation (0 means calculate distance only). Default is 0.
+--verbose  Verbose running.
 --gaussian  Use the Gaussian process approximation for p-value estimation
 
 Details

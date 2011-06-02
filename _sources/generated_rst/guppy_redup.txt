@@ -1,7 +1,3 @@
-:tocdepth: 3
-
-.. _guppy_redup:
-
 =====
 redup
 =====
@@ -10,12 +6,11 @@ redup
 
 ::
 
-  usage: redup -d dupfile placefile
+  usage: redup -d dupfile placefile[s]
 
 Options
 =======
 
--o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
 -d  The dedup file to use to restore duplicates
@@ -34,7 +29,7 @@ dedup files for use with ``guppy redup``::
     guppy redup -d sample.dedup --prefix reduped_ sample_deduped.json
 
 The format for dedup files is very simple, for ease of reading and writing.
-Each dedup file is a series of lines, with a single-space-separated list of
+Each dedup file is a a series of lines, with a single-space-separated list of
 sequences on each line. The first sequence on the line is the sequence that's
 put into the deduplicated file, and the rest are synonyms for that same
 sequence. For example::

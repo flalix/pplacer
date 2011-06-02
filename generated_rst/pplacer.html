@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>pplacer &mdash; pplacer v1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
-    <link rel="next" title="guppy" href="guppy.html" />
-    <link rel="prev" title="Pplacer documentation home" href="../index.html" /> 
+    <link rel="next" title="guppy" href="../guppy.html" />
+    <link rel="prev" title="Documentation for pplacer and guppy" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -34,59 +34,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy.html" title="guppy"
+          <a href="../guppy.html" title="guppy"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Pplacer documentation home"
+          <a href="../index.html" title="Documentation for pplacer and guppy"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">pplacer</a><ul>
-<li><a class="reference internal" href="#options">Options</a></li>
-<li><a class="reference internal" href="#details">Details</a><ul>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
-<li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
-<li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a></li>
-<li><a class="reference internal" href="#making-reference-trees">Making reference trees</a></li>
-<li><a class="reference internal" href="#baseball">Baseball</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../index.html"
-                        title="previous chapter">Pplacer documentation home</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="guppy.html"
-                        title="next chapter">guppy</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/pplacer.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -94,7 +49,7 @@
           <div class="body">
             
   <div class="section" id="pplacer">
-<span id="id1"></span><h1>pplacer<a class="headerlink" href="#pplacer" title="Permalink to this headline">¶</a></h1>
+<h1>pplacer<a class="headerlink" href="#pplacer" title="Permalink to this headline">¶</a></h1>
 <p><cite>pplacer</cite> performs phylogenetic placement.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">pplacer</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="p">[</span><span class="n">alignment</span><span class="p">]</span>
 </pre></div>
@@ -178,14 +133,14 @@
 <kbd><span class="option">--pretend</span></kbd></td>
 <td>Only check out the files then report. Do not run the analysis.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">--diagnostic</span></kbd></td>
+<td>Write file describing the &#8216;diagnostic&#8217; mutations for various clades.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--check-like</span></kbd></td>
 <td>Write out the likelihood of the reference tree, calculated two ways.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-j</span></kbd></td>
 <td>The number of child processes to spawn when doing placements. Default is 2.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--timing</span></kbd></td>
-<td>Display timing information after the pplacer run finishes.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--version</span></kbd></td>
 <td>Write out the version number and exit.</td></tr>
@@ -475,11 +430,80 @@ image(x=c(0:nrow(ba)-1),xlab= "strike box", ylab= "number of strikes", \
    y=c(1:ncol(ba)-1),z=as.matrix(ba), main="batting average")</pre>
 </div>
 </div>
+<div class="section" id="about-the-edpl-metric">
+<h3>About the EDPL metric<a class="headerlink" href="#about-the-edpl-metric" title="Permalink to this headline">¶</a></h3>
+<p>The expected distance between placement locations (EDPL) is a means of understanding the uncertainty of a placement using pplacer.
+The motivation for using such a metric comes from when there are a number of closely-related sequences present in the reference alignment.
+In this case, there may be considerable uncertainty about which edge is best as measured by posterior probability or likelihood weight ratio.
+However, the actual uncertainty as to the best region of the tree for that query sequence may be quite small.
+For instance, we may have a number of very similar subspecies of a given species in the alignment, and although it may not be possible to be sure to match a given query to a subspecies, one might be quite sure that it is one of them.</p>
+<p>The EDPL metric is one way of resolving this problem by considering the distances between the possible placements for a given query.
+It works as follows.
+Say the query bounces around to the different placement positions according to their posterior probability; i.e. the query lands with location one with probability <img class="math" src="../_images/math/e01486dcc7cb25518b89692706b17389dc67c92b.png" alt="p_1"/>, location two with probability <img class="math" src="../_images/math/a2e8bc2235f5b0094bc37f2ef74f7dc647f0a406.png" alt="p_2"/>, and so on.
+Then the EDPL value is simply the expected distance it will travel in one of those bounces (if you don&#8217;t like probabilistic language, it&#8217;s simply the average distance it will travel per bounce when allowed to bounce between the placements for a long time with their assigned probabilities).
+Here&#8217;s an example, with three hypothetical locations for a given query sequence:</p>
+<img alt="../_images/edpl_formula.png" src="../_images/edpl_formula.png" />
+</div>
 </div>
 </div>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pplacer</a><ul>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
+<li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
+<li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a><ul>
+<li><a class="reference internal" href="#examples-using-infernal">Examples using Infernal</a><ul>
+<li><a class="reference internal" href="#creating-a-reference-alignment">Creating a reference alignment</a></li>
+<li><a class="reference internal" href="#merging-reference-and-query-sequences">Merging reference and query sequences</a></li>
+<li><a class="reference internal" href="#using-a-reference-package">Using a reference package</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples-using-hmmer">Examples using HMMER</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#making-reference-trees">Making reference trees</a></li>
+<li><a class="reference internal" href="#baseball">Baseball</a></li>
+<li><a class="reference internal" href="#about-the-edpl-metric">About the EDPL metric</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Documentation for pplacer and guppy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../guppy.html"
+                        title="next chapter">guppy</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/pplacer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -491,10 +515,10 @@ image(x=c(0:nrow(ba)-1),xlab= "strike box", ylab= "number of strikes", \
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy.html" title="guppy"
+          <a href="../guppy.html" title="guppy"
              >next</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Pplacer documentation home"
+          <a href="../index.html" title="Documentation for pplacer and guppy"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
       </ul>
