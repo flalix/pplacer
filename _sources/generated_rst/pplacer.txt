@@ -35,7 +35,6 @@ Options
 --verbosity  Set verbosity level. 0 is silent, and 2 is quite a lot. Default is 1.
 --out-dir  Specify the directory to write place files to.
 --pretend  Only check out the files then report. Do not run the analysis.
---diagnostic  Write file describing the 'diagnostic' mutations for various clades.
 --check-like  Write out the likelihood of the reference tree, calculated two ways.
 -j  The number of child processes to spawn when doing placements. Default is 2.
 --version  Write out the version number and exit.
