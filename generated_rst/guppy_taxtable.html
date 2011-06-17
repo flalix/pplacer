@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>taxtable &mdash; pplacer v1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
-    <link rel="up" title="guppy" href="../guppy.html" />
+    <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="to_json" href="guppy_to_json.html" />
     <link rel="prev" title="squash" href="guppy_squash.html" /> 
   </head>
@@ -41,9 +41,49 @@
           <a href="guppy_squash.html" title="squash"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
-          <li><a href="../guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+          <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">taxtable</a><ul>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a><ul>
+<li><a class="reference internal" href="#example-tables">Example tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="guppy_squash.html"
+                        title="previous chapter">squash</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="guppy_to_json.html"
+                        title="next chapter">to_json</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/guppy_taxtable.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -51,7 +91,7 @@
           <div class="body">
             
   <div class="section" id="taxtable">
-<h1>taxtable<a class="headerlink" href="#taxtable" title="Permalink to this headline">¶</a></h1>
+<span id="guppy-taxtable"></span><h1>taxtable<a class="headerlink" href="#taxtable" title="Permalink to this headline">¶</a></h1>
 <p><cite>taxtable</cite> makes SQL enabling taxonomic querying of placement results.</p>
 <div class="highlight-python"><pre>usage: taxtable [options] -c &lt;refpkg&gt;</pre>
 </div>
@@ -90,48 +130,240 @@ likelihood, where <tt class="docutils literal"><span class="pre">rank</span> <sp
 </ul>
 <p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples of using <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">taxtable</span></tt> and
 <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> together.</p>
+<div class="section" id="example-tables">
+<h3>Example tables<a class="headerlink" href="#example-tables" title="Permalink to this headline">¶</a></h3>
+<p>The following shows examples of what the aformentioned tables could contain, as
+well as the column names for each table. These examples are incomplete; real
+data would contain many more rows.</p>
+<div class="section" id="ranks">
+<h4><tt class="docutils literal"><span class="pre">ranks</span></tt><a class="headerlink" href="#ranks" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">rank</th>
+<th class="head">rank_order</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>root</td>
+<td>0</td>
+</tr>
+<tr><td>below_root</td>
+<td>1</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="taxa">
+<h4><tt class="docutils literal"><span class="pre">taxa</span></tt><a class="headerlink" href="#taxa" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="70%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">tax_id</th>
+<th class="head">tax_name</th>
+<th class="head">rank</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>root</td>
+<td>root</td>
+</tr>
+<tr><td>103621</td>
+<td>Actinomyces urogenitalis</td>
+<td>species</td>
+</tr>
+<tr><td>109790</td>
+<td>Lactobacillus jensenii</td>
+<td>species</td>
+</tr>
+<tr><td>113286</td>
+<td>Pseudoramibacter</td>
+<td>genus</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placements">
+<h4><tt class="docutils literal"><span class="pre">placements</span></tt><a class="headerlink" href="#placements" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="92%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>3</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placement-names">
+<h4><tt class="docutils literal"><span class="pre">placement_names</span></tt><a class="headerlink" href="#placement-names" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="42%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">name</th>
+<th class="head">origin</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>GLKT0ZE01B8WZE</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>2</td>
+<td>GLKT0ZE01CUQ8G</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01AIA4X</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01AT1UK</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01B8JSY</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01BG9QQ</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01EF2DE</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placement-classifications">
+<h4><tt class="docutils literal"><span class="pre">placement_classifications</span></tt><a class="headerlink" href="#placement-classifications" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="36%" />
+<col width="22%" />
+<col width="9%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">desired_rank</th>
+<th class="head">rank</th>
+<th class="head">tax_id</th>
+<th class="head">likelihood</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>117</td>
+<td>family</td>
+<td>family</td>
+<td>203492</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>below_family</td>
+<td>family</td>
+<td>203492</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>genus</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species_group</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species_subgroup</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.77507</td>
+</tr>
+<tr><td>117</td>
+<td>species</td>
+<td>species</td>
+<td>187101</td>
+<td>0.224928</td>
+</tr>
+<tr><td>117</td>
+<td>below_species</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.77507</td>
+</tr>
+<tr><td>117</td>
+<td>below_species</td>
+<td>species</td>
+<td>187101</td>
+<td>0.224928</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">taxtable</a><ul>
-<li><a class="reference internal" href="#options">Options</a></li>
-<li><a class="reference internal" href="#details">Details</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_squash.html"
-                        title="previous chapter">squash</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_to_json.html"
-                        title="next chapter">to_json</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_taxtable.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -149,7 +381,7 @@ likelihood, where <tt class="docutils literal"><span class="pre">rank</span> <sp
           <a href="guppy_squash.html" title="squash"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
-          <li><a href="../guppy.html" >guppy</a> &raquo;</li> 
+          <li><a href="guppy.html" >guppy</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
