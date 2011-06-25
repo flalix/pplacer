@@ -402,12 +402,18 @@ These edge numbers are used to specify the edges on which the placements lie.</p
 </tr>
 </tbody>
 </table>
-<p>An example JSON document follows:</p>
+<p>An example JSON document follows, with the first placement showing uncertainty
+in location, and the second showing two reads that had identical placements:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
   <span class="s">&quot;tree&quot;</span><span class="p">:</span> <span class="s">&quot;((A:2[0],B:9[1]):7[2],C:5[3],D:1[4]):0[5];&quot;</span><span class="p">,</span>
   <span class="s">&quot;placements&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.830000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">10.000000</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;one_x&quot;</span><span class="p">]},</span>
-    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.830000</span><span class="p">,</span> <span class="mf">1.000000</span><span class="p">,</span> <span class="mf">2.000000</span><span class="p">,</span> <span class="mf">10.000000</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;one_y&quot;</span><span class="p">]}</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span>
+      <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1091.576026</span><span class="p">,</span> <span class="mf">0.762438</span><span class="p">,</span> <span class="mf">0.000008</span><span class="p">,</span> <span class="mf">0.019642</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">10982.742117</span><span class="p">,</span> <span class="mf">0.237562</span><span class="p">,</span> <span class="mf">0.000008</span><span class="p">,</span> <span class="mf">0.019579</span><span class="p">]</span>
+      <span class="p">],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;GLKT0ZE01CQ1P1&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1061.467623</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.003555</span><span class="p">,</span> <span class="mf">0.000006</span><span class="p">]],</span>
+     <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;GLKT0ZE01C36CH&quot;</span><span class="p">,</span> <span class="s">&quot;GLKT0ZE01A0IBO&quot;</span><span class="p">]}</span>
   <span class="p">],</span>
   <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;invocation&quot;</span><span class="p">:</span> <span class="s">&quot;guppy to_json&quot;</span><span class="p">},</span>
   <span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
