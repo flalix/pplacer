@@ -6,7 +6,7 @@ guppy
 :Title: guppy
 :Version: 1.1
 :License: GPL v3
-:Date: March 2011
+:Date: September 2011
 
 |guppy| is a tool for working with, visualizing, and comparing collections of phylogenetic placements, such as those made by pplacer_ or RAxML's EPA.
 "GUPPY" is an acronym: Grand Unified Phylogenetic Placement Yanalyzer.
@@ -56,10 +56,12 @@ Command line interface
 The general way to invoke |guppy| is ``guppy COMMAND [options] placefile[s]`` where COMMAND is one of the |guppy| commands.
 For example::
 
-  guppy heat --gray-black coastal.json DCM.json
+  guppy heat --gray-black coastal.jplace DCM.jplace
 
 These programs are listed with more detail below, and can always be found using ``guppy --cmds`` .
 
+|guppy| can also be invoked as ``guppy --quiet COMMAND [...]``,  which prevents
+the specified command from writing to stdout unless explicitly requested.
 
 Batch mode
 ----------
@@ -72,29 +74,81 @@ time it is used in a command.
 Batch files are files with one guppy command per line, specified exactly as
 would be written in a shell, except without the leading ``guppy``. Arguments
 can be enclosed in double quotes to preserve whitespace, and double quotes
-within quoted strings are quoted by doubling (e.g. ``"spam ""and""
-eggs"``. Globbing (e.g. ``*.json``) is not allowed. Comments are also allowed
-in batch files; everything on a line after a ``#`` is ignored.
+within quoted strings are quoted by doubling (e.g. ``"spam ""and"" eggs"``).
+Globbing (e.g. ``*.jplace``) is not allowed. Comments are also allowed in batch
+files; everything on a line after a ``#`` is ignored.
 
 An example batch file::
 
   # Whole-line comment.
-  pca -o pca -c some.refpkg src/a.json src/b.json
-  squash -c some.refpkg -o squash_out src/a.json src/b.json
-  classify -c some.refpkg some.json  # inline comment
+  pca -o pca -c some.refpkg src/a.jplace src/b.jplace
+  squash -c some.refpkg -o squash_out src/a.jplace src/b.jplace
+  classify -c some.refpkg some.jplace  # inline comment
 
-..
+If this was saved as ``example.batch``, it would be invoked from guppy as::
+
+  guppy --batch example.batch
+
+Advanced features
+^^^^^^^^^^^^^^^^^
+
+Batch files also have two unique features: virtual placefiles, and parameter
+substitution.
+
+Within a batch file, if a placefile is saved to or loaded from a path beginning
+with a ``@``, the data will be stored in memory instead of written to disk. For
+example::
+
+  merge -o @merged.jplace src/a.jplace src/b.jplace
+  info @merged.jplace
+
+will effectively run ``guppy info`` on the placefile resulting from merging the
+two arguments, but without ever writing that merged file to disk.
+
+Additionally, parameters can be passed in from the command line to the batch
+file. On the command line, parameters are specified as additional arguments to
+guppy in ``key=value`` format. In the batch file, substitutions are done from
+identifiers in ``{key}`` format. For example, when a batch file containing ::
+
+  info {k1} {k2}
+
+is invoked with ::
+
+  guppy --batch example.batch k1=1.jplace k2=2.jplace
+
+the impact will be the same as running ::
+
+  guppy 1.jplace 2.jplace
+
+Braces can also be quoted by doubling (e.g. ``{{foo}}`` will become ``{foo}``).
 
 
 About multiplicities
 --------------------
 
-The new versions of pplacer and guppy support "multiplicities," i.e. multiple reads being treated as one.
+pplacer and guppy support "multiplicities," i.e. multiple reads being treated as one.
 For example, if some reads are identical, they can be treated as a group.
 Doing so makes guppy operations *much* faster.
 
 By default, they are used "as is" for guppy calculations-- a single placement with multiplicity four is the same as four reads placed individually.
-However, if one would like to decrease the impact of multiplicities on downstream analysis (e.g. if PCR artifacts are suspected) one can use the ``--transform`` option to choose a transform for the multiplicies before use.
+However, if one would like to decrease the impact of multiplicities on downstream analysis (e.g. if PCR artifacts are suspected) one can use the ``--transform`` option of ``mft`` to choose a transform for the multiplicies before use.
+Doing so will convert your placements into labeled masses.
+
+
+'Split' placefiles
+------------------
+
+It's often convenient to split up place files in all sorts of ways, but it's nice not to have to duplicate the information in the placefiles multiple times.
+For that reason, we have introduced "split" placefiles.
+The syntax for these is ``my.jplace:my.csv``, where the CSV file maps from query sequence names to the split placefile name.
+For example, say ``my.csv`` was like::
+
+  "read1","a"
+  "read2","b"
+
+and ``my.jplace`` has placements for read1 and read2.
+Then ``my.jplace:my.csv`` would act like a list of two placefiles named a and b, with read1 and read2, respectively.
+Not every placement name in the place file needs to appear in the CSV file, so you can use this for subsetting.
 
 
 phyloXML viewing notes
@@ -113,34 +167,36 @@ List of subcommands
 The following table provides links to more in-depth documentation for each
 guppy subcommand:
 
-========================================  =============================================================================
-                                 Command                                                                    Description
-========================================  =============================================================================
-                :ref:`bary <guppy_bary>`           draws the barycenter of a placement collection on the reference tree
-          :ref:`bootviz <guppy_bootviz>`                             makes a phyloXML tree showing the bootstrap values
-:ref:`check_refpkg <guppy_check_refpkg>`                                                      check a reference package
-        :ref:`classify <guppy_classify>`               outputs classification information in a tabular or SQLite format
-          :ref:`demulti <guppy_demulti>`           splits apart placements with multiplicity, undoing a round procedure
-          :ref:`distmat <guppy_distmat>`                        prints out a pairwise distance matrix between the edges
-                :ref:`edpl <guppy_edpl>`            calculates the EDPL uncertainty values for a collection of pqueries
-                  :ref:`fat <guppy_fat>`           makes trees with edges fattened in proportion to the number of reads
-            :ref:`filter <guppy_filter>`                               filters one or more placefiles by placement name
-                :ref:`heat <guppy_heat>`                  maps an an arbitrary vector of the correct length to the tree
-                :ref:`info <guppy_info>`   writes the number of leaves of the reference tree and the number of pqueries
-                    :ref:`kr <guppy_kr>`      calculates the Kantorovich-Rubinstein distance and corresponding p-values
-          :ref:`kr_heat <guppy_kr_heat>`                                                              makes a heat tree
-              :ref:`merge <guppy_merge>`                                                     merges placefiles together
-                  :ref:`pca <guppy_pca>`                                             performs edge principal components
-              :ref:`redup <guppy_redup>`                                      restores duplicates to deduped placefiles
-        :ref:`ref_tree <guppy_ref_tree>`  writes a taxonomically annotated reference tree and an induced taxonomic tree
-              :ref:`round <guppy_round>`                             clusters the placements by rounding branch lengths
-                :ref:`sing <guppy_sing>`                    makes one tree for each query sequence, showing uncertainty
-        :ref:`splitify <guppy_splitify>`                    writes out differences of masses for the splits of the tree
-            :ref:`squash <guppy_squash>`                                                     performs squash clustering
-        :ref:`taxtable <guppy_taxtable>`                     makes SQL enabling taxonomic querying of placement results
-          :ref:`to_json <guppy_to_json>`                       converts old-style .place files to .json placement files
-                  :ref:`tog <guppy_tog>`              makes a tree with each of the reads represented as a pendant edge
-========================================  =============================================================================
+================================  ============================================================================
+                         Command                                                                   Description
+================================  ============================================================================
+        :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
+  :ref:`bootviz <guppy_bootviz>`                            makes a phyloXML tree showing the bootstrap values
+:ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
+  :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
+    :ref:`diplac <guppy_diplac>`                              find the most DIstant PLACements from the leaves
+  :ref:`distmat <guppy_distmat>`                       prints out a pairwise distance matrix between the edges
+        :ref:`edpl <guppy_edpl>`           calculates the EDPL uncertainty values for a collection of pqueries
+          :ref:`fat <guppy_fat>`          makes trees with edges fattened in proportion to the number of reads
+    :ref:`filter <guppy_filter>`                              filters one or more placefiles by placement name
+        :ref:`heat <guppy_heat>`                 maps an an arbitrary vector of the correct length to the tree
+        :ref:`info <guppy_info>`  writes the number of leaves of the reference tree and the number of pqueries
+            :ref:`kr <guppy_kr>`     calculates the Kantorovich-Rubinstein distance and corresponding p-values
+  :ref:`kr_heat <guppy_kr_heat>`                                                             makes a heat tree
+      :ref:`merge <guppy_merge>`                                                    merges placefiles together
+          :ref:`mft <guppy_mft>`                                         Multi-Filter and Transform placefiles
+          :ref:`pca <guppy_pca>`                                            performs edge principal components
+            :ref:`pd <guppy_pd>`                                              calculate phylogenetic diversity
+:ref:`rarefact <guppy_rarefact>`                                    calculates phylogenetic rarefaction curves
+      :ref:`redup <guppy_redup>`                                     restores duplicates to deduped placefiles
+      :ref:`round <guppy_round>`                            clusters the placements by rounding branch lengths
+        :ref:`sing <guppy_sing>`                   makes one tree for each query sequence, showing uncertainty
+:ref:`splitify <guppy_splitify>`                   writes out differences of masses for the splits of the tree
+    :ref:`squash <guppy_squash>`                                                    performs squash clustering
+  :ref:`to_json <guppy_to_json>`                    converts old-style .place files to .jplace placement files
+          :ref:`tog <guppy_tog>`             makes a tree with each of the reads represented as a pendant edge
+          :ref:`wpd <guppy_wpd>`                       calculate weighted phylogenetic diversity of placefiles
+================================  ============================================================================
 
 .. toctree::
    :glob:

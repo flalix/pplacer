@@ -15,9 +15,8 @@ squash
 Options
 =======
 
---pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
---transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+--pp  Use posterior probability for the weight.
 -c  Reference package path.
 --seed  Set the random seed, an integer > 0. Default is 1.
 --min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
@@ -25,12 +24,21 @@ Options
 --width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
+-p  Exponent for KR integration, i.e. value of p in Z_p. Default 1.
+--normalize  Divide KR by a given value. Legal arguments are "tree-length".
 --bootstrap  the number of bootstrap replicates to run
 --tax-cluster  Perform taxonomic clustering rather than phylogenetic.Specify "unit" or "inv" for the two different modes.
+--pre-round  Apply rounding with 3 sig figs and cutoff 0.01 to each
+                     placerun before clustering
 
 Details
 =======
 
+Perform `squash clustering`_.
+
 Bootstrapping is performed by resampling directly on placements.
 Note that the bootstrap values for clustering are calculated in a rooted way.
 That means that you may observe different bootstrap values on either side of the root, especially if a whole clade from one side of the root likes to flip to a location distal to the clade on the other side of the root.
+
+
+.. _squash clustering: http://arxiv.org/abs/1107.5095

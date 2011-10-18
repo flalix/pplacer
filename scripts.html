@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>scripts &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="index.html" />
+    <link rel="next" title="FAQ" href="faq.html" />
+    <link rel="prev" title="voronoi" href="generated_rst/rppr_voronoi.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="faq.html" title="FAQ"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="generated_rst/rppr_voronoi.html" title="voronoi"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">scripts</a><ul>
+<li><a class="reference internal" href="#refpkg-align-py"><tt class="docutils literal"><span class="pre">refpkg_align.py</span></tt></a><ul>
+<li><a class="reference internal" href="#list-of-subcommands">List of subcommands</a></li>
+<li><a class="reference internal" href="#mask">mask</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sort-placefile-py"><tt class="docutils literal"><span class="pre">sort_placefile.py</span></tt></a></li>
+<li><a class="reference internal" href="#update-refpkg-py"><tt class="docutils literal"><span class="pre">update_refpkg.py</span></tt></a></li>
+<li><a class="reference internal" href="#check-placements-py"><tt class="docutils literal"><span class="pre">check_placements.py</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="generated_rst/rppr_voronoi.html"
+                        title="previous chapter">voronoi</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="faq.html"
+                        title="next chapter">FAQ</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/scripts.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="scripts">
+<span id="id1"></span><h1>scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h1>
+<p>The <cite>pplacer</cite> package comes with a few scripts to perform common tasks on
+reference packages and placements:</p>
+<div class="section" id="refpkg-align-py">
+<h2><tt class="docutils literal"><span class="pre">refpkg_align.py</span></tt><a class="headerlink" href="#refpkg-align-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">refpkg_align.py</span></tt> performs operations using an alignment within a reference
+package.  The script can align an input sequence file to the reference
+alignment using <tt class="docutils literal"><span class="pre">cmalign</span></tt> or <tt class="docutils literal"><span class="pre">hmmalign</span></tt>, search for sequences in a file that
+match an alignment using <tt class="docutils literal"><span class="pre">hmmsearch</span></tt>, or simply extract the alignment from the
+reference package in the format of your choosing.</p>
+<p><tt class="docutils literal"><span class="pre">refpkg_align.py</span></tt> depends on both <a class="reference external" href="http://www.biopython.org/">BioPython</a>
+and <a class="reference external" href="http://github.com/fhcrc/taxtastic">Taxtastic</a>.</p>
+<div class="section" id="list-of-subcommands">
+<h3>List of subcommands<a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="align">
+<h4><tt class="docutils literal"><span class="pre">align</span></tt><a class="headerlink" href="#align" title="Permalink to this headline">¶</a></h4>
+<p><tt class="docutils literal"><span class="pre">align</span></tt> aligns input sequences to a reference package alignment. For packages
+built with Infernal, <tt class="docutils literal"><span class="pre">cmalign</span></tt> is used. For packages built using HMMER3,
+<tt class="docutils literal"><span class="pre">hmmalign</span></tt> is used. By default, a <a class="reference internal" href="#mask"><em>mask</em></a> is applied if it exists.</p>
+<p>The output is stored in stockholm format.</p>
+<div class="highlight-python"><pre>usage: refpkg_align.py align [options] refpkg seqfile outfile</pre>
+</div>
+<div class="section" id="options">
+<h5>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-python"><pre>positional arguments:
+  refpkg                Reference package directory
+  seqfile               Input file, in FASTA format.
+  outfile               Output file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --align-opts OPTS     Alignment options, such as "--mapali $aln_sto". '$'
+                        characters will need to be escaped if using template
+                        variables. Available template variables are $aln_sto,
+                        $profile. Defaults are as follows for the different
+                        profiles: (hmmer3: "--mapali $aln_sto") (infernal1:
+                        "-1 --hbanded --sub --dna")
+  --profile-version {infernal1mpi,hmmer3,infernal1}
+                        Profile version to use. [default: hmmer3]
+  --no-mask             Do not trim the alignment to unmasked columns.
+                        [default: apply mask if it exists]
+  --debug               Enable debug output
+  --verbose             Enable verbose output</pre>
+</div>
+</div>
+</div>
+<div class="section" id="extract">
+<h4><tt class="docutils literal"><span class="pre">extract</span></tt><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h4>
+<p><tt class="docutils literal"><span class="pre">extract</span></tt> extracts a reference alignment from a reference package, apply a
+<a class="reference internal" href="#mask"><em>mask</em></a> if it exists by default.</p>
+<div class="highlight-python"><pre>usage: refpkg_align.py extract [options] refpkg output_file</pre>
+</div>
+<div class="section" id="id2">
+<h5>Options<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-python"><pre>positional arguments:
+  refpkg                Reference package directory
+  output_file           Destination
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --output-format OUTPUT_FORMAT
+                        output format [default: stockholm]
+  --no-mask             Do not apply mask to alignment [default: apply mask
+                        if it exists]</pre>
+</div>
+</div>
+</div>
+<div class="section" id="search-align">
+<h4><tt class="docutils literal"><span class="pre">search-align</span></tt><a class="headerlink" href="#search-align" title="Permalink to this headline">¶</a></h4>
+<p><tt class="docutils literal"><span class="pre">search-align</span></tt> searches input sequences for matches to reference alignment,
+aligning any high-scoring matches to reference alignment. By default, a
+<a class="reference internal" href="#mask"><em>mask</em></a> is applied if it exists.</p>
+<p>The output is stored in stockholm format.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">search-align</span></tt> is only available for reference packages created with HMMER3.</p>
+</div>
+<div class="highlight-python"><pre>usage: refpkg_align.py search-align [options] refpkg seqfile outfile</pre>
+</div>
+<div class="section" id="id3">
+<h5>Options<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-python"><pre>positional arguments:
+  refpkg                Reference package directory
+  seqfile               Input file, in FASTA format.
+  outfile               Output file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --search-opts OPTS    search options, such as "--notextw --noali -E 1e-2"
+                        Defaults are as follows for the different profiles:
+                        (hmmer3: "--notextw --noali")
+  --align-opts OPTS     Alignment options, such as "--mapali $aln_sto". '$'
+                        characters will need to be escaped if using template
+                        variables. Available template variables are $aln_sto,
+                        $profile. Defaults are as follows for the different
+                        profiles: (hmmer3: "--mapali $aln_sto") (infernal1:
+                        "-1 --hbanded --sub --dna")
+  --profile-version {infernal1mpi,hmmer3,infernal1}
+                        Profile version to use. [default: hmmer3]
+  --no-mask             Do not trim the alignment to unmasked columns.
+                        [default: apply mask if it exists]
+  --debug               Enable debug output
+  --verbose             Enable verbose output</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mask">
+<span id="id4"></span><h3>mask<a class="headerlink" href="#mask" title="Permalink to this headline">¶</a></h3>
+<p><em>Warning:</em> masking is experimental and we may change our mind about how it gets
+implemented.</p>
+<p>Alignment masks may be specified through an entry named &#8220;mask&#8221; in the
+<tt class="docutils literal"><span class="pre">CONTENTS.json</span></tt> file of a reference package pointing to a file with a
+comma-delimited set of 0-based indices in an alignment to <strong>keep</strong> after
+masking.</p>
+<p>For example, a mask specification of:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">0,1,2,3,4,5,6,28,29</span></tt></div></blockquote>
+<p>Would discard all columns in an alignment except for 0-7, 28, and 29.</p>
+</div>
+</div>
+<div class="section" id="sort-placefile-py">
+<h2><tt class="docutils literal"><span class="pre">sort_placefile.py</span></tt><a class="headerlink" href="#sort-placefile-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">sort_placefile.py</span></tt> takes a placefile and sorts and formats its contents for
+then performing a visual diff of placefiles. Output defaults to being emitted
+to stdout.</p>
+<div class="highlight-python"><pre>usage: sort_placefile.py [-h] [-o FILE] infile</pre>
+</div>
+</div>
+<div class="section" id="update-refpkg-py">
+<h2><tt class="docutils literal"><span class="pre">update_refpkg.py</span></tt><a class="headerlink" href="#update-refpkg-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">update_refpkg.py</span></tt> updates a reference package from the 1.0 format to the 1.1
+format. It takes the <tt class="docutils literal"><span class="pre">CONTENTS.json</span></tt> file in the reference package as its
+parameter and updates it in place, after making a backup copy.</p>
+<div class="highlight-python"><pre>usage: update_refpkg.py [-h] CONTENTS.json</pre>
+</div>
+</div>
+<div class="section" id="check-placements-py">
+<h2><tt class="docutils literal"><span class="pre">check_placements.py</span></tt><a class="headerlink" href="#check-placements-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">check_placements.py</span></tt> checks a placefile for potential issues, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Any <tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt> being equal to 0.</li>
+<li>The sum of the <tt class="docutils literal"><span class="pre">like_weight_ratios</span></tt> not being equal to 1.</li>
+<li>Any <tt class="docutils literal"><span class="pre">post_prob</span></tt> being equal to 0.</li>
+<li>The sum of the <tt class="docutils literal"><span class="pre">post_probs</span></tt> being equal to 0.</li>
+<li>The sum of the <tt class="docutils literal"><span class="pre">post_probs</span></tt> not being equal to 1.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python"><pre>usage: check_placements.py example.jplace</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="faq.html" title="FAQ"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="generated_rst/rppr_voronoi.html" title="voronoi"
+             >previous</a> |</li>
+        <li><a href="index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

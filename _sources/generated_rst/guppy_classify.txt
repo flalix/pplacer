@@ -18,7 +18,6 @@ Options
 -c  Reference package path. Required.
 --sqlite  Specify the database file to use.
 --pp  Use posterior probability for our criteria.
---csv  Write .class.csv files containing CSV data.
 --mrca-stats  Print the number of placements just proximal to MRCAs.
 
 Details
@@ -77,4 +76,4 @@ Sqlite
 ``guppy classify`` can also write its output into a sqlite3 database. The
 argument to the ``--sqlite`` flag is the sqlite3 database into which the
 results should be put. This database must have first been intialized using
-``guppy taxtable``.
+``rppr taxtable``.

@@ -15,14 +15,13 @@ kr
 Options
 =======
 
---pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
---transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+--pp  Use posterior probability for the weight.
 -c  Reference package path.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
--p  The exponent for the integration, i.e. the value of p in Z_p.
+-p  Exponent for KR integration, i.e. value of p in Z_p. Default 1.
 --normalize  Divide KR by a given value. Legal arguments are "tree-length".
 --seed  Set the random seed, an integer > 0. Default is 1.
 --list-out  Output the KR results as a list rather than a matrix.

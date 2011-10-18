@@ -50,8 +50,12 @@
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
 <li><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
-<li><a class="reference internal" href="#batch-mode">Batch mode</a></li>
+<li><a class="reference internal" href="#batch-mode">Batch mode</a><ul>
+<li><a class="reference internal" href="#advanced-features">Advanced features</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#about-multiplicities">About multiplicities</a></li>
+<li><a class="reference internal" href="#split-placefiles">&#8216;Split&#8217; placefiles</a></li>
 <li><a class="reference internal" href="#phyloxml-viewing-notes">phyloXML viewing notes</a></li>
 </ul>
 </li>
@@ -108,7 +112,7 @@
 </tr>
 <tr class="field"><th class="field-name">License:</th><td class="field-body">GPL v3</td>
 </tr>
-<tr class="field"><th class="field-name">Date:</th><td class="field-body">March 2011</td>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">September 2011</td>
 </tr>
 </tbody>
 </table>
@@ -123,10 +127,11 @@
 <li><a class="reference internal" href="#command-line-interface" id="id4">Command line interface</a></li>
 <li><a class="reference internal" href="#batch-mode" id="id5">Batch mode</a></li>
 <li><a class="reference internal" href="#about-multiplicities" id="id6">About multiplicities</a></li>
-<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id7">phyloXML viewing notes</a></li>
+<li><a class="reference internal" href="#split-placefiles" id="id7">&#8216;Split&#8217; placefiles</a></li>
+<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id8">phyloXML viewing notes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#list-of-subcommands" id="id8">List of subcommands</a></li>
+<li><a class="reference internal" href="#list-of-subcommands" id="id9">List of subcommands</a></li>
 </ul>
 </li>
 </ul>
@@ -173,9 +178,11 @@ A list of these programs is below, and can always be found using <tt class="docu
 <h3><a class="toc-backref" href="#id4">Command line interface</a><a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h3>
 <p>The general way to invoke <tt class="docutils literal"><span class="pre">guppy</span></tt> is <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">COMMAND</span> <span class="pre">[options]</span> <span class="pre">placefile[s]</span></tt> where COMMAND is one of the <tt class="docutils literal"><span class="pre">guppy</span></tt> commands.
 For example:</p>
-<div class="highlight-python"><pre>guppy heat --gray-black coastal.json DCM.json</pre>
+<div class="highlight-python"><pre>guppy heat --gray-black coastal.jplace DCM.jplace</pre>
 </div>
 <p>These programs are listed with more detail below, and can always be found using <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">--cmds</span></tt> .</p>
+<p><tt class="docutils literal"><span class="pre">guppy</span></tt> can also be invoked as <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">--quiet</span> <span class="pre">COMMAND</span> <span class="pre">[...]</span></tt>,  which prevents
+the specified command from writing to stdout unless explicitly requested.</p>
 </div>
 <div class="section" id="batch-mode">
 <h3><a class="toc-backref" href="#id5">Batch mode</a><a class="headerlink" href="#batch-mode" title="Permalink to this headline">¶</a></h3>
@@ -186,26 +193,70 @@ time it is used in a command.</p>
 <p>Batch files are files with one guppy command per line, specified exactly as
 would be written in a shell, except without the leading <tt class="docutils literal"><span class="pre">guppy</span></tt>. Arguments
 can be enclosed in double quotes to preserve whitespace, and double quotes
-within quoted strings are quoted by doubling (e.g. <tt class="docutils literal"><span class="pre">&quot;spam</span> <span class="pre">&quot;&quot;and&quot;&quot;</span>
-<span class="pre">eggs&quot;</span></tt>. Globbing (e.g. <tt class="docutils literal"><span class="pre">*.json</span></tt>) is not allowed. Comments are also allowed
-in batch files; everything on a line after a <tt class="docutils literal"><span class="pre">#</span></tt> is ignored.</p>
+within quoted strings are quoted by doubling (e.g. <tt class="docutils literal"><span class="pre">&quot;spam</span> <span class="pre">&quot;&quot;and&quot;&quot;</span> <span class="pre">eggs&quot;</span></tt>).
+Globbing (e.g. <tt class="docutils literal"><span class="pre">*.jplace</span></tt>) is not allowed. Comments are also allowed in batch
+files; everything on a line after a <tt class="docutils literal"><span class="pre">#</span></tt> is ignored.</p>
 <p>An example batch file:</p>
 <div class="highlight-python"><pre># Whole-line comment.
-pca -o pca -c some.refpkg src/a.json src/b.json
-squash -c some.refpkg -o squash_out src/a.json src/b.json
-classify -c some.refpkg some.json  # inline comment</pre>
+pca -o pca -c some.refpkg src/a.jplace src/b.jplace
+squash -c some.refpkg -o squash_out src/a.jplace src/b.jplace
+classify -c some.refpkg some.jplace  # inline comment</pre>
+</div>
+<p>If this was saved as <tt class="docutils literal"><span class="pre">example.batch</span></tt>, it would be invoked from guppy as:</p>
+<div class="highlight-python"><pre>guppy --batch example.batch</pre>
+</div>
+<div class="section" id="advanced-features">
+<h4>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this headline">¶</a></h4>
+<p>Batch files also have two unique features: virtual placefiles, and parameter
+substitution.</p>
+<p>Within a batch file, if a placefile is saved to or loaded from a path beginning
+with a <tt class="docutils literal"><span class="pre">&#64;</span></tt>, the data will be stored in memory instead of written to disk. For
+example:</p>
+<div class="highlight-python"><pre>merge -o @merged.jplace src/a.jplace src/b.jplace
+info @merged.jplace</pre>
+</div>
+<p>will effectively run <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">info</span></tt> on the placefile resulting from merging the
+two arguments, but without ever writing that merged file to disk.</p>
+<p>Additionally, parameters can be passed in from the command line to the batch
+file. On the command line, parameters are specified as additional arguments to
+guppy in <tt class="docutils literal"><span class="pre">key=value</span></tt> format. In the batch file, substitutions are done from
+identifiers in <tt class="docutils literal"><span class="pre">{key}</span></tt> format. For example, when a batch file containing</p>
+<div class="highlight-python"><pre>info {k1} {k2}</pre>
+</div>
+<p>is invoked with</p>
+<div class="highlight-python"><pre>guppy --batch example.batch k1=1.jplace k2=2.jplace</pre>
+</div>
+<p>the impact will be the same as running</p>
+<div class="highlight-python"><pre>guppy 1.jplace 2.jplace</pre>
+</div>
+<p>Braces can also be quoted by doubling (e.g. <tt class="docutils literal"><span class="pre">{{foo}}</span></tt> will become <tt class="docutils literal"><span class="pre">{foo}</span></tt>).</p>
 </div>
 </div>
 <div class="section" id="about-multiplicities">
 <h3><a class="toc-backref" href="#id6">About multiplicities</a><a class="headerlink" href="#about-multiplicities" title="Permalink to this headline">¶</a></h3>
-<p>The new versions of pplacer and guppy support &#8220;multiplicities,&#8221; i.e. multiple reads being treated as one.
+<p>pplacer and guppy support &#8220;multiplicities,&#8221; i.e. multiple reads being treated as one.
 For example, if some reads are identical, they can be treated as a group.
 Doing so makes guppy operations <em>much</em> faster.</p>
 <p>By default, they are used &#8220;as is&#8221; for guppy calculations&#8211; a single placement with multiplicity four is the same as four reads placed individually.
-However, if one would like to decrease the impact of multiplicities on downstream analysis (e.g. if PCR artifacts are suspected) one can use the <tt class="docutils literal"><span class="pre">--transform</span></tt> option to choose a transform for the multiplicies before use.</p>
+However, if one would like to decrease the impact of multiplicities on downstream analysis (e.g. if PCR artifacts are suspected) one can use the <tt class="docutils literal"><span class="pre">--transform</span></tt> option of <tt class="docutils literal"><span class="pre">mft</span></tt> to choose a transform for the multiplicies before use.
+Doing so will convert your placements into labeled masses.</p>
+</div>
+<div class="section" id="split-placefiles">
+<h3><a class="toc-backref" href="#id7">&#8216;Split&#8217; placefiles</a><a class="headerlink" href="#split-placefiles" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s often convenient to split up place files in all sorts of ways, but it&#8217;s nice not to have to duplicate the information in the placefiles multiple times.
+For that reason, we have introduced &#8220;split&#8221; placefiles.
+The syntax for these is <tt class="docutils literal"><span class="pre">my.jplace:my.csv</span></tt>, where the CSV file maps from query sequence names to the split placefile name.
+For example, say <tt class="docutils literal"><span class="pre">my.csv</span></tt> was like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;read1&quot;</span><span class="p">,</span><span class="s">&quot;a&quot;</span>
+<span class="s">&quot;read2&quot;</span><span class="p">,</span><span class="s">&quot;b&quot;</span>
+</pre></div>
+</div>
+<p>and <tt class="docutils literal"><span class="pre">my.jplace</span></tt> has placements for read1 and read2.
+Then <tt class="docutils literal"><span class="pre">my.jplace:my.csv</span></tt> would act like a list of two placefiles named a and b, with read1 and read2, respectively.
+Not every placement name in the place file needs to appear in the CSV file, so you can use this for subsetting.</p>
 </div>
 <div class="section" id="phyloxml-viewing-notes">
-<h3><a class="toc-backref" href="#id7">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
 <p><tt class="docutils literal"><span class="pre">guppy</span></tt> makes fattened and annotated trees to visualize the results of various analyses.
 We have chosen to use phyloXML as the format for these trees, as it has width and color tags for edges; if you see .xml files coming out of a guppy analysis that&#8217;s what they are for.
 We like looking at these trees using the tree viewer <a class="reference external" href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a>.
@@ -215,13 +266,13 @@ If you don&#8217;t see those check boxes, then use <a class="reference external"
 </div>
 </div>
 <div class="section" id="list-of-subcommands">
-<h2><a class="toc-backref" href="#id8">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
 <p>The following table provides links to more in-depth documentation for each
 guppy subcommand:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="34%" />
-<col width="66%" />
+<col width="30%" />
+<col width="70%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Command</th>
@@ -235,14 +286,14 @@ guppy subcommand:</p>
 <tr><td><a class="reference internal" href="guppy_bootviz.html#guppy-bootviz"><em>bootviz</em></a></td>
 <td>makes a phyloXML tree showing the bootstrap values</td>
 </tr>
-<tr><td><a class="reference internal" href="guppy_check_refpkg.html#guppy-check-refpkg"><em>check_refpkg</em></a></td>
-<td>check a reference package</td>
-</tr>
 <tr><td><a class="reference internal" href="guppy_classify.html#guppy-classify"><em>classify</em></a></td>
 <td>outputs classification information in a tabular or SQLite format</td>
 </tr>
 <tr><td><a class="reference internal" href="guppy_demulti.html#guppy-demulti"><em>demulti</em></a></td>
 <td>splits apart placements with multiplicity, undoing a round procedure</td>
+</tr>
+<tr><td><a class="reference internal" href="guppy_diplac.html#guppy-diplac"><em>diplac</em></a></td>
+<td>find the most DIstant PLACements from the leaves</td>
 </tr>
 <tr><td><a class="reference internal" href="guppy_distmat.html#guppy-distmat"><em>distmat</em></a></td>
 <td>prints out a pairwise distance matrix between the edges</td>
@@ -271,14 +322,20 @@ guppy subcommand:</p>
 <tr><td><a class="reference internal" href="guppy_merge.html#guppy-merge"><em>merge</em></a></td>
 <td>merges placefiles together</td>
 </tr>
+<tr><td><a class="reference internal" href="guppy_mft.html#guppy-mft"><em>mft</em></a></td>
+<td>Multi-Filter and Transform placefiles</td>
+</tr>
 <tr><td><a class="reference internal" href="guppy_pca.html#guppy-pca"><em>pca</em></a></td>
 <td>performs edge principal components</td>
 </tr>
+<tr><td><a class="reference internal" href="guppy_pd.html#guppy-pd"><em>pd</em></a></td>
+<td>calculate phylogenetic diversity</td>
+</tr>
+<tr><td><a class="reference internal" href="guppy_rarefact.html#guppy-rarefact"><em>rarefact</em></a></td>
+<td>calculates phylogenetic rarefaction curves</td>
+</tr>
 <tr><td><a class="reference internal" href="guppy_redup.html#guppy-redup"><em>redup</em></a></td>
 <td>restores duplicates to deduped placefiles</td>
-</tr>
-<tr><td><a class="reference internal" href="guppy_ref_tree.html#guppy-ref-tree"><em>ref_tree</em></a></td>
-<td>writes a taxonomically annotated reference tree and an induced taxonomic tree</td>
 </tr>
 <tr><td><a class="reference internal" href="guppy_round.html#guppy-round"><em>round</em></a></td>
 <td>clusters the placements by rounding branch lengths</td>
@@ -292,14 +349,14 @@ guppy subcommand:</p>
 <tr><td><a class="reference internal" href="guppy_squash.html#guppy-squash"><em>squash</em></a></td>
 <td>performs squash clustering</td>
 </tr>
-<tr><td><a class="reference internal" href="guppy_taxtable.html#guppy-taxtable"><em>taxtable</em></a></td>
-<td>makes SQL enabling taxonomic querying of placement results</td>
-</tr>
 <tr><td><a class="reference internal" href="guppy_to_json.html#guppy-to-json"><em>to_json</em></a></td>
-<td>converts old-style .place files to .json placement files</td>
+<td>converts old-style .place files to .jplace placement files</td>
 </tr>
 <tr><td><a class="reference internal" href="guppy_tog.html#guppy-tog"><em>tog</em></a></td>
 <td>makes a tree with each of the reads represented as a pendant edge</td>
+</tr>
+<tr><td><a class="reference internal" href="guppy_wpd.html#guppy-wpd"><em>wpd</em></a></td>
+<td>calculate weighted phylogenetic diversity of placefiles</td>
 </tr>
 </tbody>
 </table>

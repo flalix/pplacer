@@ -18,11 +18,17 @@ Options
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
---pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
---transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+--pp  Use posterior probability for the weight.
 -c  Reference package path.
 --min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
 --total-width  Set the total pixel width for all of the branches of the tree. Default: 300
 --width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
+--average  Average all input placefiles together.
 
+Details
+=======
+
+Given a list of place files, ``--average`` normalizes the mass in each, then
+takes the average of those masses to make an appropriately averaged fat tree
+for those place files.

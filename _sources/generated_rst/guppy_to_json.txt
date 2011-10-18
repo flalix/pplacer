@@ -6,7 +6,7 @@
 to_json
 =======
 
-`to_json` converts old-style .place files to .json placement files.
+`to_json` converts old-style .place files to .jplace placement files.
 
 ::
 

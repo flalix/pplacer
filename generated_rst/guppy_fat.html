@@ -50,6 +50,7 @@
   <ul>
 <li><a class="reference internal" href="#">fat</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
@@ -107,14 +108,11 @@
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
 <kbd><span class="option">--unweighted</span></kbd></td>
 <td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-c</span></kbd></td>
 <td>Reference package path.</td></tr>
@@ -127,8 +125,17 @@
 <tr><td class="option-group">
 <kbd><span class="option">--width-factor</span></kbd></td>
 <td>Override total-width by directly setting the number of pixels per unit of thing displayed.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--average</span></kbd></td>
+<td>Average all input placefiles together.</td></tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Given a list of place files, <tt class="docutils literal"><span class="pre">--average</span></tt> normalizes the mass in each, then
+takes the average of those masses to make an appropriately averaged fat tree
+for those place files.</p>
 </div>
 </div>
 

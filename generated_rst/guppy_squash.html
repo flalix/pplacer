@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="taxtable" href="guppy_taxtable.html" />
+    <link rel="next" title="to_json" href="guppy_to_json.html" />
     <link rel="prev" title="splitify" href="guppy_splitify.html" /> 
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_taxtable.html" title="taxtable"
+          <a href="guppy_to_json.html" title="to_json"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="guppy_splitify.html" title="splitify"
@@ -59,8 +59,8 @@
   <p class="topless"><a href="guppy_splitify.html"
                         title="previous chapter">splitify</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_taxtable.html"
-                        title="next chapter">taxtable</a></p>
+  <p class="topless"><a href="guppy_to_json.html"
+                        title="next chapter">to_json</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/generated_rst/guppy_squash.txt"
@@ -99,14 +99,11 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd><span class="option">--pp</span></kbd></td>
-<td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
 <kbd><span class="option">--unweighted</span></kbd></td>
 <td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--transform</span></kbd></td>
-<td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217; and &#8216;unit&#8217;. Default is no transform.</td></tr>
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-c</span></kbd></td>
 <td>Reference package path.</td></tr>
@@ -129,16 +126,27 @@
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">-p</span></kbd></td>
+<td>Exponent for KR integration, i.e. value of p in Z_p. Default 1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--normalize</span></kbd></td>
+<td>Divide KR by a given value. Legal arguments are &#8220;tree-length&#8221;.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--bootstrap</span></kbd></td>
 <td>the number of bootstrap replicates to run</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--tax-cluster</span></kbd></td>
 <td>Perform taxonomic clustering rather than phylogenetic.Specify &#8220;unit&#8221; or &#8220;inv&#8221; for the two different modes.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pre-round</span></kbd></td>
+<td>Apply rounding with 3 sig figs and cutoff 0.01 to each
+placerun before clustering</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Perform <a class="reference external" href="http://arxiv.org/abs/1107.5095">squash clustering</a>.</p>
 <p>Bootstrapping is performed by resampling directly on placements.
 Note that the bootstrap values for clustering are calculated in a rooted way.
 That means that you may observe different bootstrap values on either side of the root, especially if a whole clade from one side of the root likes to flip to a location distal to the clade on the other side of the root.</p>
@@ -158,7 +166,7 @@ That means that you may observe different bootstrap values on either side of the
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_taxtable.html" title="taxtable"
+          <a href="guppy_to_json.html" title="to_json"
              >next</a> |</li>
         <li class="right" >
           <a href="guppy_splitify.html" title="splitify"

@@ -15,9 +15,8 @@ sing
 Options
 =======
 
---pp  Use posterior probability for the weight.
 --unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
---transform  A transform to apply to the read multiplicities before calculating. Options are 'log' and 'unit'. Default is no transform.
+--pp  Use posterior probability for the weight.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.

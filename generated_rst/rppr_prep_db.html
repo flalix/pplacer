@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>prep_db &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="up" title="rppr" href="rppr.html" />
+    <link rel="next" title="ref_tree" href="rppr_ref_tree.html" />
+    <link rel="prev" title="pdprune" href="rppr_pdprune.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="rppr_ref_tree.html" title="ref_tree"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rppr_pdprune.html" title="pdprune"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="rppr.html" accesskey="U">rppr</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">prep_db</a><ul>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a><ul>
+<li><a class="reference internal" href="#example-tables">Example tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rppr_pdprune.html"
+                        title="previous chapter">pdprune</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rppr_ref_tree.html"
+                        title="next chapter">ref_tree</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/rppr_prep_db.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="prep-db">
+<span id="rppr-prep-db"></span><h1>prep_db<a class="headerlink" href="#prep-db" title="Permalink to this headline">¶</a></h1>
+<p><cite>prep_db</cite> makes SQL enabling taxonomic querying of placement results.</p>
+<div class="highlight-python"><pre>usage: prep_db [options] -c &lt;refpkg&gt;</pre>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path. Required.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--sqlite</span></kbd></td>
+<td>Specify the database file to use.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--default-cutoff</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>The default value for the likelihood_cutoff param. Default: 0.90</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Creates and populates tables in the specified sqlite3 database, initializing
+the database if it doesn&#8217;t already exist. All of the tables created by this
+command are:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">params</span></tt> &#8211; parameters for some of the views discussed later.</li>
+<li><tt class="docutils literal"><span class="pre">ranks</span></tt> &#8211; all of the ranks contained in the provided reference package.</li>
+<li><tt class="docutils literal"><span class="pre">taxa</span></tt> &#8211; all of the taxa in the provided reference package.</li>
+<li><tt class="docutils literal"><span class="pre">placements</span></tt>, <tt class="docutils literal"><span class="pre">placement_names</span></tt>, <tt class="docutils literal"><span class="pre">placement_classifications</span></tt>,
+<tt class="docutils literal"><span class="pre">placement_positions</span></tt> &#8211; empty tables for <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> to insert data
+into.</li>
+</ul>
+<p>In addition to the tables above, some views are also created:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">best_classifications</span></tt> &#8211; for each placement, the <tt class="docutils literal"><span class="pre">tax_id</span></tt>, <tt class="docutils literal"><span class="pre">rank</span></tt>, and
+<tt class="docutils literal"><span class="pre">likelihood</span></tt> which represent the best classification. The best
+classification is the classification with the most specific rank and highest
+likelihood, where <tt class="docutils literal"><span class="pre">rank</span> <span class="pre">=</span> <span class="pre">desired_rank</span></tt> and the likelihood is greater than
+the <tt class="docutils literal"><span class="pre">likelihood_cutoff</span></tt> parameter. If there is no such best classification,
+all three columns will be NULL.</li>
+<li><tt class="docutils literal"><span class="pre">multiclass</span></tt> &#8211; for each placement, one or more of the best</li>
+</ul>
+<p>See the <a class="reference external" href="http://fhcrc.github.com/microbiome-demo/">microbiome demo</a> for some examples of using <tt class="docutils literal"><span class="pre">rppr</span> <span class="pre">taxtable</span></tt> and
+<tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">classify</span></tt> together.</p>
+<div class="section" id="example-tables">
+<h3>Example tables<a class="headerlink" href="#example-tables" title="Permalink to this headline">¶</a></h3>
+<p>The following shows examples of what the aformentioned tables could contain, as
+well as the column names for each table. These examples are incomplete; real
+data would contain many more rows.</p>
+<div class="section" id="params">
+<h4><tt class="docutils literal"><span class="pre">params</span></tt><a class="headerlink" href="#params" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="81%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">name</th>
+<th class="head">val</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>likelihood_cutoff</td>
+<td>0.9</td>
+</tr>
+<tr><td>multiclass_count</td>
+<td>3.0</td>
+</tr>
+<tr><td>multiclass_likelihood</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ranks">
+<h4><tt class="docutils literal"><span class="pre">ranks</span></tt><a class="headerlink" href="#ranks" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">rank</th>
+<th class="head">rank_order</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>root</td>
+<td>0</td>
+</tr>
+<tr><td>below_root</td>
+<td>1</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="taxa">
+<h4><tt class="docutils literal"><span class="pre">taxa</span></tt><a class="headerlink" href="#taxa" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="70%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">tax_id</th>
+<th class="head">tax_name</th>
+<th class="head">rank</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>root</td>
+<td>root</td>
+</tr>
+<tr><td>103621</td>
+<td>Actinomyces urogenitalis</td>
+<td>species</td>
+</tr>
+<tr><td>109790</td>
+<td>Lactobacillus jensenii</td>
+<td>species</td>
+</tr>
+<tr><td>113286</td>
+<td>Pseudoramibacter</td>
+<td>genus</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placements">
+<h4><tt class="docutils literal"><span class="pre">placements</span></tt><a class="headerlink" href="#placements" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="92%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>3</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placement-names">
+<h4><tt class="docutils literal"><span class="pre">placement_names</span></tt><a class="headerlink" href="#placement-names" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="42%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">name</th>
+<th class="head">origin</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>1</td>
+<td>GLKT0ZE01B8WZE</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>2</td>
+<td>GLKT0ZE01CUQ8G</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01AIA4X</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01AT1UK</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01B8JSY</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01BG9QQ</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>3</td>
+<td>GLKT0ZE01EF2DE</td>
+<td>p4z1r36</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placement-classifications">
+<h4><tt class="docutils literal"><span class="pre">placement_classifications</span></tt><a class="headerlink" href="#placement-classifications" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="36%" />
+<col width="22%" />
+<col width="9%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">desired_rank</th>
+<th class="head">rank</th>
+<th class="head">tax_id</th>
+<th class="head">likelihood</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>117</td>
+<td>family</td>
+<td>family</td>
+<td>203492</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>below_family</td>
+<td>family</td>
+<td>203492</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>genus</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species_group</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species_subgroup</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.999998</td>
+</tr>
+<tr><td>117</td>
+<td>species</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.77507</td>
+</tr>
+<tr><td>117</td>
+<td>species</td>
+<td>species</td>
+<td>187101</td>
+<td>0.224928</td>
+</tr>
+<tr><td>117</td>
+<td>below_species</td>
+<td>genus</td>
+<td>168808</td>
+<td>0.77507</td>
+</tr>
+<tr><td>117</td>
+<td>below_species</td>
+<td>species</td>
+<td>187101</td>
+<td>0.224928</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="placement-positions">
+<h4><tt class="docutils literal"><span class="pre">placement_positions</span></tt><a class="headerlink" href="#placement-positions" title="Permalink to this headline">¶</a></h4>
+<p>This table&#8217;s columns are abridged because it contains too many to briefly list.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="15%" />
+<col width="15%" />
+<col width="17%" />
+<col width="19%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">location</th>
+<th class="head">ml_ratio</th>
+<th class="head">distal_bl</th>
+<th class="head">pendant_bl</th>
+<th class="head">tax_id</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>9</td>
+<td>311</td>
+<td>0.977324</td>
+<td>0.528956</td>
+<td>0.848439</td>
+<td>836</td>
+</tr>
+<tr><td>9</td>
+<td>331</td>
+<td>0.011454</td>
+<td>0.00383</td>
+<td>1.146891</td>
+<td>171549</td>
+</tr>
+<tr><td>9</td>
+<td>330</td>
+<td>0.011222</td>
+<td>0.175601</td>
+<td>1.152479</td>
+<td>836</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="best-classifications">
+<h4><tt class="docutils literal"><span class="pre">best_classifications</span></tt><a class="headerlink" href="#best-classifications" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="17%" />
+<col width="22%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">tax_id</th>
+<th class="head">rank</th>
+<th class="head">likelihood</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>161</td>
+<td>168808</td>
+<td>genus</td>
+<td>1.0</td>
+</tr>
+<tr><td>162</td>
+<td>186802</td>
+<td>order</td>
+<td>1.000001</td>
+</tr>
+<tr><td>163</td>
+<td>147802</td>
+<td>species</td>
+<td>0.999999</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="multiclass">
+<h4><tt class="docutils literal"><span class="pre">multiclass</span></tt><a class="headerlink" href="#multiclass" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="17%" />
+<col width="22%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">placement_id</th>
+<th class="head">tax_id</th>
+<th class="head">rank</th>
+<th class="head">likelihood</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>161</td>
+<td>187101</td>
+<td>species</td>
+<td>0.857165</td>
+</tr>
+<tr><td>162</td>
+<td>186803</td>
+<td>family</td>
+<td>0.705561</td>
+</tr>
+<tr><td>162</td>
+<td>186806</td>
+<td>family</td>
+<td>0.29444</td>
+</tr>
+<tr><td>163</td>
+<td>147802</td>
+<td>species</td>
+<td>0.999999</td>
+</tr>
+<tr><td>...</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="rppr_ref_tree.html" title="ref_tree"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rppr_pdprune.html" title="pdprune"
+             >previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+          <li><a href="rppr.html" >rppr</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

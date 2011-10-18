@@ -147,6 +147,12 @@
 <kbd><span class="option">--unif-prior</span></kbd></td>
 <td>Use a uniform prior rather than exponential.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">--inform-prior</span></kbd></td>
+<td>Use an informative exponential prior based on rooted distance to leaves.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--prior-lower</span></kbd></td>
+<td>Lower bound for the informative prior mean. Default is 0.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--start-pend</span></kbd></td>
 <td>Starting pendant branch length. Default is 0.1.</td></tr>
 <tr><td class="option-group">
@@ -195,6 +201,27 @@
 <kbd><span class="option">--write-pre-masked</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Write out the pre-masked sequences to the specified fasta file and exit.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--map-mrca</span></kbd></td>
+<td>Specify a file to write out MAP sequences for MRCAs and corresponding placements.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--map-mrca-min</span></kbd></td>
+<td>Specify cutoff for inclusion in MAP sequence file. Default is 0.8.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--map-info</span></kbd></td>
+<td>Write file describing the &#8216;diagnostic&#8217; mutations for various clades.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--map-identity</span></kbd></td>
+<td>Add the percent identity of the query sequence to the nearest MAP sequence to each placement.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--keep-at-most</span></kbd></td>
+<td>The maximum number of placements we keep. Default is 7.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--keep-factor</span></kbd></td>
+<td>Throw away anything that has ml_ratio below keep_factor times (best ml_ratio). Default is 0.01.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--mrca-class</span></kbd></td>
+<td>Classify with MRCAs instead of a painted tree.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--version</span></kbd></td>
 <td>Write out the version number and exit.</td></tr>
@@ -330,7 +357,7 @@ We call this pre-masking, and it can be disabled with the <tt class="docutils li
 </thead>
 <tbody valign="top">
 <tr><td><tt class="docutils literal"><span class="pre">version</span></tt></td>
-<td>The version of the JSON format as an integer. Currently only <tt class="docutils literal"><span class="pre">1</span></tt> is allowed.</td>
+<td>The version of the JSON format as an integer.</td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">tree</span></tt></td>
 <td>The reference tree as a string, in &#8220;edge-numbered Newick&#8221; format.</td>
@@ -346,13 +373,23 @@ We call this pre-masking, and it can be disabled with the <tt class="docutils li
 </tr>
 </tbody>
 </table>
-<p>An &#8220;edge-numbered Newick&#8221; tree is simply a Newick format tree with edge labels in square brackets which provide a well-defined numbering of edges.
-These edge numbers are used to specify the edges on which the placements lie.</p>
+<p>An &#8220;edge-numbered Newick&#8221; tree is simply a Newick format tree with integers in
+curly braces which provide a well-defined numbering of edges. These edge
+numbers are used to specify the edges on which the placements lie.</p>
+<p>Currently there are two versions of the placefile format accepted by <tt class="docutils literal"><span class="pre">guppy</span></tt>
+and <tt class="docutils literal"><span class="pre">rppr</span></tt>: <tt class="docutils literal"><span class="pre">1</span></tt>, and <tt class="docutils literal"><span class="pre">2</span></tt>, though only version 2 will be generated. There
+are only two differences between versions 1 and 2: the format of the Newick
+tree in the <tt class="docutils literal"><span class="pre">tree</span></tt> field has changed, and <tt class="docutils literal"><span class="pre">marginal_prob</span></tt> was renamed to
+<tt class="docutils literal"><span class="pre">marginal_like</span></tt> in version 2.</p>
+<p>Version 1 used a slightly different version of edge-numbered Newick trees for
+the <tt class="docutils literal"><span class="pre">tree</span></tt> field, where edge numbers were specified in square brackets
+instead of curly braces. Both this kind of Newick tree and version 1 of the
+JSON format are now deprecated.</p>
 <p>The pplacer suite currently uses the following field names:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="27%" />
-<col width="73%" />
+<col width="19%" />
+<col width="81%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Field</th>
@@ -375,18 +412,32 @@ These edge numbers are used to specify the edges on which the placements lie.</p
 <tr><td><tt class="docutils literal"><span class="pre">pendant_length</span></tt></td>
 <td>ML pendant branch length as a float.</td>
 </tr>
+<tr><td><tt class="docutils literal"><span class="pre">post_prob</span></tt></td>
+<td>The posterior probability of a placement on the edge.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">marginal_like</span></tt></td>
+<td>The marginal likelihood of a placement on the edge.</td>
+</tr>
 <tr><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
 <td>The <tt class="docutils literal"><span class="pre">tax_id</span></tt> from a reference package as a string.</td>
 </tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_ratio</span></tt></td>
+<td>The percent identity between this sequence and the corresponding MAP sequence.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_overlap</span></tt></td>
+<td>The number of overlapping sites between this sequence and the corresponding MAP sequence.</td>
+</tr>
 </tbody>
 </table>
-<p>For <tt class="docutils literal"><span class="pre">guppy</span></tt> to be able to load a JSON file, it must have <tt class="docutils literal"><span class="pre">edge_num</span></tt>, <tt class="docutils literal"><span class="pre">likelihood</span></tt>, <tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt>,
-<tt class="docutils literal"><span class="pre">distal_length</span></tt>, and <tt class="docutils literal"><span class="pre">pendant_length</span></tt> fields.</p>
+<p>For <tt class="docutils literal"><span class="pre">guppy</span></tt> to be able to load a JSON file, it must have <tt class="docutils literal"><span class="pre">edge_num</span></tt>,
+<tt class="docutils literal"><span class="pre">likelihood</span></tt>, <tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt>, <tt class="docutils literal"><span class="pre">distal_length</span></tt>, and
+<tt class="docutils literal"><span class="pre">pendant_length</span></tt> fields. All other fields are optional, but if one of
+<tt class="docutils literal"><span class="pre">post_prob</span></tt> and <tt class="docutils literal"><span class="pre">marginal_like</span></tt> are specified, both must be specified.</p>
 <p>Each entry in the <tt class="docutils literal"><span class="pre">placements</span></tt> array is an object with the following keys:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="5%" />
-<col width="95%" />
+<col width="4%" />
+<col width="96%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Key</th>
@@ -399,6 +450,9 @@ These edge numbers are used to specify the edges on which the placements lie.</p
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">p</span></tt></td>
 <td>An array of arrays containing placement data in the same order as <tt class="docutils literal"><span class="pre">fields</span></tt>.</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">m</span></tt></td>
+<td>(optional) A float that represents the mass of this placement. If this key is specified, <tt class="docutils literal"><span class="pre">n</span></tt> must only be or contain a single string.</td>
 </tr>
 </tbody>
 </table>
@@ -552,7 +606,7 @@ Using these different settings the program reports</p>
 </ul>
 <p>The fantasy mode is invoked by telling pplacer what average likelihood difference you would like via the <tt class="docutils literal"><span class="pre">--fantasy</span></tt> option.
 You can also tell it to run an evenly-spaced fraction of the query sequences in fantasy mode using the <tt class="docutils literal"><span class="pre">--fantasy-frac</span></tt> option, which gives you an idea of the optimal run parameters for the rest of the sequences. For example:</p>
-<div class="highlight-python"><pre>pplacer --maxStrikes 10 --strikeBox 10 --fantasy 0.05 --fantasyFrac 0.02 -r example.fasta...</pre>
+<div class="highlight-python"><pre>pplacer --max-strikes 10 --strike-box 10 --fantasy 0.05 --fantasy-frac 0.02 -r example.fasta...</pre>
 </div>
 <p>says to run pplacer trying all of the combinations of max strikes and strike box up to 10, looking for the optimal combination which will give an average log likelihood difference of 0.05, and running on 2% of the query sequences.
 If, for any reason, you wish to disable baseball playing, simply add <tt class="docutils literal"><span class="pre">--max-strikes</span></tt> to zero (this also disables the <tt class="docutils literal"><span class="pre">--max-pitches</span></tt> option).</p>
@@ -561,6 +615,12 @@ If, for any reason, you wish to disable baseball playing, simply add <tt class="
 image(x=c(0:nrow(ba)-1),xlab= "strike box", ylab= "number of strikes", \
    y=c(1:ncol(ba)-1),z=as.matrix(ba), main="batting average")</pre>
 </div>
+<p>Note that we have set things up so that turning on posterior probability with <tt class="docutils literal"><span class="pre">-p</span></tt> now changes the default search parameters to make a deeper search as follows:</p>
+<div class="highlight-python"><pre>--keep-at-most 20
+--keep-factor 0.001
+--max-strikes 20</pre>
+</div>
+<p>You can set these to anything you like by using these flags <em>after</em> the <tt class="docutils literal"><span class="pre">-p</span></tt>.</p>
 </div>
 </div>
 </div>

@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rppr &mdash; pplacer v1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="next" title="check_refpkg" href="rppr_check_refpkg.html" />
+    <link rel="prev" title="wpd" href="guppy_wpd.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="rppr_check_refpkg.html" title="check_refpkg"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="guppy_wpd.html" title="wpd"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">rppr</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#list-of-subcommands">List of subcommands</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="guppy_wpd.html"
+                        title="previous chapter">wpd</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rppr_check_refpkg.html"
+                        title="next chapter">check_refpkg</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated_rst/rppr.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="rppr">
+<h1>rppr<a class="headerlink" href="#rppr" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Authors:</th><td class="field-body">Erick Matsen and Aaron Gallagher</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">rppr</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">1.1</td>
+</tr>
+<tr class="field"><th class="field-name">License:</th><td class="field-body">GPL v3</td>
+</tr>
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">September 2011</td>
+</tr>
+</tbody>
+</table>
+<p><tt class="docutils literal"><span class="pre">rppr</span></tt> is a binary to help prepare reference packages and select sequences.
+It&#8217;s pronounced &#8220;ripper&#8221; and is short for Reference Package PReparer.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="command-line-interface">
+<h3>Command line interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h3>
+<p>The general way to invoke <tt class="docutils literal"><span class="pre">rppr</span></tt> is <tt class="docutils literal"><span class="pre">rppr</span> <span class="pre">COMMAND</span> <span class="pre">[options]</span> <span class="pre">placefile[s]</span></tt> where COMMAND is one of the <tt class="docutils literal"><span class="pre">rppr</span></tt> commands.
+For example:</p>
+<div class="highlight-python"><pre>rppr info -c some.refpkg</pre>
+</div>
+<p>These programs are listed with more detail below, and can always be found using <tt class="docutils literal"><span class="pre">rppr</span> <span class="pre">--cmds</span></tt> .</p>
+<p><tt class="docutils literal"><span class="pre">rppr</span></tt> can also be invoked as <tt class="docutils literal"><span class="pre">rppr</span> <span class="pre">--quiet</span> <span class="pre">COMMAND</span> <span class="pre">[...]</span></tt>,  which prevents
+the specified command from writing to stdout unless explicitly requested.</p>
+</div>
+</div>
+<div class="section" id="list-of-subcommands">
+<h2>List of subcommands<a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
+<p>The following table provides links to more in-depth documentation for each
+rppr subcommand:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Command</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="rppr_check_refpkg.html#rppr-check-refpkg"><em>check_refpkg</em></a></td>
+<td>check a reference package</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_convexify.html#rppr-convexify"><em>convexify</em></a></td>
+<td>identifies minimal leaf set to cut for taxonomic concordance</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_info.html#rppr-info"><em>info</em></a></td>
+<td>gives information about a reference package</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_pdprune.html#rppr-pdprune"><em>pdprune</em></a></td>
+<td>prune the tree while maximizing PD</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_prep_db.html#rppr-prep-db"><em>prep_db</em></a></td>
+<td>makes SQL enabling taxonomic querying of placement results</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_ref_tree.html#rppr-ref-tree"><em>ref_tree</em></a></td>
+<td>writes a taxonomically annotated reference tree and an induced taxonomic tree</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_reroot.html#rppr-reroot"><em>reroot</em></a></td>
+<td>reroots a given reference package in place</td>
+</tr>
+<tr><td><a class="reference internal" href="rppr_voronoi.html#rppr-voronoi"><em>voronoi</em></a></td>
+<td>finds a good collection of sequences to cut from ref tree</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="rppr_check_refpkg.html" title="check_refpkg"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="guppy_wpd.html" title="wpd"
+             >previous</a> |</li>
+        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

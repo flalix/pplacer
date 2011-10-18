@@ -1,0 +1,25 @@
+:tocdepth: 3
+
+.. _guppy_diplac:
+
+======
+diplac
+======
+
+`diplac` find the most DIstant PLACements from the leaves.
+
+::
+
+  usage: diplac [options] placefile
+
+Options
+=======
+
+--pp  Use posterior probability for the weight.
+--min-distance  Specify the minimum distance to leaves to report
+--max-matches  Only report the deepest N placements
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
+--no-csv  Output the results as a padded matrix instead of csv.
+
