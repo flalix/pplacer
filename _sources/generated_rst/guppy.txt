@@ -171,7 +171,6 @@ guppy subcommand:
                          Command                                                                   Description
 ================================  ============================================================================
         :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
-  :ref:`bootviz <guppy_bootviz>`                            makes a phyloXML tree showing the bootstrap values
 :ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
   :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
     :ref:`diplac <guppy_diplac>`                              find the most DIstant PLACements from the leaves
