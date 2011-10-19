@@ -51,7 +51,6 @@
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
-<li><a class="reference internal" href="#compiling-pplacer">Compiling pplacer</a></li>
 <li><a class="reference internal" href="#pre-masking">Pre-masking</a></li>
 <li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a></li>
@@ -264,75 +263,10 @@ Running pplacer in this way will disable the taxonomic annotation features of pp
 <li>Rather than having a plain text &#8221;.place&#8221; output file, we now have a <a class="reference external" href="http://www.json.org/">JSON</a>-format file which contains the placements</li>
 <li>Reference packages encapsulate reference information, making it easy to do placement and taxonomic annotation</li>
 <li>Alignments can now be supplied as a single file, rather than being split into reference and query alignments</li>
-<li>Better alignment parsers, including a Stockholm parser</li>
+<li>Much better: faster, taxonomic integration, etc</li>
 <li><tt class="docutils literal"><span class="pre">placeviz</span></tt>, <tt class="docutils literal"><span class="pre">placeutil</span></tt> and <tt class="docutils literal"><span class="pre">mokaphy</span></tt> have been replaced by a single binary called <tt class="docutils literal"><span class="pre">guppy</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">rppr</span></tt> binary for preparing reference packages</li>
 </ul>
-</div>
-<div class="section" id="compiling-pplacer">
-<h3>Compiling pplacer<a class="headerlink" href="#compiling-pplacer" title="Permalink to this headline">¶</a></h3>
-<p>Here are directions on how to install an ocaml development environment and
-compile pplacer. If you already have GSL and wget installed, you should be able
-to download <a class="reference external" href="../_static/install_pplacer.sh">this installation script</a> and just type
-<tt class="docutils literal"><span class="pre">source</span> <span class="pre">install_pplacer.sh</span></tt>.</p>
-<div class="section" id="installing-gsl">
-<h4>Installing GSL<a class="headerlink" href="#installing-gsl" title="Permalink to this headline">¶</a></h4>
-<p>It may well already be installed (you can check by running
-<tt class="docutils literal"><span class="pre">gsl-config</span> <span class="pre">--prefix</span></tt>) or you can install it with your OS&#8217;s package manager.
-Or compile it from source:</p>
-<div class="highlight-python"><pre>wget ftp://mirrors.kernel.org/gnu/gsl/gsl-1.13.tar.gz &amp;&amp; \
-tar -xzf gsl-1.13.tar.gz &amp;&amp; \
-cd gsl-1.13 &amp;&amp; \
-./configure &amp;&amp; \
-make &amp;&amp; make install</pre>
-</div>
-</div>
-<div class="section" id="installing-ocaml-with-godi">
-<h4>Installing ocaml with GODI<a class="headerlink" href="#installing-ocaml-with-godi" title="Permalink to this headline">¶</a></h4>
-<p>Ocaml can be installed &#8220;by hand&#8221;, which requires less compilation time and
-memory, but the easiest is to use Gerd Stolpmann&#8217;s ocaml pacakge manager called
-GODI. (Thanks to Ashish Agarwal for suggesting it.) The one funny thing about
-it is that it likes its own space, and so you can&#8217;t set the prefix to be
-<tt class="docutils literal"><span class="pre">/usr/local/</span></tt>. Setting the prefix to some path in your home directory works
-great. Note that gawk is required for ocamlgsl.</p>
-<div class="highlight-python"><pre>PREFIX=`pwd`/godi
-PATH=$PREFIX/bin:$PREFIX/sbin:$PATH
-
-#install ocaml via GODI
-wget http://download.camlcity.org/download/godi-rocketboost-20091222.tar.gz
-tar xzf godi-rocketboost-20091222.tar.gz
-cd godi-rocketboost-20091222
-./bootstrap --prefix=$PREFIX
-echo "GODI_BASEPKG_PCRE=yes" &gt;&gt; $PREFIX/etc/godi.conf
-./bootstrap_stage2
-
-#build godi packages
-godi_perform -build godi-ocamlgsl
-godi_perform -build godi-xml-light
-godi_perform -build godi-ocaml-csv
-godi_perform -build godi-ounit
-godi_perform -build godi-sqlite3
-cd ..</pre>
-</div>
-</div>
-<div class="section" id="id2">
-<h4>Compiling pplacer<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>First make sure that ocaml et al are in your path.</p>
-<div class="highlight-python"><pre>which ocaml</pre>
-</div>
-<p>The best way to stay up to date with the source is via git:</p>
-<div class="highlight-python"><pre>git clone git://github.com/matsen/pplacer.git
-cd pplacer/
-make</pre>
-</div>
-<p>but if you don&#8217;t like that then here&#8217;s a little script:</p>
-<div class="highlight-python"><pre>wget http://github.com/matsen/pplacer/tarball/master
-tar -xzf matsen-pplacer*.tar.gz
-cd matsen-pplacer-*/
-make</pre>
-</div>
-<p>Now the binaries should be in the <tt class="docutils literal"><span class="pre">pplacer*/bin</span></tt> directory. Put them in your
-path and you are ready to go!</p>
-</div>
 </div>
 <div class="section" id="pre-masking">
 <h3>Pre-masking<a class="headerlink" href="#pre-masking" title="Permalink to this headline">¶</a></h3>
