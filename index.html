@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Pplacer documentation home &mdash; pplacer v1.1 documentation</title>
+    <title>pplacer documentation home &mdash; pplacer v1.1 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -42,7 +42,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Pplacer documentation home</a><ul>
+<li><a class="reference internal" href="#">pplacer documentation home</a><ul>
 <li><a class="reference internal" href="#getting-help">Getting help</a><ul>
 </ul>
 </li>
@@ -82,7 +82,7 @@
           <div class="body">
             
   <div class="section" id="pplacer-documentation-home">
-<h1>Pplacer documentation home<a class="headerlink" href="#pplacer-documentation-home" title="Permalink to this headline">¶</a></h1>
+<h1>pplacer documentation home<a class="headerlink" href="#pplacer-documentation-home" title="Permalink to this headline">¶</a></h1>
 <p>The pplacer suite consists of three separate binaries: pplacer, guppy, and rppr.
 The pplacer binary actually does phylogenetic placement and produces place files, guppy does all of the downstream analysis of placements, and rppr does useful things having to do with reference packages.</p>
 <div class="toctree-wrapper compound">
@@ -112,10 +112,17 @@ The pplacer binary actually does phylogenetic placement and produces place files
 </li>
 </ul>
 </div>
-<h2> <font color="red">Warning</font> </h2><p>The pplacer suite is currently in an &#8220;alpha&#8221; stage of development.
-We do our best to keep everything correct, but some functionality is not completely verified and thus may contain bugs or produce unexpected results.
+<h2> <font color="red">Warning</font> </h2><p>Pplacer is under heavy development, and not all parts are at the same level of maturity.
 The general guideline is: if we have published about a method, then we have verified it and you are good to go.
-If not, then we suggest that you wait to do any analysis that you intend to publish.</p>
+Thus, the following functionality is stable:</p>
+<ul class="simple">
+<li>placement and visualization ability as described in the BMC bioinformatics paper</li>
+<li>Kantorovich-Rubenstein distances</li>
+<li>edge principal components and squash clustering</li>
+<li>taxonomic/phylogenetic discordance analysis</li>
+</ul>
+<p>In particular, the taxonomic classification functionality is not stable and is still being validated.</p>
+<p>If not, then we suggest that you wait to do any serious analysis using those features.</p>
 <div class="section" id="getting-help">
 <h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
 <p>Your question might be covered in the pplacer FAQ already:</p>
