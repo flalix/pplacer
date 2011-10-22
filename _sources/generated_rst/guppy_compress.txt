@@ -1,0 +1,24 @@
+:tocdepth: 3
+
+.. _guppy_compress:
+
+========
+compress
+========
+
+`compress` compress a placefile's pqueries.
+
+::
+
+  usage: compress [options] placefile
+
+Options
+=======
+
+--unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--pp  Use posterior probability for the weight.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
+--cutoff  The cutoff parameter for mass compression
+

@@ -16,6 +16,7 @@ Options
 =======
 
 -c  Reference package path. Required.
+--node-numbers  Put the node numbers in where the bootstraps usually go.
 --tree  A tree file in newick format to work on in place of a reference package.
 --colors  A CSV file of the colors on the tree supplied with --tree.
 -t  If specified, the path to write the discordance tree to.

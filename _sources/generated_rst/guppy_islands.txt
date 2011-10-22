@@ -1,0 +1,21 @@
+:tocdepth: 3
+
+.. _guppy_islands:
+
+=======
+islands
+=======
+
+`islands` find the mass islands of one or more pqueries.
+
+::
+
+  usage: islands [options] placefile[s]
+
+Options
+=======
+
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
+
