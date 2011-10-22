@@ -172,7 +172,6 @@ guppy subcommand:
 ================================  ============================================================================
         :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
 :ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
-:ref:`compress <guppy_compress>`                                               compress a placefile's pqueries
   :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
     :ref:`diplac <guppy_diplac>`                              find the most DIstant PLACements from the leaves
   :ref:`distmat <guppy_distmat>`                       prints out a pairwise distance matrix between the edges
@@ -181,7 +180,6 @@ guppy subcommand:
     :ref:`filter <guppy_filter>`                              filters one or more placefiles by placement name
         :ref:`heat <guppy_heat>`                 maps an an arbitrary vector of the correct length to the tree
         :ref:`info <guppy_info>`  writes the number of leaves of the reference tree and the number of pqueries
-  :ref:`islands <guppy_islands>`                                 find the mass islands of one or more pqueries
             :ref:`kr <guppy_kr>`     calculates the Kantorovich-Rubinstein distance and corresponding p-values
   :ref:`kr_heat <guppy_kr_heat>`                                                             makes a heat tree
       :ref:`merge <guppy_merge>`                                                    merges placefiles together

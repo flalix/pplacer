@@ -23,7 +23,6 @@ Options
 --min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
 --total-width  Set the total pixel width for all of the branches of the tree. Default: 300
 --width-factor  Override total-width by directly setting the number of pixels per unit of thing displayed.
---node-numbers  Put the node numbers in where the bootstraps usually go.
 --gray-black  Use gray/black in place of red/blue to signify the sign of the coefficient for that edge.
 --min-width  Specify the minimum width for a branch to be colored and thickened. Default is 1.
 --write-n  The number of principal coordinates to write out (default is 5).

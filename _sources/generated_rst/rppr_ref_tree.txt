@@ -18,6 +18,5 @@ Options
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
---node-numbers  Put the node numbers in where the bootstraps usually go.
 --painted  Use a painted tree in place of the taxonomically annotated tree.
 

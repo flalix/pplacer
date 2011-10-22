@@ -48,6 +48,7 @@ Options
 --write-pre-masked  Write out the pre-masked sequences to the specified fasta file and exit.
 --map-mrca  Specify a file to write out MAP sequences for MRCAs and corresponding placements.
 --map-mrca-min  Specify cutoff for inclusion in MAP sequence file. Default is 0.8.
+--map-info  Write file describing the 'diagnostic' mutations for various clades.
 --map-identity  Add the percent identity of the query sequence to the nearest MAP sequence to each placement.
 --keep-at-most  The maximum number of placements we keep. Default is 7.
 --keep-factor  Throw away anything that has ml_ratio below keep_factor times (best ml_ratio). Default is 0.01.
