@@ -3,13 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>prep_db &mdash; pplacer v1.1 documentation</title>
+    <title>prep_db &mdash; pplacer 1.1 documentation</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="rppr" href="rppr.html" />
     <link rel="next" title="ref_tree" href="rppr_ref_tree.html" />
     <link rel="prev" title="pdprune" href="rppr_pdprune.html" /> 
@@ -40,7 +43,7 @@
         <li class="right" >
           <a href="rppr_pdprune.html" title="pdprune"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="rppr.html" accesskey="U">rppr</a> &raquo;</li> 
       </ul>
     </div>
@@ -72,7 +75,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -152,18 +155,18 @@ data would contain many more rows.</p>
 <col width="19%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">name</th>
+<tr class="row-odd"><th class="head">name</th>
 <th class="head">val</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>likelihood_cutoff</td>
+<tr class="row-even"><td>likelihood_cutoff</td>
 <td>0.9</td>
 </tr>
-<tr><td>multiclass_count</td>
+<tr class="row-odd"><td>multiclass_count</td>
 <td>3.0</td>
 </tr>
-<tr><td>multiclass_likelihood</td>
+<tr class="row-even"><td>multiclass_likelihood</td>
 <td>0.05</td>
 </tr>
 </tbody>
@@ -177,18 +180,18 @@ data would contain many more rows.</p>
 <col width="50%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">rank</th>
+<tr class="row-odd"><th class="head">rank</th>
 <th class="head">rank_order</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>root</td>
+<tr class="row-even"><td>root</td>
 <td>0</td>
 </tr>
-<tr><td>below_root</td>
+<tr class="row-odd"><td>below_root</td>
 <td>1</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-even"><td>...</td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
@@ -203,29 +206,29 @@ data would contain many more rows.</p>
 <col width="16%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">tax_id</th>
+<tr class="row-odd"><th class="head">tax_id</th>
 <th class="head">tax_name</th>
 <th class="head">rank</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>1</td>
+<tr class="row-even"><td>1</td>
 <td>root</td>
 <td>root</td>
 </tr>
-<tr><td>103621</td>
+<tr class="row-odd"><td>103621</td>
 <td>Actinomyces urogenitalis</td>
 <td>species</td>
 </tr>
-<tr><td>109790</td>
+<tr class="row-even"><td>109790</td>
 <td>Lactobacillus jensenii</td>
 <td>species</td>
 </tr>
-<tr><td>113286</td>
+<tr class="row-odd"><td>113286</td>
 <td>Pseudoramibacter</td>
 <td>genus</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-even"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
@@ -240,21 +243,21 @@ data would contain many more rows.</p>
 <col width="8%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">&nbsp;</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>1</td>
+<tr class="row-even"><td>1</td>
 <td>&nbsp;</td>
 </tr>
-<tr><td>2</td>
+<tr class="row-odd"><td>2</td>
 <td>&nbsp;</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-even"><td>3</td>
 <td>&nbsp;</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-odd"><td>...</td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
@@ -269,41 +272,41 @@ data would contain many more rows.</p>
 <col width="21%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">name</th>
 <th class="head">origin</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>1</td>
+<tr class="row-even"><td>1</td>
 <td>GLKT0ZE01B8WZE</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>2</td>
+<tr class="row-odd"><td>2</td>
 <td>GLKT0ZE01CUQ8G</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-even"><td>3</td>
 <td>GLKT0ZE01AIA4X</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-odd"><td>3</td>
 <td>GLKT0ZE01AT1UK</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-even"><td>3</td>
 <td>GLKT0ZE01B8JSY</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-odd"><td>3</td>
 <td>GLKT0ZE01BG9QQ</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>3</td>
+<tr class="row-even"><td>3</td>
 <td>GLKT0ZE01EF2DE</td>
 <td>p4z1r36</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-odd"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
@@ -321,7 +324,7 @@ data would contain many more rows.</p>
 <col width="16%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">desired_rank</th>
 <th class="head">rank</th>
 <th class="head">tax_id</th>
@@ -329,61 +332,61 @@ data would contain many more rows.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>117</td>
+<tr class="row-even"><td>117</td>
 <td>family</td>
 <td>family</td>
 <td>203492</td>
 <td>0.999998</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-odd"><td>117</td>
 <td>below_family</td>
 <td>family</td>
 <td>203492</td>
 <td>0.999998</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-even"><td>117</td>
 <td>genus</td>
 <td>genus</td>
 <td>168808</td>
 <td>0.999998</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-odd"><td>117</td>
 <td>species_group</td>
 <td>genus</td>
 <td>168808</td>
 <td>0.999998</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-even"><td>117</td>
 <td>species_subgroup</td>
 <td>genus</td>
 <td>168808</td>
 <td>0.999998</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-odd"><td>117</td>
 <td>species</td>
 <td>genus</td>
 <td>168808</td>
 <td>0.77507</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-even"><td>117</td>
 <td>species</td>
 <td>species</td>
 <td>187101</td>
 <td>0.224928</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-odd"><td>117</td>
 <td>below_species</td>
 <td>genus</td>
 <td>168808</td>
 <td>0.77507</td>
 </tr>
-<tr><td>117</td>
+<tr class="row-even"><td>117</td>
 <td>below_species</td>
 <td>species</td>
 <td>187101</td>
 <td>0.224928</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-odd"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -405,7 +408,7 @@ data would contain many more rows.</p>
 <col width="11%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">location</th>
 <th class="head">ml_ratio</th>
 <th class="head">distal_bl</th>
@@ -414,28 +417,28 @@ data would contain many more rows.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>9</td>
+<tr class="row-even"><td>9</td>
 <td>311</td>
 <td>0.977324</td>
 <td>0.528956</td>
 <td>0.848439</td>
 <td>836</td>
 </tr>
-<tr><td>9</td>
+<tr class="row-odd"><td>9</td>
 <td>331</td>
 <td>0.011454</td>
 <td>0.00383</td>
 <td>1.146891</td>
 <td>171549</td>
 </tr>
-<tr><td>9</td>
+<tr class="row-even"><td>9</td>
 <td>330</td>
 <td>0.011222</td>
 <td>0.175601</td>
 <td>1.152479</td>
 <td>836</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-odd"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -455,29 +458,29 @@ data would contain many more rows.</p>
 <col width="28%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">tax_id</th>
 <th class="head">rank</th>
 <th class="head">likelihood</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>161</td>
+<tr class="row-even"><td>161</td>
 <td>168808</td>
 <td>genus</td>
 <td>1.0</td>
 </tr>
-<tr><td>162</td>
+<tr class="row-odd"><td>162</td>
 <td>186802</td>
 <td>order</td>
 <td>1.000001</td>
 </tr>
-<tr><td>163</td>
+<tr class="row-even"><td>163</td>
 <td>147802</td>
 <td>species</td>
 <td>0.999999</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-odd"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -495,34 +498,34 @@ data would contain many more rows.</p>
 <col width="28%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">placement_id</th>
+<tr class="row-odd"><th class="head">placement_id</th>
 <th class="head">tax_id</th>
 <th class="head">rank</th>
 <th class="head">likelihood</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>161</td>
+<tr class="row-even"><td>161</td>
 <td>187101</td>
 <td>species</td>
 <td>0.857165</td>
 </tr>
-<tr><td>162</td>
+<tr class="row-odd"><td>162</td>
 <td>186803</td>
 <td>family</td>
 <td>0.705561</td>
 </tr>
-<tr><td>162</td>
+<tr class="row-even"><td>162</td>
 <td>186806</td>
 <td>family</td>
 <td>0.29444</td>
 </tr>
-<tr><td>163</td>
+<tr class="row-odd"><td>163</td>
 <td>147802</td>
 <td>species</td>
 <td>0.999999</td>
 </tr>
-<tr><td>...</td>
+<tr class="row-even"><td>...</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -552,13 +555,13 @@ data would contain many more rows.</p>
         <li class="right" >
           <a href="rppr_pdprune.html" title="pdprune"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="rppr.html" >rppr</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
     </div>
   </body>
 </html>

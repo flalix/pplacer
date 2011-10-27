@@ -3,13 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pplacer &mdash; pplacer v1.1 documentation</title>
+    <title>pplacer &mdash; pplacer 1.1 documentation</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="next" title="guppy" href="guppy.html" />
     <link rel="prev" title="pplacer documentation home" href="../index.html" /> 
   </head>
@@ -39,7 +42,7 @@
         <li class="right" >
           <a href="../index.html" title="pplacer documentation home"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -76,7 +79,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -285,24 +288,24 @@ We call this pre-masking, and it can be disabled with the <tt class="docutils li
 <col width="82%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Key</th>
+<tr class="row-odd"><th class="head">Key</th>
 <th class="head">Value</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">version</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">version</span></tt></td>
 <td>The version of the JSON format as an integer.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">tree</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tree</span></tt></td>
 <td>The reference tree as a string, in &#8220;edge-numbered Newick&#8221; format.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">placements</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">placements</span></tt></td>
 <td>An array of placements.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">fields</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">fields</span></tt></td>
 <td>An array of strings corresponding to the data given in the placements array.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">metadata</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">metadata</span></tt></td>
 <td>An object containing metadata about the generation of this collection of placements.</td>
 </tr>
 </tbody>
@@ -326,39 +329,39 @@ JSON format are now deprecated.</p>
 <col width="81%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Field</th>
+<tr class="row-odd"><th class="head">Field</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">edge_num</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">edge_num</span></tt></td>
 <td>The edge number from the provided <tt class="docutils literal"><span class="pre">tree</span></tt> as an integer.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">likelihood</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">likelihood</span></tt></td>
 <td>ML log likelihood as a float.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">like_weight_ratio</span></tt></td>
 <td>ML likelihood weight ratio as a float.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">distal_length</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">distal_length</span></tt></td>
 <td>ML distance from the distal side of the edge as a float.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">pendant_length</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pendant_length</span></tt></td>
 <td>ML pendant branch length as a float.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">post_prob</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">post_prob</span></tt></td>
 <td>The posterior probability of a placement on the edge.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">marginal_like</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">marginal_like</span></tt></td>
 <td>The marginal likelihood of a placement on the edge.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
 <td>The <tt class="docutils literal"><span class="pre">tax_id</span></tt> from a reference package as a string.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">map_ratio</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">map_ratio</span></tt></td>
 <td>The percent identity between this sequence and the corresponding MAP sequence.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">map_overlap</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">map_overlap</span></tt></td>
 <td>The number of overlapping sites between this sequence and the corresponding MAP sequence.</td>
 </tr>
 </tbody>
@@ -374,18 +377,18 @@ JSON format are now deprecated.</p>
 <col width="96%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Key</th>
+<tr class="row-odd"><th class="head">Key</th>
 <th class="head">Value</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">n</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">n</span></tt></td>
 <td>A string or array of strings corresponding to the name or names of the sequences placed here.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">p</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">p</span></tt></td>
 <td>An array of arrays containing placement data in the same order as <tt class="docutils literal"><span class="pre">fields</span></tt>.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">m</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">m</span></tt></td>
 <td>(optional) A float that represents the mass of this placement. If this key is specified, <tt class="docutils literal"><span class="pre">n</span></tt> must only be or contain a single string.</td>
 </tr>
 </tbody>
@@ -577,12 +580,12 @@ image(x=c(0:nrow(ba)-1),xlab= "strike box", ylab= "number of strikes", \
         <li class="right" >
           <a href="../index.html" title="pplacer documentation home"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
     </div>
   </body>
 </html>

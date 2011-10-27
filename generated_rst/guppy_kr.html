@@ -3,13 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>kr &mdash; pplacer v1.1 documentation</title>
+    <title>kr &mdash; pplacer 1.1 documentation</title>
+    
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1 documentation" href="../index.html" />
+    <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="kr_heat" href="guppy_kr_heat.html" />
     <link rel="prev" title="info" href="guppy_info.html" /> 
@@ -40,7 +43,7 @@
         <li class="right" >
           <a href="guppy_info.html" title="info"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
       </ul>
     </div>
@@ -69,7 +72,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -145,13 +148,13 @@
 <p><tt class="docutils literal"><span class="pre">kr</span></tt> calculates the Kantorovich-Rubinstein distance between collections of placements (given by their place files) by its closed form formula</p>
 <div class="math">
 <p><img src="../_images/math/f9ae7229be4f9799b5e25e80cd9c44024ac339ca.png" alt="Z(P,Q) =
-\int_T \left| P(\tau(y)) - Q(\tau(y)) \right| \, \lambda(dy)." /></p>
+\int_T \left| P(\tau(y)) - Q(\tau(y)) \right| \, \lambda(dy)."/></p>
 </div><p>This is a generalization of the UniFrac distance (UniFrac can only place mass at leaves and cannot accomodate uncertainty).
 There is a further generalization to an <img class="math" src="../_images/math/61ad138a2b9696aae806c55235ce1679e66888d4.png" alt="L^p"/> Zolotarev-type version:
 for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73488.png" alt="0 &lt; p &lt; \infty"/> we have the distances</p>
 <div class="math">
 <p><img src="../_images/math/93a6f1f8ca989121f060961eab6e5b61b00d27ac.png" alt="Z_p(P,Q) =
-\left[\int_T \left| P(\tau(y)) - Q(\tau(y)) \right|^p \, \lambda(dy)\right]^{\frac{1}{p} \wedge 1}" /></p>
+\left[\int_T \left| P(\tau(y)) - Q(\tau(y)) \right|^p \, \lambda(dy)\right]^{\frac{1}{p} \wedge 1}"/></p>
 </div><p>which can be used to vary the impact of mass relative to transport.
 A larger <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb5504339011.png" alt="p"/> increases the impact of differences of mass, while a smaller <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb5504339011.png" alt="p"/> emphasizes distance traveled.</p>
 <p>Note that the significance p-values calculated by <tt class="docutils literal"><span class="pre">-s</span></tt> or <tt class="docutils literal"><span class="pre">--normal</span></tt> are not corrected for multiple comparison.</p>
@@ -176,13 +179,13 @@ A larger <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb55
         <li class="right" >
           <a href="guppy_info.html" title="info"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
     </div>
   </body>
 </html>
