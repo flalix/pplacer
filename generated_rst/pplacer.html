@@ -58,7 +58,16 @@
 <li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a></li>
 <li><a class="reference internal" href="#making-reference-trees">Making reference trees</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fasttree">FastTree</a><ul>
+<li><a class="reference internal" href="#nucleotide-alignments">Nucleotide alignments</a></li>
+<li><a class="reference internal" href="#amino-acid-alignments">Amino Acid alignments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#phyml-and-raxml">phyml and RAxML</a><ul>
 <li><a class="reference internal" href="#baseball">Baseball</a></li>
+<li><a class="reference internal" href="#fig-ranking">Fig ranking</a></li>
 </ul>
 </li>
 </ul>
@@ -161,6 +170,19 @@
 <kbd><span class="option">--max-pend</span></kbd></td>
 <td>Set the maximum ML pendant branch length. Default is 2.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">--fig-cutoff</span></kbd></td>
+<td>The cutoff for determining figs. Default is 0; specify 0 to disable.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--fig-eval-all</span></kbd></td>
+<td>Evaluate all likelihoods to ensure that the best location was selected.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--fig-eval-discrepancy-tree</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Write out a tree showing the discrepancies between the best complete and observed locations.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--fig-tree</span></kbd></td>
+<td>Write out a tree showing the figs on the tree.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--max-strikes</span></kbd></td>
 <td>Maximum number of strikes for baseball. 0 -&gt; no ball playing. Default is 6.</td></tr>
 <tr><td class="option-group">
@@ -209,9 +231,6 @@
 <tr><td class="option-group">
 <kbd><span class="option">--map-mrca-min</span></kbd></td>
 <td>Specify cutoff for inclusion in MAP sequence file. Default is 0.8.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--map-info</span></kbd></td>
-<td>Write file describing the &#8216;diagnostic&#8217; mutations for various clades.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--map-identity</span></kbd></td>
 <td>Add the percent identity of the query sequence to the nearest MAP sequence to each placement.</td></tr>
@@ -484,6 +503,27 @@ First, create the query alignment:</p>
 </div>
 <div class="section" id="making-reference-trees">
 <h3>Making reference trees<a class="headerlink" href="#making-reference-trees" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="fasttree">
+<h2>FastTree<a class="headerlink" href="#fasttree" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nucleotide-alignments">
+<h3>Nucleotide alignments<a class="headerlink" href="#nucleotide-alignments" title="Permalink to this headline">¶</a></h3>
+<p>FastTree should be used in the following way when making nucleotide reference trees for use with pplacer:</p>
+<div class="highlight-python"><pre>FastTree -nt -gtr -log vaginal.log vaginal.fasta &gt; vaginal.tre</pre>
+</div>
+<p>In particular, do not use the <tt class="docutils literal"><span class="pre">-gamma</span></tt> option, but do use the <tt class="docutils literal"><span class="pre">-gtr</span></tt> option.</p>
+</div>
+<div class="section" id="amino-acid-alignments">
+<h3>Amino Acid alignments<a class="headerlink" href="#amino-acid-alignments" title="Permalink to this headline">¶</a></h3>
+<p>FastTree should be used in the following way when making amino acid reference trees for use with pplacer:</p>
+<div class="highlight-python"><pre>FastTree -log TIGR00001.log TIGR00001.fasta &gt; TIGR00001.tre</pre>
+</div>
+<p>Again, <tt class="docutils literal"><span class="pre">-gamma</span></tt> should not be used.</p>
+</div>
+</div>
+<div class="section" id="phyml-and-raxml">
+<h2>phyml and RAxML<a class="headerlink" href="#phyml-and-raxml" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://www.atgc-montpellier.fr/phyml/&quot;&gt;Phyml&lt;/a&gt;and">PHYML</a> and <a class="reference external" href="http://icwww.epfl.ch/~stamatak/index-Dateien/Page443.htm&quot;&gt;RAxML&lt;/a&gt;">RAxML</a> are two nice packages for making ML trees that are supported for use with pplacer.
 Pplacer only knows about the GTR, WAG, LG, and JTT models, so use those to build your trees.
 If you are fond of another model and can convince me that I should implement it, I will.</p>
@@ -516,7 +556,6 @@ at the root. See manual for details.</pre>
 <p>In pplacer the two edges coming off of the root have the same status as the rest of the edges; therefore they will counted as two separate edges.
 That will lead to artifactually low likelihood weight ratio and posterior probabilities for query sequences placed on those edges.
 This doesn&#8217;t matter if your query sequences do not get placed next to the root, but you can avoid the problem altogether by rooting the tree at an internal node, or by leaving the outgroup in and rerooting the output trees.</p>
-</div>
 <div class="section" id="baseball">
 <h3>Baseball<a class="headerlink" href="#baseball" title="Permalink to this headline">¶</a></h3>
 <p>&#8220;Baseball&#8221; is one way that pplacer substantially increases the speed of placement, especially on very large trees.
@@ -558,6 +597,43 @@ image(x=c(0:nrow(ba)-1),xlab= "strike box", ylab= "number of strikes", \
 --max-strikes 20</pre>
 </div>
 <p>You can set these to anything you like by using these flags <em>after</em> the <tt class="docutils literal"><span class="pre">-p</span></tt>.</p>
+</div>
+<div class="section" id="fig-ranking">
+<h3>Fig ranking<a class="headerlink" href="#fig-ranking" title="Permalink to this headline">¶</a></h3>
+<p>&#8220;Fig ranking&#8221; is a way to reduce the number of initial comparisons done by
+using the structure of the reference tree. This initial phase is not the
+bottleneck for trees on a thousand or so taxa, but it is for trees on tens of
+thousands of taxa or more.</p>
+<p>If a value is specified as <tt class="docutils literal"><span class="pre">--fig-cutoff</span> <span class="pre">x</span></tt>, pplacer will find subtrees of
+the reference tree (that we call figs) on the reference tree such that no two
+leaves in the cluster have a distance of greater than <tt class="docutils literal"><span class="pre">x</span></tt>. Each leaf is
+contained in exactly one fig. A representative edge of the fig is chosen as
+follows: say <em>n</em> is the most proximal node contained in the fig; the
+representative is the edge descending from <em>n</em> to the subtree with the greatest
+number of leaves.</p>
+<p>With a collection of figs, pplacer will rank each of the representative edges
+by the initial evaluation likelihood given a query sequence. For each fig, in
+this order, pplacer selects all of the edges within the fig as well as all of
+the edges proximal to the fig up to the root of the tree. These edges are
+ranked by the same initial evaluation likelihood before pplacer attempts to
+place the query sequence on each in turn. No edge will be attempted twice; if
+the same edge is proximal to two separate figs, it will only be attempted when
+the first fig is evaluated.</p>
+<p>As each fig is evaluated for a query sequence, pplacer will also select any
+figs ordered immediately after the current fig where the difference between
+that fig&#8217;s representative likelihood and the current fig&#8217;s representative
+likelihood is less than the value of the <tt class="docutils literal"><span class="pre">--strike-box</span></tt> parameter. Each of
+these figs&#8217; sets of edges are then merged into the current fig&#8217;s edge set.</p>
+<p>To test the accuracy of fig evaluation vs. full evaluation, the
+<tt class="docutils literal"><span class="pre">--fig-eval-all</span></tt> flag can be specified to do both fig and full evaluation,
+then show the percentage of sequences where the best location chosen by full
+evaluation and fig evaluation is the same. <tt class="docutils literal"><span class="pre">--fig-eval-all</span></tt> must be specified
+to specify the <tt class="docutils literal"><span class="pre">--fig-eval-discrepancy-tree</span></tt> flag. If this flag is specified,
+a tree will be written out showing the locations chosen by both methods for
+each sequence where the two differ.</p>
+<p>The colored trees written out by the <tt class="docutils literal"><span class="pre">--fig-tree</span></tt> and
+<tt class="docutils literal"><span class="pre">--fig-eval-discrepancy-tree</span></tt> flags shows figs as colored subtrees within the
+reference tree.</p>
 </div>
 </div>
 </div>

@@ -6,11 +6,11 @@
 pdprune
 =======
 
-`pdprune` prune the tree while maximizing PD.
+`pdprune` prune the tree to maximize PD.
 
 ::
 
-  usage: prunetre [options] tree
+  usage: pdprune [options] tree
 
 Options
 =======

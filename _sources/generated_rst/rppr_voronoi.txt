@@ -22,6 +22,7 @@ Options
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
 --no-csv  Output the results as a padded matrix instead of csv.
+--node-numbers  Put the node numbers in where the bootstraps usually go.
 -v  If specified, write progress output to stderr.
 -t  If specified, the path to write the trimmed tree to.
 --leaves  The maximum number of leaves to keep in the tree.

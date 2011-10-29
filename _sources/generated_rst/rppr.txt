@@ -34,18 +34,18 @@ List of subcommands
 The following table provides links to more in-depth documentation for each
 rppr subcommand:
 
-=======================================  =============================================================================
-                                Command                                                                    Description
-=======================================  =============================================================================
-:ref:`check_refpkg <rppr_check_refpkg>`                                                      check a reference package
-      :ref:`convexify <rppr_convexify>`                   identifies minimal leaf set to cut for taxonomic concordance
-                :ref:`info <rppr_info>`                                    gives information about a reference package
-          :ref:`pdprune <rppr_pdprune>`                                             prune the tree while maximizing PD
-          :ref:`prep_db <rppr_prep_db>`                     makes SQL enabling taxonomic querying of placement results
-        :ref:`ref_tree <rppr_ref_tree>`  writes a taxonomically annotated reference tree and an induced taxonomic tree
-            :ref:`reroot <rppr_reroot>`                                     reroots a given reference package in place
-          :ref:`voronoi <rppr_voronoi>`                      finds a good collection of sequences to cut from ref tree
-=======================================  =============================================================================
+=================================  =============================================================================
+                          Command                                                                    Description
+=================================  =============================================================================
+        :ref:`check <rppr_check>`                                                      check a reference package
+:ref:`convexify <rppr_convexify>`                   identifies minimal leaf set to cut for taxonomic concordance
+          :ref:`info <rppr_info>`                                    gives information about a reference package
+    :ref:`pdprune <rppr_pdprune>`                                                  prune the tree to maximize PD
+    :ref:`prep_db <rppr_prep_db>`                     makes SQL enabling taxonomic querying of placement results
+  :ref:`ref_tree <rppr_ref_tree>`  writes a taxonomically annotated reference tree and an induced taxonomic tree
+      :ref:`reroot <rppr_reroot>`                                     reroots a given reference package in place
+    :ref:`voronoi <rppr_voronoi>`                      finds a good collection of sequences to cut from ref tree
+=================================  =============================================================================
 
 .. toctree::
    :glob:
