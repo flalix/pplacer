@@ -92,7 +92,7 @@
   <div class="section" id="ref-tree">
 <span id="rppr-ref-tree"></span><h1>ref_tree<a class="headerlink" href="#ref-tree" title="Permalink to this headline">¶</a></h1>
 <p><cite>ref_tree</cite> writes a taxonomically annotated reference tree and an induced taxonomic tree.</p>
-<div class="highlight-python"><pre>usage: ref_tree -o my.xml my1.refpkg [my2.refpkg ...]</pre>
+<div class="highlight-python"><pre>usage: ref_tree -o my.xml -c my.refpkg</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -100,6 +100,9 @@
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path. Required.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
 <td>Specify the filename to write to.</td></tr>
@@ -115,6 +118,9 @@
 <tr><td class="option-group">
 <kbd><span class="option">--painted</span></kbd></td>
 <td>Use a painted tree in place of the taxonomically annotated tree.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--rank-colored</span></kbd></td>
+<td>Include a tree for each rank with taxonomic annotations on every edge.</td></tr>
 </tbody>
 </table>
 </div>

@@ -17,7 +17,7 @@ Options
 
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames. Required.
---unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -c  Reference package path.
 --min-fat  The minimum branch length for fattened edges (to increase their visibility). To turn off set to 0. Default: 0.01
@@ -29,6 +29,7 @@ Options
 --write-n  The number of principal coordinates to write out (default is 5).
 --scale  Scale variances to one before performing principal components.
 --symmv  Use a complete eigendecomposition rather than power iteration.
+--unweighted  Perform an unweighted splitify.
 
 Details
 =======

@@ -15,7 +15,7 @@ compress
 Options
 =======
 
---unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.

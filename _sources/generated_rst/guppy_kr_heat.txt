@@ -15,7 +15,7 @@ kr_heat
 Options
 =======
 
---unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -c  Reference package path.
 -p  Exponent for KR integration, i.e. value of p in Z_p. Default 1.

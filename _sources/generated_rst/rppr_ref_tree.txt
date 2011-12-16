@@ -10,14 +10,16 @@ ref_tree
 
 ::
 
-  usage: ref_tree -o my.xml my1.refpkg [my2.refpkg ...]
+  usage: ref_tree -o my.xml -c my.refpkg
 
 Options
 =======
 
+-c  Reference package path. Required.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
 --node-numbers  Put the node numbers in where the bootstraps usually go.
 --painted  Use a painted tree in place of the taxonomically annotated tree.
+--rank-colored  Include a tree for each rank with taxonomic annotations on every edge.
 

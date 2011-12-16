@@ -19,6 +19,7 @@ Options
 --sqlite  Specify the database file to use.
 --pp  Use posterior probability for our criteria.
 --mrca-stats  Print the number of placements just proximal to MRCAs.
+--tax-median-identity-from  Calculate the median identity for each sequence per-tax_id from the specified alignment.
 
 Details
 =======

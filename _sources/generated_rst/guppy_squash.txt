@@ -15,7 +15,7 @@ squash
 Options
 =======
 
---unweighted  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -c  Reference package path.
 --seed  Set the random seed, an integer > 0. Default is 1.

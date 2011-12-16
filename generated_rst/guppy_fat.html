@@ -111,7 +111,7 @@
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
+<kbd><span class="option">--point-mass</span></kbd></td>
 <td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
@@ -134,6 +134,9 @@
 <tr><td class="option-group">
 <kbd><span class="option">--average</span></kbd></td>
 <td>Average all input placefiles together.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--edpl</span></kbd></td>
+<td>Specify the maximum EDPL for an EDPL tree.</td></tr>
 </tbody>
 </table>
 </div>
@@ -142,6 +145,13 @@
 <p>Given a list of place files, <tt class="docutils literal"><span class="pre">--average</span></tt> normalizes the mass in each, then
 takes the average of those masses to make an appropriately averaged fat tree
 for those place files.</p>
+<p>Expected Distance between Placement Locations (EDPL) values can be visualized
+on the tree by specifying a maximum value for the scale via the <tt class="docutils literal"><span class="pre">--edpl</span></tt>
+flag. The scale is represented by 0 EDPL being white, going to red for the
+maximum value. When EDPL is above the specified maximum, the branch is colored
+yellow. When there are multiple placements on a given edge, their EDPL values
+are combined using a weighted average, where the weights are the values of the
+ML weight ratio or posterior probability.</p>
 </div>
 </div>
 
