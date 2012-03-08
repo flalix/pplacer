@@ -1,0 +1,24 @@
+:tocdepth: 3
+
+.. _guppy_classify_rdp:
+
+============
+classify_rdp
+============
+
+`classify_rdp` converts RDP output to something resmbling guppy classify output.
+
+::
+
+  usage: classify_rdp -c some.refpkg rdp_output_file[s]
+
+Options
+=======
+
+--csv  Write .class.csv files containing CSV data.
+-c  Reference package path. Required.
+--sqlite  Specify the database file to use.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames. Required.
+

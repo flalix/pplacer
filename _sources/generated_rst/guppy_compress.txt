@@ -6,7 +6,7 @@
 compress
 ========
 
-`compress` compress a placefile's pqueries.
+`compress` compresses a placefile's pqueries.
 
 ::
 
@@ -15,10 +15,11 @@ compress
 Options
 =======
 
---point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every pquery as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
 --cutoff  The cutoff parameter for mass compression
+--discard-below  Ignore pquery locations with a mass less than the specified value.
 

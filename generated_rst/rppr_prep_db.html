@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="rppr" href="rppr.html" />
-    <link rel="next" title="ref_tree" href="rppr_ref_tree.html" />
+    <link rel="next" title="prepsim" href="rppr_prepsim.html" />
     <link rel="prev" title="pdprune" href="rppr_pdprune.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="rppr_ref_tree.html" title="ref_tree"
+          <a href="rppr_prepsim.html" title="prepsim"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="rppr_pdprune.html" title="pdprune"
@@ -65,8 +65,8 @@
   <p class="topless"><a href="rppr_pdprune.html"
                         title="previous chapter">pdprune</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="rppr_ref_tree.html"
-                        title="next chapter">ref_tree</a></p>
+  <p class="topless"><a href="rppr_prepsim.html"
+                        title="next chapter">prepsim</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/generated_rst/rppr_prep_db.txt"
@@ -115,17 +115,17 @@
 </tr>
 <tr><td>&nbsp;</td><td>The default value for the likelihood_cutoff param. Default: 0.90</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--default-multiclass-count</span></kbd></td>
+<kbd><span class="option">--default-bayes-cutoff</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The default value for the multiclass_count param. Default: 3</td></tr>
+<tr><td>&nbsp;</td><td>The default value for the bayes_cutoff param. Default: 1.00</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--default-multiclass-likelihood</span></kbd></td>
+<kbd><span class="option">--default-multiclass-min</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The default value for the multiclass_likelihood param. Default: 0.050</td></tr>
+<tr><td>&nbsp;</td><td>The default value for the multiclass_min param. Default: 0.20</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--default-classify-to</span></kbd></td>
+<kbd><span class="option">--best-as-bayes</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>The default value for the classify_to param. Default: species</td></tr>
+<tr><td>&nbsp;</td><td>Generate the bayes_{best_classifications,multiclass} tables without the <a href="#id1"><span class="problematic" id="id2">bayes_</span></a> prefix.</td></tr>
 </tbody>
 </table>
 </div>
@@ -562,7 +562,7 @@ data would contain many more rows.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="rppr_ref_tree.html" title="ref_tree"
+          <a href="rppr_prepsim.html" title="prepsim"
              >next</a> |</li>
         <li class="right" >
           <a href="rppr_pdprune.html" title="pdprune"

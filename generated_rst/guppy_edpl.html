@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="fat" href="guppy_fat.html" />
+    <link rel="next" title="error" href="guppy_error.html" />
     <link rel="prev" title="distmat" href="guppy_distmat.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_fat.html" title="fat"
+          <a href="guppy_error.html" title="error"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="guppy_distmat.html" title="distmat"
@@ -62,8 +62,8 @@
   <p class="topless"><a href="guppy_distmat.html"
                         title="previous chapter">distmat</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_fat.html"
-                        title="next chapter">fat</a></p>
+  <p class="topless"><a href="guppy_error.html"
+                        title="next chapter">error</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/generated_rst/guppy_edpl.txt"
@@ -93,7 +93,7 @@
   <div class="section" id="edpl">
 <span id="guppy-edpl"></span><h1>edpl<a class="headerlink" href="#edpl" title="Permalink to this headline">¶</a></h1>
 <p><cite>edpl</cite> calculates the EDPL uncertainty values for a collection of pqueries.</p>
-<div class="highlight-python"><pre>usage: edpl [options] placefile[s]</pre>
+<div class="highlight-python"><pre>usage: edpl [options] placefile</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -101,6 +101,18 @@
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o</span></kbd></td>
+<td>Specify the filename to write to.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--out-dir</span></kbd></td>
+<td>Specify the directory to write files to.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--prefix</span></kbd></td>
+<td>Specify a string to be prepended to filenames.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--csv</span></kbd></td>
+<td>Output the results as csv instead of a padded matrix.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for the weight.</td></tr>
@@ -139,7 +151,7 @@ Here&#8217;s an example, with three hypothetical locations for a given query seq
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_fat.html" title="fat"
+          <a href="guppy_error.html" title="error"
              >next</a> |</li>
         <li class="right" >
           <a href="guppy_distmat.html" title="distmat"

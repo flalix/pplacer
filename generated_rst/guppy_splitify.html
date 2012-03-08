@@ -112,13 +112,13 @@
 <td>Specify a string to be prepended to filenames.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--point-mass</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
+<td>Treat every pquery as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for the weight.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--unweighted</span></kbd></td>
-<td>Perform an unweighted splitify.</td></tr>
+<kbd><span class="option">--kappa</span></kbd></td>
+<td>Specify the exponent for scaling between weighted and unweighted splitification. default: 1</td></tr>
 </tbody>
 </table>
 </div>
@@ -129,6 +129,11 @@ The <img class="math" src="../_images/math/88f06990a3aac6b546ca9eb213d34843e625e
 Specifically, it is the amount of mass on the distal (non-root) side of edge <img class="math" src="../_images/math/a3a59bb1293ee3f6dec19de4019a7178874219ae.png" alt="e"/> minus the amount of mass on the proximal side.
 The matrix is indexed such that the first numerical column is edge labeled 0 in the reference tree.
 The <tt class="docutils literal"><span class="pre">splitify</span></tt> subcommand simply writes out this matrix.</p>
+<p>The <tt class="docutils literal"><span class="pre">--kappa</span></tt> option enables a componentwise transformation <img class="math" src="../_images/math/388d35d7c39a0ecdd23be72c2bc25af70801786f.png" alt="\varphi_\kappa"/> on the entries of this matrix.</p>
+<div class="math">
+<p><img src="../_images/math/fa1c3cfd6e470c7f633b5917abb00306d7346932.png" alt="\varphi_\kappa(x) = \mathrm{sgn}(x) |x|^\kappa"/></p>
+</div><p>where the <img class="math" src="../_images/math/da61bb0fa48fe71269aebf9c8e56b39275813994.png" alt="\kappa"/> parameter can any non-negative number.
+This parameter scales between ignoring abundance information (<img class="math" src="../_images/math/c86fd9f1ba363e16fbdbb8fb4c947a9ebb01d3de.png" alt="\kappa = 0"/>), using it linearly (<img class="math" src="../_images/math/150c982c5847b83a5630c0540dd52eadc52f834d.png" alt="\kappa = 1"/>), and emphasizing it (<img class="math" src="../_images/math/54d4617c91568a466132d675ef9b9474c106062b.png" alt="\kappa &gt; 1"/>).</p>
 </div>
 </div>
 

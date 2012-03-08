@@ -6,7 +6,7 @@
 check
 =====
 
-`check` check a reference package.
+`check` checks a reference package.
 
 ::
 

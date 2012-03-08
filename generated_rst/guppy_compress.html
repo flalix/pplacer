@@ -28,7 +28,7 @@
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="demulti" href="guppy_demulti.html" />
-    <link rel="prev" title="classify" href="guppy_classify.html" /> 
+    <link rel="prev" title="classify_rdp" href="guppy_classify_rdp.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="guppy_demulti.html" title="demulti"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_classify.html" title="classify"
+          <a href="guppy_classify_rdp.html" title="classify_rdp"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -58,8 +58,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_classify.html"
-                        title="previous chapter">classify</a></p>
+  <p class="topless"><a href="guppy_classify_rdp.html"
+                        title="previous chapter">classify_rdp</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="guppy_demulti.html"
                         title="next chapter">demulti</a></p>
@@ -91,7 +91,7 @@
             
   <div class="section" id="compress">
 <span id="guppy-compress"></span><h1>compress<a class="headerlink" href="#compress" title="Permalink to this headline">¶</a></h1>
-<p><cite>compress</cite> compress a placefile&#8217;s pqueries.</p>
+<p><cite>compress</cite> compresses a placefile&#8217;s pqueries.</p>
 <div class="highlight-python"><pre>usage: compress [options] placefile</pre>
 </div>
 <div class="section" id="options">
@@ -102,7 +102,7 @@
 <tbody valign="top">
 <tr><td class="option-group">
 <kbd><span class="option">--point-mass</span></kbd></td>
-<td>Treat every placement as a point mass concentrated on the highest-weight placement.</td></tr>
+<td>Treat every pquery as a point mass concentrated on the highest-weight placement.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for the weight.</td></tr>
@@ -118,6 +118,10 @@
 <tr><td class="option-group">
 <kbd><span class="option">--cutoff</span></kbd></td>
 <td>The cutoff parameter for mass compression</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--discard-below</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Ignore pquery locations with a mass less than the specified value.</td></tr>
 </tbody>
 </table>
 </div>
@@ -139,7 +143,7 @@
           <a href="guppy_demulti.html" title="demulti"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_classify.html" title="classify"
+          <a href="guppy_classify_rdp.html" title="classify_rdp"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 

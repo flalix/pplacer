@@ -15,7 +15,7 @@ kr
 Options
 =======
 
---point-mass  Treat every placement as a point mass concentrated on the highest-weight placement.
+--point-mass  Treat every pquery as a point mass concentrated on the highest-weight placement.
 --pp  Use posterior probability for the weight.
 -c  Reference package path.
 -o  Specify the filename to write to.

@@ -10,11 +10,15 @@ edpl
 
 ::
 
-  usage: edpl [options] placefile[s]
+  usage: edpl [options] placefile
 
 Options
 =======
 
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
+--csv  Output the results as csv instead of a padded matrix.
 --pp  Use posterior probability for the weight.
 --first-only  Only print the first name for each pquery.
 

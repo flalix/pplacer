@@ -54,7 +54,7 @@
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
-<li><a class="reference internal" href="#pre-masking">Pre-masking</a></li>
+<li><a class="reference internal" href="#pre-masking-and-groups">Pre-masking and groups</a></li>
 <li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a></li>
 <li><a class="reference internal" href="#making-reference-trees">Making reference trees</a></li>
@@ -68,6 +68,7 @@
 <li><a class="reference internal" href="#phyml-and-raxml">phyml and RAxML</a><ul>
 <li><a class="reference internal" href="#baseball">Baseball</a></li>
 <li><a class="reference internal" href="#fig-ranking">Fig ranking</a></li>
+<li><a class="reference internal" href="#model-refinement">Model refinement</a></li>
 </ul>
 </li>
 </ul>
@@ -244,6 +245,13 @@
 <kbd><span class="option">--mrca-class</span></kbd></td>
 <td>Classify with MRCAs instead of a painted tree.</td></tr>
 <tr><td class="option-group">
+<kbd><span class="option">--groups</span></kbd></td>
+<td>Split query alignment into the specified number of groups.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--always-refine</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Always refine the model before placing.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--version</span></kbd></td>
 <td>Write out the version number and exit.</td></tr>
 <tr><td class="option-group">
@@ -296,12 +304,18 @@ Running pplacer in this way will disable the taxonomic annotation features of pp
 <li><tt class="docutils literal"><span class="pre">rppr</span></tt> binary for preparing reference packages</li>
 </ul>
 </div>
-<div class="section" id="pre-masking">
-<h3>Pre-masking<a class="headerlink" href="#pre-masking" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pre-masking-and-groups">
+<h3>Pre-masking and groups<a class="headerlink" href="#pre-masking-and-groups" title="Permalink to this headline">¶</a></h3>
 <p>Columns that are all gap in either the reference alignment or the query alignment do not impact the relative likelihood of placements.
 Thus, starting in v1.1alpha08, we don&#8217;t compute them at all.
 This speeds things up a bunch, and uses a lot less memory.
 We call this pre-masking, and it can be disabled with the <tt class="docutils literal"><span class="pre">--no-pre-mask</span></tt> flag.</p>
+<p>When placing metagenomic sequences onto trees built from very wide alignments (such as concatenations), we suggest using the &#8220;groups&#8221; feature.
+Using, say, <tt class="docutils literal"><span class="pre">--groups</span> <span class="pre">5</span></tt> will divide the alignment into 5 evenly spaced sectors across the width of the alignment.
+The reads are then grouped into which sector they fit into best, and each group is run sequentially.
+In combination with the pre-masking, this can result in a very substantial reduction of memory usage, because the likelihood vectors are calculated for one sector (plus a bit extra) at a time.
+Note that these gains will be eliminated if you have reads that span the whole reference alignment.
+Using this feature will not change the result except possibly for likelihood computations where the query sequence has a gap; these likelihoods are not meaningful, so if there is a substantial difference when you use groups your alignment is lacking signal!</p>
 </div>
 <div class="section" id="json-format-specification">
 <h3><a class="reference external" href="http://www.json.org/">JSON</a> format specification<a class="headerlink" href="#json-format-specification" title="Permalink to this headline">¶</a></h3>
@@ -338,15 +352,25 @@ We call this pre-masking, and it can be disabled with the <tt class="docutils li
 <p>An &#8220;edge-numbered Newick&#8221; tree is simply a Newick format tree with integers in
 curly braces which provide a well-defined numbering of edges. These edge
 numbers are used to specify the edges on which the placements lie.</p>
-<p>Currently there are two versions of the placefile format accepted by <tt class="docutils literal"><span class="pre">guppy</span></tt>
-and <tt class="docutils literal"><span class="pre">rppr</span></tt>: <tt class="docutils literal"><span class="pre">1</span></tt>, and <tt class="docutils literal"><span class="pre">2</span></tt>, though only version 2 will be generated. There
-are only two differences between versions 1 and 2: the format of the Newick
-tree in the <tt class="docutils literal"><span class="pre">tree</span></tt> field has changed, and <tt class="docutils literal"><span class="pre">marginal_prob</span></tt> was renamed to
-<tt class="docutils literal"><span class="pre">marginal_like</span></tt> in version 2.</p>
+<p>Currently there are three versions of the placefile format accepted by <tt class="docutils literal"><span class="pre">guppy</span></tt>
+and <tt class="docutils literal"><span class="pre">rppr</span></tt>: <tt class="docutils literal"><span class="pre">1</span></tt>, <tt class="docutils literal"><span class="pre">2</span></tt>, and <tt class="docutils literal"><span class="pre">3</span></tt>, though only version 3 will be generated.</p>
+<div class="section" id="differences-between-versions-1-and-2">
+<h4>Differences between versions <tt class="docutils literal"><span class="pre">1</span></tt> and <tt class="docutils literal"><span class="pre">2</span></tt><a class="headerlink" href="#differences-between-versions-1-and-2" title="Permalink to this headline">¶</a></h4>
+<p>There are only two differences between versions 1 and 2: the format of the
+Newick tree in the <tt class="docutils literal"><span class="pre">tree</span></tt> field has changed, and <tt class="docutils literal"><span class="pre">marginal_prob</span></tt> was
+renamed to <tt class="docutils literal"><span class="pre">marginal_like</span></tt> in version 2.</p>
 <p>Version 1 used a slightly different version of edge-numbered Newick trees for
 the <tt class="docutils literal"><span class="pre">tree</span></tt> field, where edge numbers were specified in square brackets
 instead of curly braces. Both this kind of Newick tree and version 1 of the
 JSON format are now deprecated.</p>
+</div>
+<div class="section" id="differences-between-versions-2-and-3">
+<h4>Differences between versions <tt class="docutils literal"><span class="pre">2</span></tt> and <tt class="docutils literal"><span class="pre">3</span></tt><a class="headerlink" href="#differences-between-versions-2-and-3" title="Permalink to this headline">¶</a></h4>
+<p>Version 3 replaces the separate <tt class="docutils literal"><span class="pre">n</span></tt> and <tt class="docutils literal"><span class="pre">m</span></tt> keys in placement objects with
+a more general <tt class="docutils literal"><span class="pre">nm</span></tt> key that can associate mass with each name.</p>
+</div>
+<div class="section" id="format-summary">
+<h4>Format summary<a class="headerlink" href="#format-summary" title="Permalink to this headline">¶</a></h4>
 <p>The pplacer suite currently uses the following field names:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -378,15 +402,18 @@ JSON format are now deprecated.</p>
 <td>The posterior probability of a placement on the edge.</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">marginal_like</span></tt></td>
-<td>The marginal likelihood of a placement on the edge.</td>
+<td>The marginal likelihood of a placement on the edge. <a class="footnote-reference" href="#f1" id="id2">[1]</a></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">marginal_prob</span></tt></td>
+<td>The marginal likelihood of a placement on the edge. <a class="footnote-reference" href="#f2" id="id3">[2]</a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">classification</span></tt></td>
 <td>The <tt class="docutils literal"><span class="pre">tax_id</span></tt> from a reference package as a string.</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">map_ratio</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">map_ratio</span></tt></td>
 <td>The percent identity between this sequence and the corresponding MAP sequence.</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">map_overlap</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">map_overlap</span></tt></td>
 <td>The number of overlapping sites between this sequence and the corresponding MAP sequence.</td>
 </tr>
 </tbody>
@@ -408,37 +435,76 @@ JSON format are now deprecated.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">n</span></tt></td>
-<td>A string or array of strings corresponding to the name or names of the sequences placed here.</td>
+<td>A string or array of strings corresponding to the name or names of the sequences placed here. <a class="footnote-reference" href="#f5" id="id4">[5]</a></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">p</span></tt></td>
 <td>An array of arrays containing placement data in the same order as <tt class="docutils literal"><span class="pre">fields</span></tt>.</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">m</span></tt></td>
-<td>(optional) A float that represents the mass of this placement. If this key is specified, <tt class="docutils literal"><span class="pre">n</span></tt> must only be or contain a single string.</td>
+<td><em>(optional)</em> A float that represents the mass of this placement. If this key is specified, <tt class="docutils literal"><span class="pre">n</span></tt> must only be or contain a single string. <a class="footnote-reference" href="#f1" id="id5">[1]</a> <a class="footnote-reference" href="#f4" id="id6">[4]</a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">nm</span></tt></td>
+<td>An array of <tt class="docutils literal"><span class="pre">[name,</span> <span class="pre">mass]</span></tt> pair arrays representing the mass for each sequence placed here. <a class="footnote-reference" href="#f3" id="id7">[3]</a></td>
 </tr>
 </tbody>
 </table>
 <p>An example JSON document follows, with the first placement showing uncertainty
-in location, and the second showing two reads that had identical placements:</p>
+in location, and the second showing two reads that had identical placements but
+different masses:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;tree&quot;</span><span class="p">:</span> <span class="s">&quot;((A:2[0],B:9[1]):7[2],C:5[3],D:1[4]):0[5];&quot;</span><span class="p">,</span>
-  <span class="s">&quot;placements&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="s">&quot;tree&quot;</span><span class="p">:</span> <span class="s">&quot;((A:0.2{0},B:0.09{1}):0.7{2},C:0.5{3}){4};&quot;</span><span class="p">,</span>
+  <span class="s">&quot;placements&quot;</span><span class="p">:</span>
+  <span class="p">[</span>
     <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span>
-      <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1091.576026</span><span class="p">,</span> <span class="mf">0.762438</span><span class="p">,</span> <span class="mf">0.000008</span><span class="p">,</span> <span class="mf">0.019642</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">10982.742117</span><span class="p">,</span> <span class="mf">0.237562</span><span class="p">,</span> <span class="mf">0.000008</span><span class="p">,</span> <span class="mf">0.019579</span><span class="p">]</span>
-      <span class="p">],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;GLKT0ZE01CQ1P1&quot;</span><span class="p">]</span>
+      <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">2578.16</span><span class="p">,</span> <span class="mf">0.777385</span><span class="p">,</span> <span class="mf">0.004132</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2580.15</span><span class="p">,</span> <span class="mf">0.107065</span><span class="p">,</span> <span class="mf">0.000009</span><span class="p">,</span> <span class="mf">0.0153</span><span class="p">]</span>
+      <span class="p">],</span>
+     <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;fragment1&quot;</span><span class="p">,</span> <span class="s">&quot;fragment2&quot;</span><span class="p">]</span>
     <span class="p">},</span>
-    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1061.467623</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.003555</span><span class="p">,</span> <span class="mf">0.000006</span><span class="p">]],</span>
-     <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;GLKT0ZE01C36CH&quot;</span><span class="p">,</span> <span class="s">&quot;GLKT0ZE01A0IBO&quot;</span><span class="p">]}</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">2576.46</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.003555</span><span class="p">,</span> <span class="mf">0.000006</span><span class="p">]],</span>
+     <span class="s">&quot;nm&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s">&quot;fragment3&quot;</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="s">&quot;fragment4&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]}</span>
   <span class="p">],</span>
-  <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;invocation&quot;</span><span class="p">:</span> <span class="s">&quot;guppy to_json&quot;</span><span class="p">},</span>
-  <span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;edge_num&quot;</span><span class="p">,</span> <span class="s">&quot;likelihood&quot;</span><span class="p">,</span> <span class="s">&quot;like_weight_ratio&quot;</span><span class="p">,</span> <span class="s">&quot;distal_length&quot;</span><span class="p">,</span>
-    <span class="s">&quot;pendant_length&quot;</span>
-  <span class="p">]</span>
+  <span class="s">&quot;metadata&quot;</span><span class="p">:</span>
+  <span class="p">{</span><span class="s">&quot;invocation&quot;</span><span class="p">:</span>
+    <span class="s">&quot;pplacer -c tiny.refpkg frags.fasta&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="s">&quot;fields&quot;</span><span class="p">:</span>
+  <span class="p">[</span><span class="s">&quot;edge_num&quot;</span><span class="p">,</span> <span class="s">&quot;likelihood&quot;</span><span class="p">,</span> <span class="s">&quot;like_weight_ratio&quot;</span><span class="p">,</span>
+               <span class="s">&quot;distal_length&quot;</span><span class="p">,</span> <span class="s">&quot;pendant_length&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> New in format version <tt class="docutils literal"><span class="pre">2</span></tt>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Removed in format version <tt class="docutils literal"><span class="pre">2</span></tt>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[3]</a></td><td>New in format version <tt class="docutils literal"><span class="pre">3</span></tt>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td>Removed in format version <tt class="docutils literal"><span class="pre">3</span></tt>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[5]</a></td><td>This key will not ever be generated by any program in the pplacer suite as of format version <tt class="docutils literal"><span class="pre">3</span></tt>, but will continue to be accepted by <tt class="docutils literal"><span class="pre">guppy</span></tt> and <tt class="docutils literal"><span class="pre">rppr</span></tt>.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="making-alignments-for-use-with-pplacer">
@@ -531,7 +597,7 @@ First, create the query alignment:</p>
 </div>
 <div class="section" id="phyml-and-raxml">
 <h2>phyml and RAxML<a class="headerlink" href="#phyml-and-raxml" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.atgc-montpellier.fr/phyml/&quot;&gt;Phyml&lt;/a&gt;and">PHYML</a> and <a class="reference external" href="http://icwww.epfl.ch/~stamatak/index-Dateien/Page443.htm&quot;&gt;RAxML&lt;/a&gt;">RAxML</a> are two nice packages for making ML trees that are supported for use with pplacer.
+<p><a class="reference external" href="http://www.atgc-montpellier.fr/phyml/">PHYML</a> and <a class="reference external" href="http://sco.h-its.org/exelixis/software.html">RAxML</a> are two nice packages for making ML trees that are supported for use with pplacer.
 Pplacer only knows about the GTR, WAG, LG, and JTT models, so use those to build your trees.
 If you are fond of another model and can convince me that I should implement it, I will.</p>
 <p>Both of these packages implement gamma rate variation among sites, which accomodates that some regions evolve more quickly than others.
@@ -540,8 +606,7 @@ That&#8217;s generally a good thing, but if you have millions of query sequences
 <div class="highlight-python"><pre>raxmlHPC -m GTRGAMMA -n test -s nucleotides.phy
 raxmlHPC -m PROTGAMMAWAGF -n test -s amino_acids.phy</pre>
 </div>
-<p>Even though Alexandros Stamatakis is quite fond of the &#8220;CAT&#8221; models and they accelerate tree inference, they aren&#8217;t appropriate for use with pplacer.
-We need to get an estimate of the gamma shape parameter.</p>
+<p>pplacer does not support using the CAT model from RAxML, although a similar model is available via FastTree.</p>
 <p>PHYML can be run like so, on non-interleaved (hence the -q) phylip-format alignments:</p>
 <div class="highlight-python"><pre>phyml -q -d nt -m GTR -i nucleotides.phy
 phyml -q -d aa -m WAG -i amino_acids.phy</pre>
@@ -641,6 +706,17 @@ each sequence where the two differ.</p>
 <p>The colored trees written out by the <tt class="docutils literal"><span class="pre">--fig-tree</span></tt> and
 <tt class="docutils literal"><span class="pre">--fig-eval-discrepancy-tree</span></tt> flags shows figs as colored subtrees within the
 reference tree.</p>
+</div>
+<div class="section" id="model-refinement">
+<h3>Model refinement<a class="headerlink" href="#model-refinement" title="Permalink to this headline">¶</a></h3>
+<p>By default when using the FastTree CAT model, the site rate categories used
+directly from the FastTree run. This is not possible, however, when a different
+reference alignment is supplied than was used to build the tree. This can
+happen when supplying an integrated reference and query alignment.</p>
+<p>When the site rates cannot be used directly, the model gets &#8220;refined&#8221;.
+Currently, this only actually means something for the CAT model, in which case
+it infers site categories. You can force this behavior by using the
+<tt class="docutils literal"><span class="pre">--always-refine</span></tt> flag.</p>
 </div>
 </div>
 </div>

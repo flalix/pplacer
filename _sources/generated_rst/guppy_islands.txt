@@ -6,7 +6,7 @@
 islands
 =======
 
-`islands` find the mass islands of one or more pqueries.
+`islands` finds the mass islands of one or more pqueries.
 
 ::
 
@@ -18,4 +18,6 @@ Options
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
+--pp  Use posterior probability for the weight.
+--discard-below  Ignore pquery locations with a mass less than the specified value.
 

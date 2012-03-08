@@ -6,7 +6,7 @@
 diplac
 ======
 
-`diplac` find the most DIstant PLACements from the leaves.
+`diplac` finds the most DIstant PLACements from the leaves.
 
 ::
 
@@ -18,6 +18,7 @@ Options
 --pp  Use posterior probability for the weight.
 --min-distance  Specify the minimum distance to leaves to report
 --max-matches  Only report the deepest N placements
+--include-pendant  Include pendant branch lengths in distance calculations.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.

@@ -17,9 +17,14 @@ Options
 
 -c  Reference package path. Required.
 --sqlite  Specify the database file to use.
+-o  Specify the filename to write to.
+--out-dir  Specify the directory to write files to.
+--prefix  Specify a string to be prepended to filenames.
+--csv  Output the results as csv instead of a padded matrix.
 --pp  Use posterior probability for our criteria.
 --mrca-stats  Print the number of placements just proximal to MRCAs.
 --tax-median-identity-from  Calculate the median identity for each sequence per-tax_id from the specified alignment.
+--mrca-class  Classify against a placefile that was generated with MRCA classification
 
 Details
 =======

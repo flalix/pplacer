@@ -135,6 +135,8 @@ However, if one would like to decrease the impact of multiplicities on downstrea
 Doing so will convert your placements into labeled masses.
 
 
+.. _split-placefiles:
+
 'Split' placefiles
 ------------------
 
@@ -167,37 +169,40 @@ List of subcommands
 The following table provides links to more in-depth documentation for each
 guppy subcommand:
 
-================================  ============================================================================
-                         Command                                                                   Description
-================================  ============================================================================
-        :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
-:ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
-:ref:`compress <guppy_compress>`                                               compress a placefile's pqueries
-  :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
-    :ref:`diplac <guppy_diplac>`                              find the most DIstant PLACements from the leaves
-  :ref:`distmat <guppy_distmat>`                       prints out a pairwise distance matrix between the edges
-        :ref:`edpl <guppy_edpl>`           calculates the EDPL uncertainty values for a collection of pqueries
-          :ref:`fat <guppy_fat>`          makes trees with edges fattened in proportion to the number of reads
-    :ref:`filter <guppy_filter>`                              filters one or more placefiles by placement name
-        :ref:`heat <guppy_heat>`                 maps an an arbitrary vector of the correct length to the tree
-        :ref:`info <guppy_info>`  writes the number of leaves of the reference tree and the number of pqueries
-  :ref:`islands <guppy_islands>`                                 find the mass islands of one or more pqueries
-            :ref:`kr <guppy_kr>`     calculates the Kantorovich-Rubinstein distance and corresponding p-values
-  :ref:`kr_heat <guppy_kr_heat>`                                                             makes a heat tree
-      :ref:`merge <guppy_merge>`                                                    merges placefiles together
-          :ref:`mft <guppy_mft>`                                         Multi-Filter and Transform placefiles
-          :ref:`pca <guppy_pca>`                                            performs edge principal components
-            :ref:`pd <guppy_pd>`                                              calculate phylogenetic diversity
-:ref:`rarefact <guppy_rarefact>`                                    calculates phylogenetic rarefaction curves
-      :ref:`redup <guppy_redup>`                                     restores duplicates to deduped placefiles
-      :ref:`round <guppy_round>`                            clusters the placements by rounding branch lengths
-        :ref:`sing <guppy_sing>`                   makes one tree for each query sequence, showing uncertainty
-:ref:`splitify <guppy_splitify>`                   writes out differences of masses for the splits of the tree
-    :ref:`squash <guppy_squash>`                                                    performs squash clustering
-  :ref:`to_json <guppy_to_json>`                    converts old-style .place files to .jplace placement files
-          :ref:`tog <guppy_tog>`             makes a tree with each of the reads represented as a pendant edge
-          :ref:`wpd <guppy_wpd>`                       calculate weighted phylogenetic diversity of placefiles
-================================  ============================================================================
+========================================  ============================================================================
+                                 Command                                                                   Description
+========================================  ============================================================================
+                :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
+        :ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
+:ref:`classify_rdp <guppy_classify_rdp>`              converts RDP output to something resmbling guppy classify output
+        :ref:`compress <guppy_compress>`                                             compresses a placefile's pqueries
+          :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
+            :ref:`diplac <guppy_diplac>`                             finds the most DIstant PLACements from the leaves
+          :ref:`distmat <guppy_distmat>`                       prints out a pairwise distance matrix between the edges
+                :ref:`edpl <guppy_edpl>`           calculates the EDPL uncertainty values for a collection of pqueries
+              :ref:`error <guppy_error>`                                        finds the error between two placefiles
+                  :ref:`fat <guppy_fat>`          makes trees with edges fattened in proportion to the number of reads
+            :ref:`filter <guppy_filter>`                              filters one or more placefiles by placement name
+                  :ref:`fpd <guppy_fpd>`                      calculates various alpha diversity metrics of placefiles
+                :ref:`heat <guppy_heat>`                 maps an an arbitrary vector of the correct length to the tree
+                :ref:`info <guppy_info>`  writes the number of leaves of the reference tree and the number of pqueries
+          :ref:`islands <guppy_islands>`                                finds the mass islands of one or more pqueries
+                    :ref:`kr <guppy_kr>`     calculates the Kantorovich-Rubinstein distance and corresponding p-values
+          :ref:`kr_heat <guppy_kr_heat>`                                                             makes a heat tree
+              :ref:`merge <guppy_merge>`                                                    merges placefiles together
+                  :ref:`mft <guppy_mft>`                                         Multi-Filter and Transform placefiles
+            :ref:`ograph <guppy_ograph>`                                finds the mass islands of one or more pqueries
+                  :ref:`pca <guppy_pca>`                                            performs edge principal components
+        :ref:`rarefact <guppy_rarefact>`                                    calculates phylogenetic rarefaction curves
+              :ref:`redup <guppy_redup>`                                     restores duplicates to deduped placefiles
+              :ref:`round <guppy_round>`                            clusters the placements by rounding branch lengths
+                :ref:`sing <guppy_sing>`                   makes one tree for each query sequence, showing uncertainty
+        :ref:`splitify <guppy_splitify>`                   writes out differences of masses for the splits of the tree
+            :ref:`squash <guppy_squash>`                                                    performs squash clustering
+          :ref:`to_json <guppy_to_json>`                    converts old-style .place files to .jplace placement files
+            :ref:`to_rdp <guppy_to_rdp>`                             convert a reference package to a format RDP wants
+                  :ref:`tog <guppy_tog>`             makes a tree with each of the reads represented as a pendant edge
+========================================  ============================================================================
 
 .. toctree::
    :glob:
@@ -217,7 +222,7 @@ guppy subcommand:
 .. _kr_heat: generated_rst/kr_heat.html
 .. _bary: generated_rst/bary.html
 
-.. _pplacer: http://matsen.fhrcrc.org/pplacer
+.. _pplacer: http://matsen.fhcrc.org/pplacer
 .. _this configuration file: http://github.com/fhcrc/microbiome-demo/blob/master/bin/_aptx_configuration_file
 .. _phyloxml: http://phyloxml.org/
 .. _archaeopteryx: http://www.phylosoft.org/archaeopteryx/
