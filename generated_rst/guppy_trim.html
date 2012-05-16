@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>diplac &mdash; pplacer 1.1 documentation</title>
+    <title>trim &mdash; pplacer 1.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="distmat" href="guppy_distmat.html" />
-    <link rel="prev" title="demulti" href="guppy_demulti.html" /> 
+    <link rel="next" title="unifrac" href="guppy_unifrac.html" />
+    <link rel="prev" title="tog" href="guppy_tog.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_distmat.html" title="distmat"
+          <a href="guppy_unifrac.html" title="unifrac"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy_tog.html" title="tog"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -51,7 +51,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">diplac</a><ul>
+<li><a class="reference internal" href="#">trim</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -59,14 +59,14 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_demulti.html"
-                        title="previous chapter">demulti</a></p>
+  <p class="topless"><a href="guppy_tog.html"
+                        title="previous chapter">tog</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_distmat.html"
-                        title="next chapter">distmat</a></p>
+  <p class="topless"><a href="guppy_unifrac.html"
+                        title="next chapter">unifrac</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_diplac.txt"
+    <li><a href="../_sources/generated_rst/guppy_trim.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -90,10 +90,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="diplac">
-<span id="guppy-diplac"></span><h1>diplac<a class="headerlink" href="#diplac" title="Permalink to this headline">¶</a></h1>
-<p><cite>diplac</cite> finds the most DIstant PLACements from the leaves.</p>
-<div class="highlight-python"><pre>usage: diplac [options] placefile</pre>
+  <div class="section" id="trim">
+<span id="guppy-trim"></span><h1>trim<a class="headerlink" href="#trim" title="Permalink to this headline">¶</a></h1>
+<p><cite>trim</cite> trims placefiles down to only containing an informative subset of the mass.</p>
+<div class="highlight-python"><pre>usage: trim [options] placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -102,21 +102,11 @@
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
+<kbd><span class="option">--point-mass</span></kbd></td>
+<td>Treat every pquery as a point mass concentrated on the highest-weight placement.</td></tr>
+<tr><td class="option-group">
 <kbd><span class="option">--pp</span></kbd></td>
 <td>Use posterior probability for the weight.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--min-distance</span></kbd></td>
-<td>Specify the minimum distance to leaves to report</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--max-matches</span></kbd></td>
-<td>Only report the deepest N placements</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--include-pendant</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Include pendant branch lengths in distance calculations.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--no-collapse</span></kbd></td>
-<td>List all of the names per pquery instead of just one.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
 <td>Specify the filename to write to.</td></tr>
@@ -126,24 +116,43 @@
 <tr><td class="option-group">
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--min-path-mass</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>The minimum mass which must be on the path to a leaf to keep it. default: 0.001</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--no-csv</span></kbd></td>
-<td>Output the results as a padded matrix instead of csv.</td></tr>
+<kbd><span class="option">--discarded</span></kbd></td>
+<td>A file to write discarded pqueries to.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--rewrite-discarded-mass</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Move placements which were on discarded leaves to the nearest non-discarded node.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand spits out a three column CSV file such as:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GLKT0ZE02ICPDW</span><span class="p">,</span><span class="mf">0.243279</span><span class="p">,</span><span class="mi">1</span>
-<span class="n">GLKT0ZE02GLVHA</span><span class="p">,</span><span class="mf">0.243157</span><span class="p">,</span><span class="mi">3</span>
-<span class="n">GLKT0ZE02HFAHN</span><span class="p">,</span><span class="mf">0.242753</span><span class="p">,</span><span class="mi">1</span>
-<span class="n">GLKT0ZE02GI5BZ</span><span class="p">,</span><span class="mf">0.032986</span><span class="p">,</span><span class="mi">1</span>
-<span class="n">GLKT0ZE02F6DFD</span><span class="p">,</span><span class="mf">0.023905</span><span class="p">,</span><span class="mi">2</span>
-</pre></div>
+<p>This subcommand is a quick root-dependent way to trim the reference tree to what is relevant for a collection of placements.</p>
+<p>The first step is to select a collection of leaves that will be present in the trimmed tree.
+Convert all of the placements into mass by unitizing mass for each placerun individually and then take the overall average of those collections of masses.
+Then select any leaf for inclusion that has at least <tt class="docutils literal"><span class="pre">--min-path-mass</span></tt> on the path from the root to the leaves.</p>
+<p>Once those leaves are selected, we take the induced subtree on those leaves. That is, if we were to take the induced subtree of</p>
+<div class="highlight-python"><pre>  ^
+ / \
+/\  \
+ab  /\
+   c d</pre>
 </div>
-<p>where the first column is placement name, second column is distance to closest leaf, and third column is multiplicity.
-Pqueries are sorted by distance to leaf.</p>
+<p>with the leaf set {a,d}, we would get the tree</p>
+<div class="highlight-python"><pre>  ^
+ / \
+/   \
+a    \
+     d</pre>
+</div>
+<p>with the branch lengths induced by adding branch lengths along edges that are not bifurcating.</p>
+<p>This trimmed tree is then put in the placefile.
+Note that even though the tree is different than the one in the reference package, we have arranged things so that it&#8217;s possible to use reference package <em>C</em> with a tree that has been trimmed from <em>C</em>&#8216;s tree.</p>
 </div>
 </div>
 
@@ -160,10 +169,10 @@ Pqueries are sorted by distance to leaf.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_distmat.html" title="distmat"
+          <a href="guppy_unifrac.html" title="unifrac"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy_tog.html" title="tog"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 

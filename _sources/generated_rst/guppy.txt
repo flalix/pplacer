@@ -173,8 +173,9 @@ guppy subcommand:
                                  Command                                                                   Description
 ========================================  ============================================================================
                 :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
+              :ref:`check <guppy_check>`                                         checks placefiles for common problems
         :ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
-:ref:`classify_rdp <guppy_classify_rdp>`              converts RDP output to something resmbling guppy classify output
+:ref:`classify_rdp <guppy_classify_rdp>`             converts RDP output to something resembling guppy classify output
         :ref:`compress <guppy_compress>`                                             compresses a placefile's pqueries
           :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
             :ref:`diplac <guppy_diplac>`                             finds the most DIstant PLACements from the leaves
@@ -194,14 +195,18 @@ guppy subcommand:
             :ref:`ograph <guppy_ograph>`                                finds the mass islands of one or more pqueries
                   :ref:`pca <guppy_pca>`                                            performs edge principal components
         :ref:`rarefact <guppy_rarefact>`                                    calculates phylogenetic rarefaction curves
+            :ref:`rarefy <guppy_rarefy>`                             performs rarefaction on collections of placements
               :ref:`redup <guppy_redup>`                                     restores duplicates to deduped placefiles
               :ref:`round <guppy_round>`                            clusters the placements by rounding branch lengths
                 :ref:`sing <guppy_sing>`                   makes one tree for each query sequence, showing uncertainty
         :ref:`splitify <guppy_splitify>`                   writes out differences of masses for the splits of the tree
             :ref:`squash <guppy_squash>`                                                    performs squash clustering
+            :ref:`to_csv <guppy_to_csv>`                                             turns a placefile into a csv file
           :ref:`to_json <guppy_to_json>`                    converts old-style .place files to .jplace placement files
             :ref:`to_rdp <guppy_to_rdp>`                             convert a reference package to a format RDP wants
                   :ref:`tog <guppy_tog>`             makes a tree with each of the reads represented as a pendant edge
+                :ref:`trim <guppy_trim>`    trims placefiles down to only containing an informative subset of the mass
+          :ref:`unifrac <guppy_unifrac>`                                  calculates unifrac on two or more placefiles
 ========================================  ============================================================================
 
 .. toctree::

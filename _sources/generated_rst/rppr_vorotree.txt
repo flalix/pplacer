@@ -1,23 +1,20 @@
 :tocdepth: 3
 
-.. _rppr_voronoi:
+.. _rppr_vorotree:
 
-=======
-voronoi
-=======
+========
+vorotree
+========
 
-`voronoi` finds a good collection of sequences to cut from ref tree.
+`vorotree` finds a good collection of sequences to cut from ref tree.
 
 ::
 
-  usage: voronoi [options] placefile
+  usage: vorotree [options] newick.tre
 
 Options
 =======
 
---point-mass  Treat every pquery as a point mass concentrated on the highest-weight placement.
---pp  Use posterior probability for the weight.
--c  Reference package path.
 -o  Specify the filename to write to.
 --out-dir  Specify the directory to write files to.
 --prefix  Specify a string to be prepended to filenames.
@@ -31,18 +28,5 @@ Options
 --all-adcls-file  If specified, write out a csv file containing every intermediate computed ADCL.
 --log  If specified with the full algorithm, write out a csv file containing solutions at every internal node.
 --always-include  If specified, the leaf names read from the provided file will not be trimmed.
---leaf-mass  Fraction of mass to be distributed uniformly across leaves. Default 0.
+--query-seqs  A comma-separated list of leaves to turn into query sequences.
 
-Details
-=======
-
-
-``voronoi`` finds leaves of the reference tree that aren't "needed" for placement.
-The definition requires some explaining, but we haven't even written the paper yet.
-Check back soon.
-
-Needless to say, this is an experimental feature.
-
-
-.. _announcement: http://matsen.fhcrc.org/general/2011/09/27/convexify.html
-.. _paper: http://arxiv.org/abs/1109.5423

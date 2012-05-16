@@ -30,6 +30,8 @@ Options
 --scale  Scale variances to one before performing principal components.
 --symmv  Use a complete eigendecomposition rather than power iteration.
 --kappa  Specify the exponent for scaling between weighted and unweighted splitification. default: 1
+--rep-edges  Cluster neighboring edges that have splitified euclidean distance less than the argument.
+--epsilon  The epsilon to use to determine if a split matrix's column is constant for filtering. default: 1e-05
 
 Details
 =======

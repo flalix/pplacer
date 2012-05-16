@@ -44,6 +44,7 @@ Options
 --write-masked                Write alignment masked to the region without gaps in the query.
 --verbosity                   Set verbosity level. 0 is silent, and 2 is quite a lot. Default is 1.
 --out-dir                     Specify the directory to write place files to.
+-o                            Specify the output file name
 --pretend                     Only check out the files then report. Do not run the analysis.
 --check-like                  Write out the likelihood of the reference tree, calculated two ways.
 -j                            The number of child processes to spawn when doing placements. Default is 2.

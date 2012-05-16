@@ -23,6 +23,7 @@ Options
 --cut-seqs  If specified, the path to write a CSV file of cut sequences per-rank to.
 --alternates  If specified, the path to write a CSV file of alternate colors per-sequence to.
 --check-all-ranks  When determining alternate colors, check all ranks instead of the least recent uncut rank.
+--all-alternates  When determining alternate colors, ignore the taxononomy and show all alternates.
 --cutoff  Any trees with a maximum badness over this value are skipped. Default: 12.
 --limit-rank  If specified, only convexify at the given ranks. Ranks are given as a comma-delimited list of names.
 --timing  If specified, save timing information for solved trees to a CSV file.

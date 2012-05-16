@@ -119,6 +119,12 @@
 <tr><td class="option-group">
 <kbd><span class="option">--kappa</span></kbd></td>
 <td>Specify the exponent for scaling between weighted and unweighted splitification. default: 1</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--rep-edges</span></kbd></td>
+<td>Cluster neighboring edges that have splitified euclidean distance less than the argument.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--epsilon</span></kbd></td>
+<td>The epsilon to use to determine if a split matrix&#8217;s column is constant for filtering. default: no filtering</td></tr>
 </tbody>
 </table>
 </div>
@@ -129,6 +135,7 @@ The <img class="math" src="../_images/math/88f06990a3aac6b546ca9eb213d34843e625e
 Specifically, it is the amount of mass on the distal (non-root) side of edge <img class="math" src="../_images/math/a3a59bb1293ee3f6dec19de4019a7178874219ae.png" alt="e"/> minus the amount of mass on the proximal side.
 The matrix is indexed such that the first numerical column is edge labeled 0 in the reference tree.
 The <tt class="docutils literal"><span class="pre">splitify</span></tt> subcommand simply writes out this matrix.</p>
+<p>Specifying <tt class="docutils literal"><span class="pre">--rep-edges</span> <span class="pre">x</span></tt> will only take representatives from collections of neighboring edges whose Euclidean distance between splitified columns is less than <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
 <p>The <tt class="docutils literal"><span class="pre">--kappa</span></tt> option enables a componentwise transformation <img class="math" src="../_images/math/388d35d7c39a0ecdd23be72c2bc25af70801786f.png" alt="\varphi_\kappa"/> on the entries of this matrix.</p>
 <div class="math">
 <p><img src="../_images/math/fa1c3cfd6e470c7f633b5917abb00306d7346932.png" alt="\varphi_\kappa(x) = \mathrm{sgn}(x) |x|^\kappa"/></p>

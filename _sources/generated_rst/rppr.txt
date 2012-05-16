@@ -48,6 +48,7 @@ rppr subcommand:
   :ref:`ref_tree <rppr_ref_tree>`  writes a taxonomically annotated reference tree and an induced taxonomic tree
       :ref:`reroot <rppr_reroot>`                                     reroots a given reference package in place
     :ref:`voronoi <rppr_voronoi>`                      finds a good collection of sequences to cut from ref tree
+  :ref:`vorotree <rppr_vorotree>`                      finds a good collection of sequences to cut from ref tree
 =================================  =============================================================================
 
 .. toctree::

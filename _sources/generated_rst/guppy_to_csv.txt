@@ -1,0 +1,20 @@
+:tocdepth: 3
+
+.. _guppy_to_csv:
+
+======
+to_csv
+======
+
+`to_csv` turns a placefile into a csv file.
+
+::
+
+  usage: to_csv [options] placefile[s]
+
+Options
+=======
+
+--point-mass  Treat every pquery as a point mass concentrated on the highest-weight placement.
+--pp  Use posterior probability for the weight.
+

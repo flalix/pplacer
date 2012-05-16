@@ -6,7 +6,7 @@
 classify_rdp
 ============
 
-`classify_rdp` converts RDP output to something resmbling guppy classify output.
+`classify_rdp` converts RDP output to something resembling guppy classify output.
 
 ::
 

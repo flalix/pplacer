@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="rppr" href="rppr.html" />
-    <link rel="next" title="scripts" href="../scripts.html" />
+    <link rel="next" title="vorotree" href="rppr_vorotree.html" />
     <link rel="prev" title="reroot" href="rppr_reroot.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../scripts.html" title="scripts"
+          <a href="rppr_vorotree.html" title="vorotree"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="rppr_reroot.html" title="reroot"
@@ -62,8 +62,8 @@
   <p class="topless"><a href="rppr_reroot.html"
                         title="previous chapter">reroot</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../scripts.html"
-                        title="next chapter">scripts</a></p>
+  <p class="topless"><a href="rppr_vorotree.html"
+                        title="next chapter">vorotree</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/generated_rst/rppr_voronoi.txt"
@@ -135,18 +135,25 @@
 <kbd><span class="option">--leaves</span></kbd></td>
 <td>The maximum number of leaves to keep in the tree.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--leaf-mass</span></kbd></td>
-<td>Fraction of mass to be distributed uniformly across leaves. Default 0.</td></tr>
+<kbd><span class="option">--max-adcl</span></kbd></td>
+<td>The maximum ADCL that a solution can have.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--algorithm</span></kbd></td>
-<td>Which algorithm to use to prune leaves. Choices are &#8216;greedy&#8217;, &#8216;full&#8217;, and &#8216;force&#8217;. Default full.</td></tr>
+<td>Which algorithm to use to prune leaves. Choices are &#8216;greedy&#8217;, &#8216;full&#8217;, &#8216;force&#8217;, and &#8216;pam&#8217;. Default full.</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--all-eclds-file</span></kbd></td>
+<kbd><span class="option">--all-adcls-file</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>If specified, write out a csv file containing every intermediate computed ECLD.</td></tr>
+<tr><td>&nbsp;</td><td>If specified, write out a csv file containing every intermediate computed ADCL.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--log</span></kbd></td>
 <td>If specified with the full algorithm, write out a csv file containing solutions at every internal node.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--always-include</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>If specified, the leaf names read from the provided file will not be trimmed.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--leaf-mass</span></kbd></td>
+<td>Fraction of mass to be distributed uniformly across leaves. Default 0.</td></tr>
 </tbody>
 </table>
 </div>
@@ -172,7 +179,7 @@ Check back soon.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../scripts.html" title="scripts"
+          <a href="rppr_vorotree.html" title="vorotree"
              >next</a> |</li>
         <li class="right" >
           <a href="rppr_reroot.html" title="reroot"
