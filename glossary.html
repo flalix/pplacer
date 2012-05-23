@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>FAQ &mdash; pplacer 1.1 documentation</title>
+    <title>glossary &mdash; pplacer 1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,7 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="index.html" />
-    <link rel="prev" title="glossary" href="glossary.html" /> 
+    <link rel="next" title="FAQ" href="faq.html" />
+    <link rel="prev" title="scripts" href="scripts.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,28 +37,25 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="glossary.html" title="glossary"
+          <a href="faq.html" title="FAQ"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="scripts"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">pplacer 1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">FAQ</a><ul>
-<li><a class="reference internal" href="#how-can-i-cite-pplacer">How can I cite pplacer?</a></li>
-<li><a class="reference internal" href="#why-is-pplacer-taking-up-so-much-memory">Why is pplacer taking up so much memory?</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="glossary.html"
-                        title="previous chapter">glossary</a></p>
+  <p class="topless"><a href="scripts.html"
+                        title="previous chapter">scripts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="faq.html"
+                        title="next chapter">FAQ</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/faq.txt"
+    <li><a href="_sources/glossary.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -81,33 +79,26 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="faq">
-<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="how-can-i-cite-pplacer">
-<h2>How can I cite pplacer?<a class="headerlink" href="#how-can-i-cite-pplacer" title="Permalink to this headline">¶</a></h2>
-<p>Right now there is only one paper to cite:</p>
-<div class="highlight-python"><pre>@article{matsen2010pplacer,
-  title={pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree},
-  author={Matsen, F.A. and Kodner, R.B. and Armbrust, E.},
-  journal={BMC Bioinformatics},
-  volume={11},
-  number={1},
-  pages={538},
-  year={2010},
-  publisher={BioMed Central Ltd}
-}</pre>
-</div>
-<p>At some point we will write something up for the new pplacer, guppy, taxtastic, etc., but right now the focus is on the software.</p>
-</div>
-<div class="section" id="why-is-pplacer-taking-up-so-much-memory">
-<h2>Why is pplacer taking up so much memory?<a class="headerlink" href="#why-is-pplacer-taking-up-so-much-memory" title="Permalink to this headline">¶</a></h2>
-<p>Because it caches likelihood vectors for all of the internal nodes.
-This is what makes it fast!</p>
-<p>Pplacer uses about 1/4 of the memory when placing on a FastTree tree as compared to a RAxML tree inferred with GTRGAMMA.
-If your reads are short and in a fixed region, the memory used by pplacer v1.1 alpha08 (or later) scales with respect to the total number of non-gap columns in your query alignment.
-You can also make it use less memory (and run faster) by cutting down the size of your reference tree.</p>
-<p>Additionally, if you are placing metagenomic reads onto a very wide alignment (such as a concatenation) read about the <tt class="docutils literal"><span class="pre">--groups</span></tt> feature in the documentation.</p>
-</div>
+  <div class="section" id="glossary">
+<span id="id1"></span><h1>glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<p>We try to keep things as simple as possible, but by necessity have developed a bit of lingo.
+Here are the definitions for some words that you will see in the manual.</p>
+<dl class="docutils">
+<dt>placement</dt>
+<dd>An assignment of a single query sequence to a single location in the reference tree.
+(Contrast with pquery).</dd>
+<dt>pquery</dt>
+<dd>A &#8220;placed query&#8221; sequence, with uncertainty.
+In practice this means a collection of placements and their corresponding confidence values (e.g. likelihood weight ratio, etc).</dd>
+<dt>placerun</dt>
+<dd>A collection of pqueries.
+Short for a run of a placement program.</dd>
+<dt>query sequence</dt>
+<dd>The sequence getting placed into the reference tree.
+Typically a short read.</dd>
+<dt>reference tree</dt>
+<dd>The fixed tree on which placement occurs.</dd>
+</dl>
 </div>
 
 
@@ -123,7 +114,10 @@ You can also make it use less memory (and run faster) by cutting down the size o
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="glossary.html" title="glossary"
+          <a href="faq.html" title="FAQ"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="scripts"
              >previous</a> |</li>
         <li><a href="index.html">pplacer 1.1 documentation</a> &raquo;</li> 
       </ul>
