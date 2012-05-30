@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>distmat &mdash; pplacer 1.1 documentation</title>
+    <title>min_adcl &mdash; pplacer 1.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
-    <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="edpl" href="guppy_edpl.html" />
-    <link rel="prev" title="demulti" href="guppy_demulti.html" /> 
+    <link rel="up" title="rppr" href="rppr.html" />
+    <link rel="next" title="min_adcl_tree" href="rppr_min_adcl_tree.html" />
+    <link rel="prev" title="info" href="rppr_info.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,35 +38,34 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="rppr_min_adcl_tree.html" title="min_adcl_tree"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="rppr_info.html" title="info"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
-          <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
+          <li><a href="rppr.html" accesskey="U">rppr</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">distmat</a><ul>
+<li><a class="reference internal" href="#">min_adcl</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
-<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_demulti.html"
-                        title="previous chapter">demulti</a></p>
+  <p class="topless"><a href="rppr_info.html"
+                        title="previous chapter">info</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_edpl.html"
-                        title="next chapter">edpl</a></p>
+  <p class="topless"><a href="rppr_min_adcl_tree.html"
+                        title="next chapter">min_adcl_tree</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_distmat.txt"
+    <li><a href="../_sources/generated_rst/rppr_min_adcl.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -90,10 +89,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="distmat">
-<span id="guppy-distmat"></span><h1>distmat<a class="headerlink" href="#distmat" title="Permalink to this headline">¶</a></h1>
-<p><cite>distmat</cite> prints out a pairwise distance matrix between the edges.</p>
-<div class="highlight-python"><pre>usage: distmat -o my.tab placefile[s]</pre>
+  <div class="section" id="min-adcl">
+<span id="rppr-min-adcl"></span><h1>min_adcl<a class="headerlink" href="#min-adcl" title="Permalink to this headline">¶</a></h1>
+<p><cite>min_adcl</cite> finds a good collection of sequences to cut from a placefile&#8217;s ref tree.</p>
+<div class="highlight-python"><pre>usage: min_adcl [options] placefile</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -101,6 +100,15 @@
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--point-mass</span></kbd></td>
+<td>Treat every pquery as a point mass concentrated on the highest-weight placement.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>Reference package path.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
 <td>Specify the filename to write to.</td></tr>
@@ -110,48 +118,46 @@
 <tr><td class="option-group">
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-csv</span></kbd></td>
+<td>Output the results as a padded matrix instead of csv.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--node-numbers</span></kbd></td>
+<td>Put the node numbers in where the bootstraps usually go.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--seed</span></kbd></td>
+<td>Set the random seed, an integer &gt; 0. Default is 1.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span></kbd></td>
+<td>If specified, write progress output to stderr.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-t</span></kbd></td>
+<td>If specified, the path to write the trimmed tree to.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--leaves</span></kbd></td>
+<td>The maximum number of leaves to keep in the tree.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--max-adcl</span></kbd></td>
+<td>The maximum ADCL that a solution can have.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--algorithm</span></kbd></td>
+<td>Which algorithm to use to prune leaves. Choices are &#8216;greedy&#8217;, &#8216;full&#8217;, &#8216;force&#8217;, and &#8216;pam&#8217;. Default full.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--all-adcls-file</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>If specified, write out a csv file containing every intermediate computed ADCL.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--log</span></kbd></td>
+<td>If specified with the full algorithm, write out a csv file containing solutions at every internal node.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--always-include</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>If specified, the leaf names read from the provided file will not be trimmed.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--leaf-mass</span></kbd></td>
+<td>Fraction of mass to be distributed uniformly across leaves. Default 0.</td></tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand provides distances calculated as the sum of branch
-lengths between all pairs of edges in a reference tree. The format of
-the output is a lower-triangular matrix of pairwise distances, in
-which margins correspond to edge numbers. Each distance is prefixed by
-either an S (&#8220;serial&#8221;) or a P (&#8220;parallel&#8221;). Definition of these terms,
-as well as the procedure for calculating the distance from an
-arbitrary placement on the tree to any edge is as follows.</p>
-<p>A placement on an edge looks like this:</p>
-<div class="highlight-python"><pre>proximal
- |
- |   d_p
- |
- |---- x
- |
- |   d_d
- |
- |
-distal</pre>
-</div>
-<p>d<sub>p</sub> is the distance from the placement <cite>x</cite> to the proximal side of the
-edge, and d<sub>d</sub> the distance to the distal side.</p>
-<p>If the distance from <cite>x</cite> to a leaf <cite>y</cite> is an S-distance Q, then the path
-from <cite>x</cite> to <cite>y</cite> will go through the distal side of the edge and we will
-need to add d<sub>d</sub> to Q to get the distance from <cite>x</cite> to <cite>y</cite>.  If the distance
-from <cite>x</cite> to a leaf <cite>y</cite> is a P-distance Q, then the path from <cite>x</cite> to <cite>y</cite> will
-go through the proximal side of the edge, and we will need to subtract
-d<sub>d</sub> from Q to get the distance from <cite>x</cite> to <cite>y</cite>. In either case, we
-always need to add the length of the pendant edge, which is the second
-column.</p>
-<p>To review, say the values of the two leftmost columns are a and b for
-a given placement <cite>x</cite>, and that it is on an edge <cite>i</cite>.  We are interested
-in the distance of <cite>x</cite> to a leaf <cite>y</cite>, which is on edge <cite>j</cite>.  We look at the
-distance matrix, entry (<cite>i</cite>, <cite>j</cite>), and say it is an S-distance Q. Then our
-distance is Q+a+b.  If it is a P-distance Q, then the distance is
-Q-a+b.</p>
-<p>The distances between leaves should always be P-distances, and there
-we need no trickery.</p>
 </div>
 </div>
 
@@ -168,13 +174,13 @@ we need no trickery.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="rppr_min_adcl_tree.html" title="min_adcl_tree"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="rppr_info.html" title="info"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
-          <li><a href="guppy.html" >guppy</a> &raquo;</li> 
+          <li><a href="rppr.html" >rppr</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

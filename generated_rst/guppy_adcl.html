@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>distmat &mdash; pplacer 1.1 documentation</title>
+    <title>adcl &mdash; pplacer 1.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="edpl" href="guppy_edpl.html" />
-    <link rel="prev" title="demulti" href="guppy_demulti.html" /> 
+    <link rel="next" title="bary" href="guppy_bary.html" />
+    <link rel="prev" title="guppy" href="guppy.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="guppy_bary.html" title="bary"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy.html" title="guppy"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -51,7 +51,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">distmat</a><ul>
+<li><a class="reference internal" href="#">adcl</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -59,14 +59,14 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_demulti.html"
-                        title="previous chapter">demulti</a></p>
+  <p class="topless"><a href="guppy.html"
+                        title="previous chapter">guppy</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="guppy_edpl.html"
-                        title="next chapter">edpl</a></p>
+  <p class="topless"><a href="guppy_bary.html"
+                        title="next chapter">bary</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_distmat.txt"
+    <li><a href="../_sources/generated_rst/guppy_adcl.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -90,10 +90,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="distmat">
-<span id="guppy-distmat"></span><h1>distmat<a class="headerlink" href="#distmat" title="Permalink to this headline">¶</a></h1>
-<p><cite>distmat</cite> prints out a pairwise distance matrix between the edges.</p>
-<div class="highlight-python"><pre>usage: distmat -o my.tab placefile[s]</pre>
+  <div class="section" id="adcl">
+<span id="guppy-adcl"></span><h1>adcl<a class="headerlink" href="#adcl" title="Permalink to this headline">¶</a></h1>
+<p><cite>adcl</cite> calculates ADCL for each pquery in a placefile.</p>
+<div class="highlight-python"><pre>usage: adcl [options] placefile</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -101,6 +101,22 @@
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--pp</span></kbd></td>
+<td>Use posterior probability for the weight.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--min-distance</span></kbd></td>
+<td>Specify the minimum distance to leaves to report</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--max-matches</span></kbd></td>
+<td>Only report the deepest N placements</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--include-pendant</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Include pendant branch lengths in distance calculations.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-collapse</span></kbd></td>
+<td>List all of the names per pquery instead of just one.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">-o</span></kbd></td>
 <td>Specify the filename to write to.</td></tr>
@@ -110,48 +126,24 @@
 <tr><td class="option-group">
 <kbd><span class="option">--prefix</span></kbd></td>
 <td>Specify a string to be prepended to filenames.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-csv</span></kbd></td>
+<td>Output the results as a padded matrix instead of csv.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand provides distances calculated as the sum of branch
-lengths between all pairs of edges in a reference tree. The format of
-the output is a lower-triangular matrix of pairwise distances, in
-which margins correspond to edge numbers. Each distance is prefixed by
-either an S (&#8220;serial&#8221;) or a P (&#8220;parallel&#8221;). Definition of these terms,
-as well as the procedure for calculating the distance from an
-arbitrary placement on the tree to any edge is as follows.</p>
-<p>A placement on an edge looks like this:</p>
-<div class="highlight-python"><pre>proximal
- |
- |   d_p
- |
- |---- x
- |
- |   d_d
- |
- |
-distal</pre>
+<p>This subcommand spits out a three column CSV file such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GLKT0ZE02ICPDW</span><span class="p">,</span><span class="mf">0.243279</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">GLKT0ZE02GLVHA</span><span class="p">,</span><span class="mf">0.243157</span><span class="p">,</span><span class="mi">3</span>
+<span class="n">GLKT0ZE02HFAHN</span><span class="p">,</span><span class="mf">0.242753</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">GLKT0ZE02GI5BZ</span><span class="p">,</span><span class="mf">0.032986</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">GLKT0ZE02F6DFD</span><span class="p">,</span><span class="mf">0.023905</span><span class="p">,</span><span class="mi">2</span>
+</pre></div>
 </div>
-<p>d<sub>p</sub> is the distance from the placement <cite>x</cite> to the proximal side of the
-edge, and d<sub>d</sub> the distance to the distal side.</p>
-<p>If the distance from <cite>x</cite> to a leaf <cite>y</cite> is an S-distance Q, then the path
-from <cite>x</cite> to <cite>y</cite> will go through the distal side of the edge and we will
-need to add d<sub>d</sub> to Q to get the distance from <cite>x</cite> to <cite>y</cite>.  If the distance
-from <cite>x</cite> to a leaf <cite>y</cite> is a P-distance Q, then the path from <cite>x</cite> to <cite>y</cite> will
-go through the proximal side of the edge, and we will need to subtract
-d<sub>d</sub> from Q to get the distance from <cite>x</cite> to <cite>y</cite>. In either case, we
-always need to add the length of the pendant edge, which is the second
-column.</p>
-<p>To review, say the values of the two leftmost columns are a and b for
-a given placement <cite>x</cite>, and that it is on an edge <cite>i</cite>.  We are interested
-in the distance of <cite>x</cite> to a leaf <cite>y</cite>, which is on edge <cite>j</cite>.  We look at the
-distance matrix, entry (<cite>i</cite>, <cite>j</cite>), and say it is an S-distance Q. Then our
-distance is Q+a+b.  If it is a P-distance Q, then the distance is
-Q-a+b.</p>
-<p>The distances between leaves should always be P-distances, and there
-we need no trickery.</p>
+<p>where the first column is placement name, second column is distance to closest leaf, and third column is multiplicity.
+Pqueries are sorted by distance to leaf.</p>
 </div>
 </div>
 
@@ -168,10 +160,10 @@ we need no trickery.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_edpl.html" title="edpl"
+          <a href="guppy_bary.html" title="bary"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_demulti.html" title="demulti"
+          <a href="guppy.html" title="guppy"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 

@@ -172,13 +172,13 @@ guppy subcommand:
 ========================================  ============================================================================
                                  Command                                                                   Description
 ========================================  ============================================================================
+                :ref:`adcl <guppy_adcl>`                                calculates ADCL for each pquery in a placefile
                 :ref:`bary <guppy_bary>`          draws the barycenter of a placement collection on the reference tree
               :ref:`check <guppy_check>`                                         checks placefiles for common problems
         :ref:`classify <guppy_classify>`              outputs classification information in a tabular or SQLite format
 :ref:`classify_rdp <guppy_classify_rdp>`             converts RDP output to something resembling guppy classify output
         :ref:`compress <guppy_compress>`                                             compresses a placefile's pqueries
           :ref:`demulti <guppy_demulti>`          splits apart placements with multiplicity, undoing a round procedure
-            :ref:`diplac <guppy_diplac>`                             finds the most DIstant PLACements from the leaves
           :ref:`distmat <guppy_distmat>`                       prints out a pairwise distance matrix between the edges
                 :ref:`edpl <guppy_edpl>`           calculates the EDPL uncertainty values for a collection of pqueries
               :ref:`error <guppy_error>`                                        finds the error between two placefiles
