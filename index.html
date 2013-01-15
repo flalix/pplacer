@@ -51,7 +51,6 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
-<li><a class="reference internal" href="#compiling-pplacer">Compiling pplacer</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +119,11 @@ The pplacer binary actually does phylogenetic placement and produces place files
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling pplacer from source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compiling.html#opam">OPAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compiling.html#building-pplacer">Building <tt class="docutils literal"><span class="pre">pplacer</span></tt></a></li>
+</ul>
+</li>
 </ul>
 </div>
 <h2> <font color="red">Warning</font> </h2><p>pplacer is under heavy development, and not all parts are at the same level of maturity.
@@ -165,26 +169,6 @@ Martin Morgan,
 and
 Sujatha Srivnasan
 for their suggestions.</p>
-</div>
-<div class="section" id="compiling-pplacer">
-<h2>Compiling pplacer<a class="headerlink" href="#compiling-pplacer" title="Permalink to this headline">¶</a></h2>
-<p>We provide binaries on the <a class="reference external" href="http://matsen.fhcrc.org/pplacer/">main pplacer site</a> and encourage their use.
-However, for those who want to be on the bleeding edge of development, here are instructions and scripts for setting up a compilation environment.</p>
-<p>The first step is to install the GNU Scientific Library (GSL).
-It may well already be installed (you can check by running
-<tt class="docutils literal"><span class="pre">gsl-config</span> <span class="pre">--prefix</span></tt>) or you can install it with your OS&#8217;s package manager.
-Or compile it from source:</p>
-<div class="highlight-python"><pre>wget ftp://mirrors.kernel.org/gnu/gsl/gsl-1.13.tar.gz &amp;&amp; \
-tar -xzf gsl-1.13.tar.gz &amp;&amp; \
-cd gsl-1.13 &amp;&amp; \
-./configure &amp;&amp; \
-make &amp;&amp; make install</pre>
-</div>
-<p>Once GSL is installed, you should be able
-to download <a class="reference external" href="_static/install_pplacer.sh">this installation script</a> and just type
-<tt class="docutils literal"><span class="pre">sh</span> <span class="pre">install_pplacer.sh</span></tt>.</p>
-<p>Now the binaries should be in the <tt class="docutils literal"><span class="pre">pplacer*/bin</span></tt> directory. Put them in your
-path and you are ready to go!</p>
 </div>
 </div>
 
