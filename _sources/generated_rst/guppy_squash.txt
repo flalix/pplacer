@@ -28,9 +28,11 @@ Options
 -p  Exponent for KR integration, i.e. value of p in Z_p. Default 1.
 --normalize  Divide KR by a given value. Legal arguments are "tree-length".
 --bootstrap  the number of bootstrap replicates to run
+-j  The number of processes to spawn to do bootstrapping. default: 2
 --tax-cluster  Perform taxonomic clustering rather than phylogenetic.Specify "unit" or "inv" for the two different modes.
 --pre-round  Apply rounding with 3 sig figs and cutoff 0.01 to each
                      placerun before clustering
+--unitize  Unitize masses after bootstrap resampling
 
 Details
 =======

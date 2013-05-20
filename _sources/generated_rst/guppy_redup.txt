@@ -20,6 +20,7 @@ Options
 --prefix  Specify a string to be prepended to filenames.
 -d  The dedup file to use to restore duplicates.
 -m  If specified, redup with counts instead of a name list.
+--as-mass  If specified, add mass instead of names to each pquery.
 
 Details
 =======

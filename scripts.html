@@ -60,6 +60,11 @@
 <li><a class="reference internal" href="#update-refpkg-py"><tt class="docutils literal"><span class="pre">update_refpkg.py</span></tt></a></li>
 <li><a class="reference internal" href="#check-placements-py"><tt class="docutils literal"><span class="pre">check_placements.py</span></tt></a></li>
 <li><a class="reference internal" href="#deduplicate-sequences-py"><tt class="docutils literal"><span class="pre">deduplicate_sequences.py</span></tt></a></li>
+<li><a class="reference internal" href="#pca-for-qiime-py"><tt class="docutils literal"><span class="pre">pca_for_qiime.py</span></tt></a></li>
+<li><a class="reference internal" href="#extract-taxonomy-from-biom-py"><tt class="docutils literal"><span class="pre">extract_taxonomy_from_biom.py</span></tt></a></li>
+<li><a class="reference internal" href="#hrefpkg-query-py"><tt class="docutils literal"><span class="pre">hrefpkg_query.py</span></tt></a></li>
+<li><a class="reference internal" href="#multiclass-concat-py"><tt class="docutils literal"><span class="pre">multiclass_concat.py</span></tt></a></li>
+<li><a class="reference internal" href="#split-qiime-py"><tt class="docutils literal"><span class="pre">split_qiime.py</span></tt></a></li>
 </ul>
 </li>
 </ul>
@@ -230,6 +235,102 @@ parameter and updates it in place, after making a backup copy.</p>
 <p><tt class="docutils literal"><span class="pre">deduplicate_sequences.py</span></tt> deduplicates a sequence file and produces a dedup
 file suitable for use with <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">redup</span> <span class="pre">-m</span></tt>. See the
 <a class="reference internal" href="generated_rst/guppy_redup.html#guppy-redup"><em>redup</em></a> documentation for details.</p>
+</div>
+<div class="section" id="pca-for-qiime-py">
+<h2><tt class="docutils literal"><span class="pre">pca_for_qiime.py</span></tt><a class="headerlink" href="#pca-for-qiime-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">pca_for_qiime.py</span></tt> converts the <tt class="docutils literal"><span class="pre">trans</span></tt> file output by <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">pca</span></tt> into
+the tab-delimited format expected by QIIME&#8217;s plotting functions.</p>
+<div class="highlight-python"><pre>usage: pca_for_qiime.py [-h] trans tsv</pre>
+</div>
+</div>
+<div class="section" id="extract-taxonomy-from-biom-py">
+<h2><tt class="docutils literal"><span class="pre">extract_taxonomy_from_biom.py</span></tt><a class="headerlink" href="#extract-taxonomy-from-biom-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">extract_taxonomy_from_biom.py</span></tt> extracts the taxonomy information from a BIOM
+file, producing seqinfo and taxonomy files which can then be placed into a
+reference package.</p>
+<div class="highlight-python"><pre>usage: extract_taxonomy_from_biom.py [-h] biom taxtable seqinfo</pre>
+</div>
+</div>
+<div class="section" id="hrefpkg-query-py">
+<h2><tt class="docutils literal"><span class="pre">hrefpkg_query.py</span></tt><a class="headerlink" href="#hrefpkg-query-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">hrefpkg_query.py</span></tt> classifies sequences using a hrefpkg. The output is a
+sqlite database with the same schema as created by <a class="reference internal" href="generated_rst/rppr_prep_db.html#rppr-prep-db"><em>rppr prep_db</em></a>.</p>
+<div class="highlight-python"><pre>usage: hrefpkg_query.py [options] hrefpkg query_seqs classification_db
+
+positional arguments:
+  hrefpkg               hrefpkg to classify using
+  query_seqs            input query sequences
+  classification_db     output sqlite database
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -j CORES, --ncores CORES
+                        number of cores to tell commands to use
+  -r RANK, --classification-rank RANK
+                        rank to perform the initial NBC classification at
+  --workdir DIR         directory to write intermediate files to (default: a
+                        temporary directory)
+  --disable-cleanup     don't remove the work directory as the final step
+  --use-mpi             run refpkg_align with MPI
+  --alignment {align-each,merge-each,none}
+                        respectively: align each input sequence; subset an
+                        input stockholm alignment and merge each sequence to a
+                        reference alignment; only subset an input stockholm
+                        alignment (default: align-each)
+  --cmscores FILE       in align-each mode, write out a file containing the
+                        cmalign scores
+
+external binaries:
+  --pplacer PROG        pplacer binary to call
+  --guppy PROG          guppy binary to call
+  --rppr PROG           rppr binary to call
+  --refpkg-align PROG   refpkg_align binary to call
+  --cmalign PROG        cmalign binary to call</pre>
+</div>
+</div>
+<div class="section" id="multiclass-concat-py">
+<h2><tt class="docutils literal"><span class="pre">multiclass_concat.py</span></tt><a class="headerlink" href="#multiclass-concat-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">multiclass_concat.py</span></tt> takes a database which has been classified using
+<a class="reference internal" href="generated_rst/guppy_classify.html#guppy-classify"><em>guppy classify</em></a> and creates a view
+<tt class="docutils literal"><span class="pre">multiclass_concat</span></tt>. This view has the same schema as <tt class="docutils literal"><span class="pre">multiclass</span></tt>, with
+the addition of an <tt class="docutils literal"><span class="pre">id_count</span></tt> column. However, instead of getting multiple
+rows when a sequence has multiple classifications at a rank, the <tt class="docutils literal"><span class="pre">tax_id</span></tt>
+column will be all of the tax_ids concatenated together, delimited by <tt class="docutils literal"><span class="pre">,</span></tt>.</p>
+<p>To ensure that it&#8217;s still easy to join <tt class="docutils literal"><span class="pre">multiclass_concat</span></tt> to the <tt class="docutils literal"><span class="pre">taxa</span></tt>
+table, rows are inserted into the <tt class="docutils literal"><span class="pre">taxa</span></tt> table for each concatenated tax_id
+present in the <tt class="docutils literal"><span class="pre">multiclass_concat</span></tt> table which have a <tt class="docutils literal"><span class="pre">tax_name</span></tt> created by
+concatenating the names of all the constituent tax_ids.</p>
+<div class="highlight-python"><pre>usage: multiclass_concat.py [options] database
+
+positional arguments:
+  database    sqlite database (output of `rppr prep_db` after `guppy
+              classify`)
+
+optional arguments:
+  -h, --help  show this help message and exit</pre>
+</div>
+</div>
+<div class="section" id="split-qiime-py">
+<h2><tt class="docutils literal"><span class="pre">split_qiime.py</span></tt><a class="headerlink" href="#split-qiime-py" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">split_qiime.py</span></tt> takes sequences in <a class="reference external" href="http://qiime.org/tutorials/tutorial.html#assign-samples-to-multiplex-reads">QIIME&#8217;s preprocessed FASTA format</a> and
+generates a FASTA file which contains the original sequence names. Optionally,
+a specimen map can also be written out which maps from the original sequence
+names to their specimens as listed in the QIIME file.</p>
+<p>For example, an incoming sequence identified by <tt class="docutils literal"><span class="pre">&gt;PC.634_1</span> <span class="pre">FLP3FBN01ELBSX</span></tt>
+will be written out as <tt class="docutils literal"><span class="pre">&gt;FLP3FBN01ELBSX</span></tt> with an entry in the specimen_map of
+<tt class="docutils literal"><span class="pre">FLP3FBN01ELBSX,PC.634</span></tt>.</p>
+<div class="highlight-python"><pre>usage: split_qiime.py [-h] [qiime] [fasta] [specimen_map]
+
+Extract the original sequence names from a QIIME FASTA file.
+
+positional arguments:
+  qiime         input QIIME file (default: stdin)
+  fasta         output FASTA file (default: stdout)
+  specimen_map  if specified, output specimen map (default: don't write)
+
+optional arguments:
+  -h, --help    show this help message and exit</pre>
+</div>
 </div>
 </div>
 

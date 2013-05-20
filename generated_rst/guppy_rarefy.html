@@ -116,12 +116,16 @@
 <tr><td class="option-group">
 <kbd><span class="option">-n</span></kbd></td>
 <td>The number of pqueries to keep per placefile.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--weight-as-count</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Interpret (integer) weights on pqueries as counts and sample without replacement.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Rarefaction <em>with replacement</em>, which is a natural consequence of allowing floating point multiplicities.</p>
+<p>Rarefaction <em>with replacement</em>, which is necessary because we allow floating point multiplicities.</p>
 </div>
 </div>
 

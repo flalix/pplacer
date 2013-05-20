@@ -28,7 +28,7 @@
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="rarefy" href="guppy_rarefy.html" />
-    <link rel="prev" title="pca" href="guppy_pca.html" /> 
+    <link rel="prev" title="placemat" href="guppy_placemat.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="guppy_rarefy.html" title="rarefy"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_pca.html" title="pca"
+          <a href="guppy_placemat.html" title="placemat"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -59,8 +59,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_pca.html"
-                        title="previous chapter">pca</a></p>
+  <p class="topless"><a href="guppy_placemat.html"
+                        title="previous chapter">placemat</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="guppy_rarefy.html"
                         title="next chapter">rarefy</a></p>
@@ -116,13 +116,31 @@
 <tr><td class="option-group">
 <kbd><span class="option">--csv</span></kbd></td>
 <td>Output the results as csv instead of a padded matrix.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--variance</span></kbd></td>
+<td>Calculate variance of phylogenetic entropy.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--weight-as-count</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Interpret (integer) weights on pqueries as counts.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-k</span></kbd></td>
+<td>The highest value of k to calculate.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
 <p>Calculate phylogenetic rarefaction curves.</p>
-<p><em>Experimental.</em></p>
+<p>For every <span class="math">k \in [2, n]</span>, where n is the number of pqueries in a
+placefile, subsample the given placefile to contain every combination of
+<span class="math">k</span> pqueries and calculate the mean and variance of phylogenetic divesity
+for all of these subsampled placefiles.</p>
+<p>The <tt class="docutils literal"><span class="pre">rooted_mean</span></tt> and <tt class="docutils literal"><span class="pre">rooted_variance</span></tt> columns are respectively the mean
+and variance of the phylogenetic diversity only requiring mass on the distal
+side of the edge (which normally requires mass proximal and distal to the
+edge).</p>
+<p>For more details, see <a class="reference external" href="http://arxiv.org/abs/1208.6552">Nipperess and Matsen</a>.</p>
 </div>
 </div>
 
@@ -142,7 +160,7 @@
           <a href="guppy_rarefy.html" title="rarefy"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_pca.html" title="pca"
+          <a href="guppy_placemat.html" title="placemat"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 

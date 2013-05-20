@@ -148,18 +148,18 @@
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>This subcommand will filter placements in one or more placefiles. Placements
-can be filtered either by name or by tax_id.</p>
-<p>By default, all placements present in any input file will be present in the
+<p>This subcommand will filter pqueries in one or more placefiles. Placements can
+be filtered either by name or by tax_id.</p>
+<p>By default, all pqueries present in any input file will be present in the
 output file. In this case, adding <em class="xref std std-option">-Er</em> or <em class="xref std std-option">-Ex</em> flags will
-cause placements to be excluded from the output if they match any of the
-provided regexps or tax_ids. Adding <em class="xref std std-option">-Ir</em> or <em class="xref std std-option">-Ix</em> flags will
-re-add any placements which would have otherwise been excluded.</p>
+cause pqueries to be excluded from the output if they match any of the provided
+regexps or tax_ids. Adding <em class="xref std std-option">-Ir</em> or <em class="xref std std-option">-Ix</em> flags will re-add any
+pqueries which would have otherwise been excluded.</p>
 <p>If the options <em class="xref std std-option">-Vr</em> or <em class="xref std std-option">-Vx</em> are provided, the default will
-instead be to exclude all placements, unless (respectively) <em class="xref std std-option">-Ir</em> or
+instead be to exclude all pqueries, unless (respectively) <em class="xref std std-option">-Ir</em> or
 <em class="xref std std-option">-Ix</em> are provided to include (respectively) specific placement names
 or tax_ids. In this case, adding <em class="xref std std-option">-Er</em> or <em class="xref std std-option">-Ex</em> flags will
-exclude placements which would have otherwise been included.</p>
+exclude pqueries which would have otherwise been included.</p>
 <p>Whether or not <em class="xref std std-option">-Vr</em> or <em class="xref std std-option">-Vx</em> have been provided, a placement
 will be included or excluded if <em>any</em> (as opposed to <em>all</em>) of the provided
 inclusions or exclusions match.</p>
@@ -169,7 +169,7 @@ taxonomic data. The <cite>&#8211;cutoff`</cite> flag also controls whether <em c
 <em class="xref std std-option">-Ex</em> will match for a particular placement: neither flag will match
 unless the likelihood that the placement matches that tax_id is greater than
 the value provided for the <cite>&#8211;cutoff</cite> flag.</p>
-<p>Since placements can have multiple names, the <em class="xref std std-option">-Ir</em> and <em class="xref std std-option">-Er</em>
+<p>Since pqueries can have multiple names, the <em class="xref std std-option">-Ir</em> and <em class="xref std std-option">-Er</em>
 flags will filter the names a placement has. If a placement has had all of its
 names filtered out, it won&#8217;t be present in the output.</p>
 </div>

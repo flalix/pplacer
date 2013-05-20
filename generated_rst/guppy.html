@@ -57,8 +57,10 @@
 <li><a class="reference internal" href="#advanced-features">Advanced features</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#pqueries-versus-placements">Pqueries versus placements</a></li>
 <li><a class="reference internal" href="#about-multiplicities">About multiplicities</a></li>
 <li><a class="reference internal" href="#split-placefiles">&#8216;Split&#8217; placefiles</a></li>
+<li><a class="reference internal" href="#biom-files">BIOM files</a></li>
 <li><a class="reference internal" href="#phyloxml-viewing-notes">phyloXML viewing notes</a></li>
 </ul>
 </li>
@@ -129,12 +131,14 @@
 <li><a class="reference internal" href="#usage" id="id4">Usage</a><ul>
 <li><a class="reference internal" href="#command-line-interface" id="id5">Command line interface</a></li>
 <li><a class="reference internal" href="#batch-mode" id="id6">Batch mode</a></li>
-<li><a class="reference internal" href="#about-multiplicities" id="id7">About multiplicities</a></li>
-<li><a class="reference internal" href="#split-placefiles" id="id8">&#8216;Split&#8217; placefiles</a></li>
-<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id9">phyloXML viewing notes</a></li>
+<li><a class="reference internal" href="#pqueries-versus-placements" id="id7">Pqueries versus placements</a></li>
+<li><a class="reference internal" href="#about-multiplicities" id="id8">About multiplicities</a></li>
+<li><a class="reference internal" href="#split-placefiles" id="id9">&#8216;Split&#8217; placefiles</a></li>
+<li><a class="reference internal" href="#biom-files" id="id10">BIOM files</a></li>
+<li><a class="reference internal" href="#phyloxml-viewing-notes" id="id11">phyloXML viewing notes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#list-of-subcommands" id="id10">List of subcommands</a></li>
+<li><a class="reference internal" href="#list-of-subcommands" id="id12">List of subcommands</a></li>
 </ul>
 </li>
 </ul>
@@ -146,8 +150,8 @@ There is a gentle introduction in <a class="reference external" href="http://arx
 <p>Here&#8217;s a table to demonstrate the relation of <tt class="docutils literal"><span class="pre">guppy</span></tt> concepts to ones which may be more familiar to the reader:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="45%" />
-<col width="55%" />
+<col width="30%" />
+<col width="70%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">familiar concept</th>
@@ -164,6 +168,9 @@ There is a gentle introduction in <a class="reference external" href="http://arx
 <tr class="row-even"><td>PCA using UniFrac</td>
 <td>Edge PCA (<a class="reference external" href="guppy_pca.html">pca</a>)</td>
 </tr>
+<tr class="row-odd"><td>OTU alpha diversity</td>
+<td>Abundance-weighted phylogenetic diversity measures (<a class="reference external" href="guppy_fpd.html">fpd</a>)</td>
+</tr>
 </tbody>
 </table>
 <p>This table does not show equivalences, but rather a list of hints for further exploration.
@@ -172,7 +179,7 @@ The heat tree (<a class="reference external" href="guppy_kr_heat.html">kr_heat</
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#id4">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">guppy</span></tt> does lots of different things&#8211; it makes heat trees, makes matrices of Kantorovich-Rubinstein distances, does its own version of PCA, etc.
+<p><tt class="docutils literal"><span class="pre">guppy</span></tt> does lots of different things&#8211; it makes heat trees, makes matrices of Kantorovich-Rubinstein distances, does edge PCA, etc.
 Each of these have their own options.
 Rather than make a suite of little programs, we have opted for an interface analogous to git and svn: namely, a collection of different actions wrapped up into a single interface.</p>
 <p>There are two ways to access the commands&#8211; through the command line interface, and through the batch mode.
@@ -235,8 +242,16 @@ identifiers in <tt class="docutils literal"><span class="pre">{key}</span></tt> 
 <p>Braces can also be quoted by doubling (e.g. <tt class="docutils literal"><span class="pre">{{foo}}</span></tt> will become <tt class="docutils literal"><span class="pre">{foo}</span></tt>).</p>
 </div>
 </div>
+<div class="section" id="pqueries-versus-placements">
+<h3><a class="toc-backref" href="#id7">Pqueries versus placements</a><a class="headerlink" href="#pqueries-versus-placements" title="Permalink to this headline">¶</a></h3>
+<p>One of the key features of pplacer is that it is able to express uncertainty concerning placement in a reasonable manner.
+Specifically, if there is uncertainty in a given read&#8217;s optimal placement, it returns a collection of placements that are weighted according to likelihood weight or posterior probability.
+This feature requires a bit of additional wording.
+We will use &#8220;pquery&#8221; to denote a &#8220;placed query (sequence)&#8221;, i.e. the collection of weighted placements for a sequence.
+&#8220;Placement,&#8221; on the other hand, signifies a single location on a tree along with its optimal pendant branch length.</p>
+</div>
 <div class="section" id="about-multiplicities">
-<h3><a class="toc-backref" href="#id7">About multiplicities</a><a class="headerlink" href="#about-multiplicities" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">About multiplicities</a><a class="headerlink" href="#about-multiplicities" title="Permalink to this headline">¶</a></h3>
 <p>pplacer and guppy support &#8220;multiplicities,&#8221; i.e. multiple reads being treated as one.
 For example, if some reads are identical, they can be treated as a group.
 Doing so makes guppy operations <em>much</em> faster.</p>
@@ -245,7 +260,7 @@ However, if one would like to decrease the impact of multiplicities on downstrea
 Doing so will convert your placements into labeled masses.</p>
 </div>
 <div class="section" id="split-placefiles">
-<span id="id1"></span><h3><a class="toc-backref" href="#id8">&#8216;Split&#8217; placefiles</a><a class="headerlink" href="#split-placefiles" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h3><a class="toc-backref" href="#id9">&#8216;Split&#8217; placefiles</a><a class="headerlink" href="#split-placefiles" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s often convenient to split up place files in all sorts of ways, but it&#8217;s nice not to have to duplicate the information in the placefiles multiple times.
 For that reason, we have introduced &#8220;split&#8221; placefiles.
 The syntax for these is <tt class="docutils literal"><span class="pre">my.jplace:my.csv</span></tt>, where the CSV file maps from query sequence names to the split placefile name.
@@ -258,24 +273,39 @@ For example, say <tt class="docutils literal"><span class="pre">my.csv</span></t
 Then <tt class="docutils literal"><span class="pre">my.jplace:my.csv</span></tt> would act like a list of two placefiles named a and b, with read1 and read2, respectively.
 Not every placement name in the place file needs to appear in the CSV file, so you can use this for subsetting.</p>
 </div>
+<div class="section" id="biom-files">
+<h3><a class="toc-backref" href="#id10">BIOM files</a><a class="headerlink" href="#biom-files" title="Permalink to this headline">¶</a></h3>
+<p>Any command which expects a placefile (in both guppy and rppr) can also be
+given a <a class="reference external" href="http://biom-format.org/">BIOM file</a>. As BIOM files (unlike placefiles) do not contain a tree,
+it must be passed at the same time, with a colon delimiting the two paths. For
+example, to run <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">info</span></tt> on <tt class="docutils literal"><span class="pre">my.biom</span></tt> with a tree <tt class="docutils literal"><span class="pre">my.tre</span></tt>, the
+invocation would be <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">info</span> <span class="pre">my.tre:my.biom</span></tt>. Trees must be in the Newick
+format.</p>
+<p>As the BIOM format describes counts at leaves, the placements generated by
+parsing a BIOM file will all have zero distal branch length and zero pendant
+branch length.</p>
+<p>BIOM files will also automatically be split by sample. If a BIOM file has
+columns <tt class="docutils literal"><span class="pre">Sample1</span></tt> and <tt class="docutils literal"><span class="pre">Sample2</span></tt>, that file will be interpreted as two
+placefiles, named respectively <tt class="docutils literal"><span class="pre">Sample1</span></tt> and <tt class="docutils literal"><span class="pre">Sample2</span></tt>.</p>
+</div>
 <div class="section" id="phyloxml-viewing-notes">
-<h3><a class="toc-backref" href="#id9">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">phyloXML viewing notes</a><a class="headerlink" href="#phyloxml-viewing-notes" title="Permalink to this headline">¶</a></h3>
 <p><tt class="docutils literal"><span class="pre">guppy</span></tt> makes fattened and annotated trees to visualize the results of various analyses.
 We have chosen to use phyloXML as the format for these trees, as it has width and color tags for edges; if you see .xml files coming out of a guppy analysis that&#8217;s what they are for.
 We like looking at these trees using the tree viewer <a class="reference external" href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a>.
-If you open archaeopteryx with the default settings, you will see <em>nothing interesting</em>, simply the reference tree.
+If you open archaeopteryx with the default settings, you will see <em>nothing interesting</em>: simply the reference tree.
 You need to click on the &#8220;Colorize Branches&#8221; and &#8220;Use branch-width&#8221; check boxes.
-If you don&#8217;t see those check boxes, then use <a class="reference external" href="http://github.com/fhcrc/microbiome-demo/blob/master/bin/_aptx_configuration_file">this configuration file</a> (if you are going to copy and paste it click on &#8220;raw&#8221; first).</p>
+If you don&#8217;t see those check boxes, then use <a class="reference external" href="https://github.com/fhcrc/microbiome-demo/blob/master/bin/_aptx_configuration_file">this configuration file</a> (if you are going to copy and paste it click on &#8220;raw&#8221; first).</p>
 </div>
 </div>
 <div class="section" id="list-of-subcommands">
-<h2><a class="toc-backref" href="#id10">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">List of subcommands</a><a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h2>
 <p>The following table provides links to more in-depth documentation for each
 guppy subcommand:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="34%" />
-<col width="66%" />
+<col width="30%" />
+<col width="70%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Command</th>
@@ -293,22 +323,22 @@ guppy subcommand:</p>
 <td>checks placefiles for common problems</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="guppy_classify.html#guppy-classify"><em>classify</em></a></td>
-<td>outputs classification information in a tabular or SQLite format</td>
+<td>outputs classification information in SQLite format</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="guppy_classify_rdp.html#guppy-classify-rdp"><em>classify_rdp</em></a></td>
-<td>converts RDP output to something resembling guppy classify output</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="guppy_compress.html#guppy-compress"><em>compress</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="guppy_compress.html#guppy-compress"><em>compress</em></a></td>
 <td>compresses a placefile&#8217;s pqueries</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="guppy_demulti.html#guppy-demulti"><em>demulti</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_demulti.html#guppy-demulti"><em>demulti</em></a></td>
 <td>splits apart placements with multiplicity, undoing a round procedure</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="guppy_distmat.html#guppy-distmat"><em>distmat</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="guppy_distmat.html#guppy-distmat"><em>distmat</em></a></td>
 <td>prints out a pairwise distance matrix between the edges</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="guppy_edpl.html#guppy-edpl"><em>edpl</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_edpl.html#guppy-edpl"><em>edpl</em></a></td>
 <td>calculates the EDPL uncertainty values for a collection of pqueries</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="guppy_epca.html#guppy-epca"><em>epca</em></a></td>
+<td>performs edge principal components</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="guppy_error.html#guppy-error"><em>error</em></a></td>
 <td>finds the error between two placefiles</td>
@@ -325,17 +355,23 @@ guppy subcommand:</p>
 <tr class="row-odd"><td><a class="reference internal" href="guppy_heat.html#guppy-heat"><em>heat</em></a></td>
 <td>maps an an arbitrary vector of the correct length to the tree</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="guppy_info.html#guppy-info"><em>info</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="guppy_indep_c.html#guppy-indep-c"><em>indep_c</em></a></td>
+<td>calculates the independent contrasts of pqueries</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_info.html#guppy-info"><em>info</em></a></td>
 <td>writes the number of leaves of the reference tree and the number of pqueries</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="guppy_islands.html#guppy-islands"><em>islands</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="guppy_islands.html#guppy-islands"><em>islands</em></a></td>
 <td>finds the mass islands of one or more pqueries</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="guppy_kr.html#guppy-kr"><em>kr</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_kr.html#guppy-kr"><em>kr</em></a></td>
 <td>calculates the Kantorovich-Rubinstein distance and corresponding p-values</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="guppy_kr_heat.html#guppy-kr-heat"><em>kr_heat</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="guppy_kr_heat.html#guppy-kr-heat"><em>kr_heat</em></a></td>
 <td>makes a heat tree</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_mcl.html#guppy-mcl"><em>mcl</em></a></td>
+<td>cluster pqueries</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="guppy_merge.html#guppy-merge"><em>merge</em></a></td>
 <td>merges placefiles together</td>
@@ -346,8 +382,8 @@ guppy subcommand:</p>
 <tr class="row-even"><td><a class="reference internal" href="guppy_ograph.html#guppy-ograph"><em>ograph</em></a></td>
 <td>finds the mass islands of one or more pqueries</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="guppy_pca.html#guppy-pca"><em>pca</em></a></td>
-<td>performs edge principal components</td>
+<tr class="row-odd"><td><a class="reference internal" href="guppy_placemat.html#guppy-placemat"><em>placemat</em></a></td>
+<td>prints out a pairwise distance matrix between placements</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="guppy_rarefact.html#guppy-rarefact"><em>rarefact</em></a></td>
 <td>calculates phylogenetic rarefaction curves</td>

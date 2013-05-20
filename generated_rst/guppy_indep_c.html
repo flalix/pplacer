@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>fpd &mdash; pplacer 1.1 documentation</title>
+    <title>indep_c &mdash; pplacer 1.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
-    <link rel="next" title="heat" href="guppy_heat.html" />
-    <link rel="prev" title="filter" href="guppy_filter.html" /> 
+    <link rel="next" title="info" href="guppy_info.html" />
+    <link rel="prev" title="heat" href="guppy_heat.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="guppy_heat.html" title="heat"
+          <a href="guppy_info.html" title="info"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="guppy_filter.html" title="filter"
+          <a href="guppy_heat.html" title="heat"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
@@ -51,7 +51,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">fpd</a><ul>
+<li><a class="reference internal" href="#">indep_c</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#details">Details</a></li>
 </ul>
@@ -59,14 +59,14 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="guppy_filter.html"
-                        title="previous chapter">filter</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="guppy_heat.html"
-                        title="next chapter">heat</a></p>
+                        title="previous chapter">heat</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="guppy_info.html"
+                        title="next chapter">info</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/generated_rst/guppy_fpd.txt"
+    <li><a href="../_sources/generated_rst/guppy_indep_c.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -90,10 +90,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="fpd">
-<span id="guppy-fpd"></span><h1>fpd<a class="headerlink" href="#fpd" title="Permalink to this headline">¶</a></h1>
-<p><cite>fpd</cite> calculates various alpha diversity metrics of placefiles.</p>
-<div class="highlight-python"><pre>usage: fpd [options] placefile[s]</pre>
+  <div class="section" id="indep-c">
+<span id="guppy-indep-c"></span><h1>indep_c<a class="headerlink" href="#indep-c" title="Permalink to this headline">¶</a></h1>
+<p><cite>indep_c</cite> calculates the independent contrasts of pqueries.</p>
+<div class="highlight-python"><pre>usage: indep_c [options] placefile[s]</pre>
 </div>
 <div class="section" id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
@@ -117,37 +117,39 @@
 <kbd><span class="option">--csv</span></kbd></td>
 <td>Output the results as csv instead of a padded matrix.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--theta</span></kbd></td>
-<td>A comma-separated list of additional exponents to use for calculating bwpd.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--chao-d</span></kbd></td>
-<td>A comma-separated list of additional exponents to use for calculating qD(T).</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--include-pendant</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Consider pendant branch length in diversity calculations.</td></tr>
+<kbd><span class="option">--leaf-values</span></kbd></td>
+<td>Name of CSV file giving values for the leaves of the tree.</td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>By default, <tt class="docutils literal"><span class="pre">guppy</span> <span class="pre">fpd</span></tt> outputs a matrix containing in each row: the
-placefile name, the phylogenetic entropy (<tt class="docutils literal"><span class="pre">phylo_entropy</span></tt>, <a class="reference external" href="http://dx.doi.org/10.1086/600101">Allen 2009</a>),
-the quadratic entropy (<tt class="docutils literal"><span class="pre">quadratic</span></tt>, <a class="reference external" href="http://dx.doi.org/10.1016/0040-5809(82)90004-1">Rao 1982</a>, <a class="reference external" href="http://dx.doi.org/10.3354/meps129301">Warwick and Clark 1995</a>)
-phylogenetic diversity (<tt class="docutils literal"><span class="pre">unrooted_pd</span></tt>, <a class="reference external" href="http://dx.doi.org/10.1016/0006-3207(92)91201-3">Faith 1992</a>), phylogenetic diversity
-which only requires distal mass (<tt class="docutils literal"><span class="pre">rooted_pd</span></tt>, this is as oppposed to <tt class="docutils literal"><span class="pre">pd</span></tt>
-requiring both distal and proximal mass), and a new diversity metric
-generalizing PD to incorporate abundance: balance-weighted phylogenetic
-diversity (<tt class="docutils literal"><span class="pre">bwpd</span></tt>).</p>
-<p>When passed a <tt class="docutils literal"><span class="pre">--theta</span></tt> flag and a comma-delimited list of values for
-<tt class="docutils literal"><span class="pre">theta</span></tt>, a one-parameter family of functions is used to calculate a diversity
-measure that scales the incorporation of abundance from traditional
-phylogenetic diversity (at theta = 0.0) to abundance-weighted phylogenetic
-diversity (at theta = 1.0). A column labeled <tt class="docutils literal"><span class="pre">bwpd_[theta]</span></tt> is added to the
-output for each.</p>
-<p>When passed a <tt class="docutils literal"><span class="pre">--chao-d</span></tt> flag and a comma-delimited list of values for <tt class="docutils literal"><span class="pre">q</span></tt>,
-the <tt class="docutils literal"><span class="pre">qD(T)</span></tt> measure of <a class="reference external" href="http://dx.doi.org/10.1098/rstb.2010.0272">Chao 2010</a> is added to the output for each value of
-<tt class="docutils literal"><span class="pre">q</span></tt>.</p>
+<p>This is an implementation of the &#8220;independent contrasts&#8221; method of <a class="reference external" href="http://www.jstor.org/discover/10.2307/2461605">(Felsenstein, 1985)</a>.</p>
+<p>Assume we have the following pair of placements on a simple tree:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;tree&quot;</span><span class="p">:</span> <span class="s">&quot;((A:2{0},B:9{1}):7{2},C:5{3},D:1{4}):0{5};&quot;</span><span class="p">,</span> <span class="s">&quot;placements&quot;</span><span class="p">:</span>
+  <span class="p">[{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;read1&quot;</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s">&quot;p&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1309.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">]],</span> <span class="s">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;read2&quot;</span><span class="p">]}</span>
+  <span class="p">],</span> <span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;fields&quot;</span><span class="p">:</span>
+  <span class="p">[</span><span class="s">&quot;edge_num&quot;</span><span class="p">,</span> <span class="s">&quot;likelihood&quot;</span><span class="p">,</span> <span class="s">&quot;like_weight_ratio&quot;</span><span class="p">,</span> <span class="s">&quot;distal_length&quot;</span><span class="p">,</span>
+    <span class="s">&quot;pendant_length&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And that <tt class="docutils literal"><span class="pre">ic.csv</span></tt> is a (possibly partial) list of tip values as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">A</span><span class="p">,</span><span class="mi">3</span>
+<span class="n">B</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">D</span><span class="p">,</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Then, a run of <tt class="docutils literal"><span class="pre">indep_c</span></tt> will give you the maximum likelihood values of
+values at the tips assuming that the value changes by Brownian motion:</p>
+<div class="highlight-python"><pre>rhino2 ~/ic » guppy indep_c --leaf-values ic.csv ex.jplace
+sequence         x
+   read1   2.60377
+   read2  0.490566</pre>
+</div>
+<p>Note that <a class="reference internal" href="guppy_mft.html"><em>mft</em></a> has the <tt class="docutils literal"><span class="pre">--leaf-values</span></tt> option to divide the placement weights by these inferred values.</p>
 </div>
 </div>
 
@@ -164,10 +166,10 @@ the <tt class="docutils literal"><span class="pre">qD(T)</span></tt> measure of 
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="guppy_heat.html" title="heat"
+          <a href="guppy_info.html" title="info"
              >next</a> |</li>
         <li class="right" >
-          <a href="guppy_filter.html" title="filter"
+          <a href="guppy_heat.html" title="heat"
              >previous</a> |</li>
         <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 

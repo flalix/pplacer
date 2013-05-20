@@ -116,6 +116,9 @@
 <tr><td class="option-group">
 <kbd><span class="option">--transform</span></kbd></td>
 <td>A transform to apply to the read multiplicities before calculating. Options are &#8216;log&#8217;, &#8216;unit&#8217;, &#8216;asinh&#8217;, and &#8216;no_trans&#8217;. Default is no transform.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--leaf-values</span></kbd></td>
+<td>Name of CSV file giving values for the leaves of the tree to use in independent contrasts.</td></tr>
 </tbody>
 </table>
 </div>
@@ -129,6 +132,10 @@ output placefiles will have either mass or a name list depending on what the
 input placefiles had.</p>
 <p>To do nothing but transform the input placefiles to placefiles with mass
 instead of a name list, specify <tt class="docutils literal"><span class="pre">--transform</span> <span class="pre">no_trans</span></tt>.</p>
+<p>One can use the <tt class="docutils literal"><span class="pre">--leaf-values</span></tt> flag to correct for copy number. This flag
+runs the internals of <a class="reference internal" href="guppy_indep_c.html"><em>indep_c</em></a> and then divides the masses of the
+placements by the inferred value, which can be copy number if you supply
+<tt class="docutils literal"><span class="pre">--leaf-values</span></tt> with a CSV file of copy numbers for reference sequences.</p>
 </div>
 </div>
 

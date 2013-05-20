@@ -48,6 +48,7 @@
 <li><a class="reference internal" href="#">FAQ</a><ul>
 <li><a class="reference internal" href="#how-can-i-cite-pplacer">How can I cite pplacer?</a></li>
 <li><a class="reference internal" href="#why-is-pplacer-taking-up-so-much-memory">Why is pplacer taking up so much memory?</a></li>
+<li><a class="reference internal" href="#why-doesn-t-pplacer-output-a-newick-tree">Why doesn&#8217;t pplacer output a Newick tree?</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +83,7 @@
           <div class="body">
             
   <div class="section" id="faq">
-<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-can-i-cite-pplacer">
 <h2>How can I cite pplacer?<a class="headerlink" href="#how-can-i-cite-pplacer" title="Permalink to this headline">¶</a></h2>
 <p>Right now there is only one paper to cite:</p>
@@ -97,7 +98,7 @@
   publisher={BioMed Central Ltd}
 }</pre>
 </div>
-<p>At some point we will write something up for the new pplacer, guppy, taxtastic, etc., but right now the focus is on the software.</p>
+<p>At some point we will write something up for the new pplacer, guppy, taxtastic, etc., but if you use a method implemented in guppy (such as edge PCA) we hope you will cite the paper describing that method.</p>
 </div>
 <div class="section" id="why-is-pplacer-taking-up-so-much-memory">
 <h2>Why is pplacer taking up so much memory?<a class="headerlink" href="#why-is-pplacer-taking-up-so-much-memory" title="Permalink to this headline">¶</a></h2>
@@ -107,6 +108,18 @@ This is what makes it fast!</p>
 If your reads are short and in a fixed region, the memory used by pplacer v1.1 alpha08 (or later) scales with respect to the total number of non-gap columns in your query alignment.
 You can also make it use less memory (and run faster) by cutting down the size of your reference tree.</p>
 <p>Additionally, if you are placing metagenomic reads onto a very wide alignment (such as a concatenation) read about the <tt class="docutils literal"><span class="pre">--groups</span></tt> feature in the documentation.</p>
+<p>If all else fails, there is also a flag <tt class="docutils literal"><span class="pre">--mmap-file</span></tt> to pplacer. If this
+flag is passed, pplacer will use an mmapped file instead of making large
+allocations.</p>
+<p>Details about mmap are covered in more detail in the <a class="reference internal" href="generated_rst/pplacer.html#memory-usage"><em>pplacer details section</em></a>.</p>
+</div>
+<div class="section" id="why-doesn-t-pplacer-output-a-newick-tree">
+<h2>Why doesn&#8217;t pplacer output a Newick tree?<a class="headerlink" href="#why-doesn-t-pplacer-output-a-newick-tree" title="Permalink to this headline">¶</a></h2>
+<p>Pplacer does not output a Newick tree because it does not build phylogenetic trees.
+It maps sequences into trees, with uncertainty, and thus its output format encodes those maps.
+You can read more about the pplacer/EPA output format and our motivations for it in the corresponding <a class="reference external" href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0031009">paper</a>.</p>
+<p>If you do need a newick tree, you can look at guppy&#8217;s <a href="#id2"><span class="problematic" id="id3">tog_</span></a> command, but be careful, as the output is not a real phylogenetic tree.
+For example, two very similar query sequences that are both rather different than the reference sequences will end up on long parallel branches rather than in a subtree of size two.</p>
 </div>
 </div>
 
