@@ -98,14 +98,14 @@ instructions and scripts for setting up a compilation environment.</p>
 </div>
 <p>Compiling <tt class="docutils literal"><span class="pre">pplacer</span></tt> requires a number of libraries and tools to be installed:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.gnu.org/s/gsl/">GNU Scientific Library (GSL)</a></li>
-<li><a class="reference external" href="http://www.sqlite.org">libsqlite3</a></li>
+<li><a class="reference external" href="http://www.gnu.org/s/gsl/">GNU Scientific Library (GSL)</a> <a class="footnote-reference" href="#id5" id="id1">[*]</a></li>
+<li><a class="reference external" href="http://www.sqlite.org">libsqlite3</a> <a href="#id6"><span class="problematic" id="id7"><span id="id2"></span>[*]_</span></a></li>
 <li>make</li>
 <li><a class="reference external" href="http://www.ocaml.org">OCaml 3.12</a></li>
 <li>patch</li>
 <li>m4</li>
 <li>gawk</li>
-<li>zlib</li>
+<li>zlib <a href="#id6"><span class="problematic" id="id8"><span id="id3"></span>[*]_</span></a></li>
 </ul>
 <p>On Debian/Ubuntu 12.04, these can be installed with:</p>
 <div class="highlight-bash"><div class="highlight"><pre>apt-get install -y <span class="se">\</span>
@@ -148,6 +148,12 @@ cat opam-requirements.txt | xargs opam install -y
 </div>
 <p>Now the binaries should be in the <tt class="docutils literal"><span class="pre">bin/</span></tt> directory. Put them in your
 path and you are ready to go!</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[*]</a></td><td>On Linux, static libraries are required: e.g. <tt class="docutils literal"><span class="pre">libgsl.a</span></tt>.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
