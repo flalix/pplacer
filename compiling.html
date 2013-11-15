@@ -101,13 +101,14 @@ instructions and scripts for setting up a compilation environment.</p>
 <li><a class="reference external" href="http://www.gnu.org/s/gsl/">GNU Scientific Library (GSL)</a> <a class="footnote-reference" href="#id5" id="id1">[*]</a></li>
 <li><a class="reference external" href="http://www.sqlite.org">libsqlite3</a> <a href="#id6"><span class="problematic" id="id7"><span id="id2"></span>[*]_</span></a></li>
 <li>make</li>
-<li><a class="reference external" href="http://www.ocaml.org">OCaml 3.12</a></li>
+<li>OPAM (<a class="reference internal" href="#opam"><em>see below</em></a>)</li>
+<li><a class="reference external" href="http://www.ocaml.org">OCaml 3.12.1</a> (installed via your package manager, compiling from source, or <a class="reference internal" href="#opam"><em>OPAM</em></a>)</li>
 <li>patch</li>
 <li>m4</li>
 <li>gawk</li>
 <li>zlib <a href="#id6"><span class="problematic" id="id8"><span id="id3"></span>[*]_</span></a></li>
 </ul>
-<p>On Debian/Ubuntu 12.04, these can be installed with:</p>
+<p>On Debian/Ubuntu 12.04, everything but OPAM can be installed with:</p>
 <div class="highlight-bash"><div class="highlight"><pre>apt-get install -y <span class="se">\</span>
   camlp4-extra <span class="se">\</span>
   gawk <span class="se">\</span>
@@ -121,11 +122,15 @@ instructions and scripts for setting up a compilation environment.</p>
 </pre></div>
 </div>
 <div class="section" id="opam">
-<h2>OPAM<a class="headerlink" href="#opam" title="Permalink to this headline">¶</a></h2>
-<p><tt class="docutils literal"><span class="pre">pplacer</span></tt> uses the <a class="reference external" href="http://opam.ocaml.org">OPAM</a> package manager for installing OCaml dependencies.
-See the the <a class="reference external" href="http://opam.ocaml.org/doc/Quick_Install.html">official instructions</a> for installation details.</p>
+<span id="id4"></span><h2>OPAM<a class="headerlink" href="#opam" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">pplacer</span></tt> uses the <a class="reference external" href="http://opam.ocaml.org">OPAM package manager</a> for installing OCaml dependencies.
+OPAM can also manage different versions of the OCaml compiler - <tt class="docutils literal"><span class="pre">pplacer</span></tt> is tested against version 3.12.1.</p>
+<p>See the the <a class="reference external" href="http://opam.ocaml.org/doc/Quick_Install.html">official instructions</a> for installation details.</p>
 <p>Once OPAM is installed, it needs to be configured:</p>
-<div class="highlight-bash"><div class="highlight"><pre>opam init
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Install version 3.12.1 of the OCaml compiler version if it&#39;s not active</span>
+<span class="nb">command</span> -v ocamlc <span class="o">&amp;&amp;</span> <span class="o">(</span> ocamlc -version | grep -q 3.12.1 <span class="o">)</span> <span class="o">||</span> opam switch install 3.12.1
+
+opam init
 opam repo add pplacer-deps http://matsen.github.com/pplacer-opam-repository
 opam update pplacer-deps
 <span class="nb">eval</span> <span class="sb">`</span>opam config env<span class="sb">`</span>
