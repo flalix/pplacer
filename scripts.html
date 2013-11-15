@@ -121,7 +121,7 @@ installation directory is not writable.</p>
 profiles, providing methods to align sequences to a reference package
 alignment, and extract an alignment from a reference package.</p>
 <p><tt class="docutils literal"><span class="pre">refpkg_align.py</span></tt> depends on <a class="reference external" href="http://www.biopython.org/">BioPython</a>, as
-well as the external tools used for alignment: <a class="reference external" href="http://hmmer.janelia.org">HMMER3</a>, <a class="reference external" href="http://infernal.janelia.org">Infernal</a>, and <a class="reference external" href="http://pynast.sourceforge.net">PyNAST</a>.</p>
+well as the external tools used for alignment: <a class="reference external" href="http://hmmer.janelia.org">HMMER3</a>, <a class="reference external" href="http://infernal.janelia.org">Infernal</a>, and <a class="reference external" href="http://qiime.org/pynast">PyNAST</a>.</p>
 <div class="section" id="list-of-subcommands">
 <h3>List of subcommands<a class="headerlink" href="#list-of-subcommands" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="align">
@@ -130,7 +130,7 @@ well as the external tools used for alignment: <a class="reference external" hre
 use with pplacer.  For reference packages built with <a class="reference external" href="http://infernal.janelia.org">Infernal</a>, <tt class="docutils literal"><span class="pre">cmalign</span></tt> is
 used for alignment. For packages built using <a class="reference external" href="http://hmmer.janelia.org">HMMER3</a>, alignment is performed
 with <tt class="docutils literal"><span class="pre">hmmalign</span></tt>. Reference packages lacking a <tt class="docutils literal"><span class="pre">profile</span></tt> entry are aligned
-using <a class="reference external" href="http://pynast.sourceforge.net">PyNAST</a>.  By default, an alignment <a class="reference internal" href="#mask"><em>mask</em></a> is applied if it exists.</p>
+using <a class="reference external" href="http://qiime.org/pynast">PyNAST</a>.  By default, an alignment <a class="reference internal" href="#mask"><em>mask</em></a> is applied if it exists.</p>
 <p>The output format varies: Stockholm for Infernal- and HMMER-based reference
 packages, FASTA for all others.</p>
 <p>For Infernal-based reference packages, MPI may be used.</p>
