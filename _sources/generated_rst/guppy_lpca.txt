@@ -1,16 +1,16 @@
 :tocdepth: 3
 
-.. _guppy_epca:
+.. _guppy_lpca:
 
 ====
-epca
+lpca
 ====
 
-`epca` performs edge principal components.
+`lpca` performs length principal components.
 
 ::
 
-  usage: epca [options] placefiles
+  usage: lpca [options] placefiles
 
 Options
 =======
@@ -38,10 +38,12 @@ Options
 Details
 =======
 
-Perform `edge principal components`_ analysis ("edge PCA").
-Edge PCA takes the special structure of phylogenetic placement data into account.
-Consequently, it is possible to visualize_ the principal component eigenvectors, and it can find consistent differences between samples which may not be so far apart in the tree.
+*This is an experimental feature. We are currently validating and writing a paper about it.*
 
+Perform length principal components analysis ("length PCA").
+Length PCA takes the special structure of phylogenetic placement data into account.
+Consequently, it is possible to visualize the principal component eigenvectors, and it can find consistent differences between samples which may not be so far apart in the tree.
+Length PCA is similar to :doc:`guppy_epca` but is invariant to edge subdivision on the reference tree where edge PCA is invariant to branch length.
 Running this command produces the following files for a run with out prefix set to ``out``:
 
 out.trans
@@ -65,6 +67,3 @@ out.som.xml
 
 
 See the :doc:`guppy_splitify` documentation for information about the ``--kappa`` flag.
-
-.. _visualize: http://matsen.fhcrc.org/pplacer/demo/pca.html
-.. _edge principal components: http://arxiv.org/abs/1107.5095

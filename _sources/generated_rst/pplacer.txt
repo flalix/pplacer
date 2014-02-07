@@ -50,7 +50,7 @@ Options
 -j                            The number of child processes to spawn when doing placements. Default is 2.
 --timing                      Display timing information after the pplacer run finishes.
 --no-pre-mask                 Don't pre-mask sequences before placement.
---write-pre-masked            Write out the pre-masked sequences to the specified fasta file and exit.
+--write-pre-masked            Write out the pre-masked sequences to the specified fasta file before placement.
 --map-mrca                    Specify a file to write out MAP sequences for MRCAs and corresponding placements.
 --map-mrca-min                Specify cutoff for inclusion in MAP sequence file. Default is 0.8.
 --map-identity                Add the percent identity of the query sequence to the nearest MAP sequence to each placement.
@@ -86,7 +86,7 @@ If you wish to override specific parts of the reference package, you can do so w
 A "reference package" is simply a collection of files including a reference tree, a reference alignment, and associated taxonomic information.
 We have the beginnings of a `reference package database`_ which we hope in the future to be a comprehensive resource for phylogenetic placement.
 It's just started, and we would love to have your submissions.
-For now most users will have to make a reference package using our taxtastic_ package to take advantage of the taxonomic annotation features of pplacer.
+For now most users will have to make a reference package using our taxtastic_ package.
 
 The ``aln.fasta`` is the alignment file.
 It should have the reference sequences which were used to make the reference tree, aligned with the query sequences to be placed on the reference tree.
@@ -94,14 +94,6 @@ The reference sequences must have identical names to those used in the reference
 It's possible to split the alignment into two files (the reference sequences and the query sequences); in that case you need to make sure that those alignments are in the same frame and have the same length.
 This splitting was obligatory in v1.0.
 The alignment can be in FASTA format (with a ``.fasta`` or ``.fa`` suffix) or Stockholm format (with a ``.sto`` or ``.sth`` suffix).
-
-Another way to run pplacer is without a reference package::
-
-  pplacer -t reference_tree -s statistics_file aln.fasta
-
-The ``statistics_file`` is a file describing the evolutionary model used to make the reference tree (described in the section on reference tree below).
-Running pplacer in this way will disable the taxonomic annotation features of pplacer v1.1.
-
 
 Migrating from pplacer v1.0
 ---------------------------
@@ -115,13 +107,34 @@ There are a couple of differences between the present version and the previous v
 * ``rppr`` binary for preparing reference packages
 
 
-Pre-masking and groups
-----------------------
+Pre-masking and masking
+-----------------------
 
-Columns that are all gap in either the reference alignment or the query alignment do not impact the relative likelihood of placements.
-Thus, starting in v1.1alpha08, we don't compute them at all.
-This speeds things up a bunch, and uses a lot less memory.
-We call this pre-masking, and it can be disabled with the ``--no-pre-mask`` flag.
+One of the primary design goals of pplacer is to have it work efficiently and consistently when placing short reads in what might be a longer alignment.
+As part of achieving these design goals, we have put effort into two masking procedures, which are fairly strict in their interpretation of what is informative in a sequence alignment.
+Specifically, we consider columns that are gap in a query sequence or all gap in the reference alignment to not be informative for the placement of that query sequence.
+This is a different statement than saying that a column does not impact the phylogenetic likelihood, and indeed columns that are all gap except for one sequence do change the likelihood in all implementations that interpret gaps as missing data (this is true for essentially all phylogenetic inference software).
+
+We call the first procedure "pre-masking," and it ignores columns that are all gap in either the reference alignment or the query alignment.
+This has been the default behavior since v1.1alpha08, but it can be disabled with the ``--no-pre-mask`` flag.
+You can see the effect of pre-masking by supplying a file name to the ``--write-pre-masked`` flag.
+
+However, in certain situations this can lead to sequences other than the given sequence influencing the likelihood.
+Specifically, imagine that we have two sequences A and B that are non-gap in column sets X and Y, respectively, and that there are no all-gap columns in the reference alignment.
+Say that X and Y are disjoint sets.
+If we ran pplacer with pre-masking on A alone, or B alone, the alignment columns would be subset to X and Y, respectively.
+However, if we run them together, the columns would be subset to the union of X and Y.
+Then, when we are placing A in the presence of B, A's gap entries in Y will influence the likelihood (similarly for B in the presence of A).
+These effects are subtle but nonzero.
+
+Therefore, we have a second procedure, which we call "masking," that only computes likelihoods for the columns in each placement that are informative in that placement.
+This ensures identical behavior when sequences are run separately or together, and also makes things faster.
+This is now the default behavior, and you can see the results of masking by supplying the ``--write-masked`` flag.
+(Careful when using this, as it will make one fasta file for each query sequence.)
+
+
+Groups
+------
 
 When placing metagenomic sequences onto trees built from very wide alignments (such as concatenations), we suggest using the "groups" feature.
 Using, say, ``--groups 5`` will divide the alignment into 5 evenly spaced sectors across the width of the alignment.
@@ -366,7 +379,7 @@ If you are fond of another model and can convince me that I should implement it,
 Both of these packages implement gamma rate variation among sites, which accomodates that some regions evolve more quickly than others.
 That's generally a good thing, but if you have millions of query sequences, you might have to run pplacer with fewer rate parameters to make it faster.
 
-I run RAxML like so, on similar alignments (the "F" suffix on PROTGAMMAWAGF means to use the emperical amino acid frequencies)::
+I run RAxML like so, on similar alignments (the "F" suffix on PROTGAMMAWAGF means to use the empirical amino acid frequencies)::
 
   raxmlHPC -m GTRGAMMA -n test -s nucleotides.phy
   raxmlHPC -m PROTGAMMAWAGF -n test -s amino_acids.phy

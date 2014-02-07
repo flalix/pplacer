@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pplacer &mdash; pplacer 1.1 documentation</title>
+    <title>pplacer &mdash; pplacer v1.1.alpha14-145-gcc7b6d6 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.1',
+        VERSION:     'v1.1.alpha14-145-gcc7b6d6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer 1.1 documentation" href="../index.html" />
+    <link rel="top" title="pplacer v1.1.alpha14-145-gcc7b6d6 documentation" href="../index.html" />
     <link rel="next" title="guppy" href="guppy.html" />
     <link rel="prev" title="pplacer documentation home" href="../index.html" /> 
   </head>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="../index.html" title="pplacer documentation home"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer v1.1.alpha14-145-gcc7b6d6 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -54,7 +54,8 @@
 <li><a class="reference internal" href="#details">Details</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#migrating-from-pplacer-v1-0">Migrating from pplacer v1.0</a></li>
-<li><a class="reference internal" href="#pre-masking-and-groups">Pre-masking and groups</a></li>
+<li><a class="reference internal" href="#pre-masking-and-masking">Pre-masking and masking</a></li>
+<li><a class="reference internal" href="#groups">Groups</a></li>
 <li><a class="reference internal" href="#json-format-specification">JSON format specification</a></li>
 <li><a class="reference internal" href="#making-alignments-for-use-with-pplacer">Making alignments for use with pplacer</a></li>
 <li><a class="reference internal" href="#making-reference-trees">Making reference trees</a></li>
@@ -221,7 +222,7 @@
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--write-pre-masked</span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Write out the pre-masked sequences to the specified fasta file and exit.</td></tr>
+<tr><td>&nbsp;</td><td>Write out the pre-masked sequences to the specified fasta file before placement.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--map-mrca</span></kbd></td>
 <td>Specify a file to write out MAP sequences for MRCAs and corresponding placements.</td></tr>
@@ -282,18 +283,13 @@ If you wish to override specific parts of the reference package, you can do so w
 <p>A &#8220;reference package&#8221; is simply a collection of files including a reference tree, a reference alignment, and associated taxonomic information.
 We have the beginnings of a <a class="reference external" href="http://microbiome.fhcrc.org/apps/refpkg/">reference package database</a> which we hope in the future to be a comprehensive resource for phylogenetic placement.
 It&#8217;s just started, and we would love to have your submissions.
-For now most users will have to make a reference package using our <a class="reference external" href="https://github.com/fhcrc/taxtastic/">taxtastic</a> package to take advantage of the taxonomic annotation features of pplacer.</p>
+For now most users will have to make a reference package using our <a class="reference external" href="https://github.com/fhcrc/taxtastic/">taxtastic</a> package.</p>
 <p>The <tt class="docutils literal"><span class="pre">aln.fasta</span></tt> is the alignment file.
 It should have the reference sequences which were used to make the reference tree, aligned with the query sequences to be placed on the reference tree.
 The reference sequences must have identical names to those used in the reference tree.
 It&#8217;s possible to split the alignment into two files (the reference sequences and the query sequences); in that case you need to make sure that those alignments are in the same frame and have the same length.
 This splitting was obligatory in v1.0.
 The alignment can be in FASTA format (with a <tt class="docutils literal"><span class="pre">.fasta</span></tt> or <tt class="docutils literal"><span class="pre">.fa</span></tt> suffix) or Stockholm format (with a <tt class="docutils literal"><span class="pre">.sto</span></tt> or <tt class="docutils literal"><span class="pre">.sth</span></tt> suffix).</p>
-<p>Another way to run pplacer is without a reference package:</p>
-<div class="highlight-python"><pre>pplacer -t reference_tree -s statistics_file aln.fasta</pre>
-</div>
-<p>The <tt class="docutils literal"><span class="pre">statistics_file</span></tt> is a file describing the evolutionary model used to make the reference tree (described in the section on reference tree below).
-Running pplacer in this way will disable the taxonomic annotation features of pplacer v1.1.</p>
 </div>
 <div class="section" id="migrating-from-pplacer-v1-0">
 <h3>Migrating from pplacer v1.0<a class="headerlink" href="#migrating-from-pplacer-v1-0" title="Permalink to this headline">¶</a></h3>
@@ -307,12 +303,29 @@ Running pplacer in this way will disable the taxonomic annotation features of pp
 <li><tt class="docutils literal"><span class="pre">rppr</span></tt> binary for preparing reference packages</li>
 </ul>
 </div>
-<div class="section" id="pre-masking-and-groups">
-<h3>Pre-masking and groups<a class="headerlink" href="#pre-masking-and-groups" title="Permalink to this headline">¶</a></h3>
-<p>Columns that are all gap in either the reference alignment or the query alignment do not impact the relative likelihood of placements.
-Thus, starting in v1.1alpha08, we don&#8217;t compute them at all.
-This speeds things up a bunch, and uses a lot less memory.
-We call this pre-masking, and it can be disabled with the <tt class="docutils literal"><span class="pre">--no-pre-mask</span></tt> flag.</p>
+<div class="section" id="pre-masking-and-masking">
+<h3>Pre-masking and masking<a class="headerlink" href="#pre-masking-and-masking" title="Permalink to this headline">¶</a></h3>
+<p>One of the primary design goals of pplacer is to have it work efficiently and consistently when placing short reads in what might be a longer alignment.
+As part of achieving these design goals, we have put effort into two masking procedures, which are fairly strict in their interpretation of what is informative in a sequence alignment.
+Specifically, we consider columns that are gap in a query sequence or all gap in the reference alignment to not be informative for the placement of that query sequence.
+This is a different statement than saying that a column does not impact the phylogenetic likelihood, and indeed columns that are all gap except for one sequence do change the likelihood in all implementations that interpret gaps as missing data (this is true for essentially all phylogenetic inference software).</p>
+<p>We call the first procedure &#8220;pre-masking,&#8221; and it ignores columns that are all gap in either the reference alignment or the query alignment.
+This has been the default behavior since v1.1alpha08, but it can be disabled with the <tt class="docutils literal"><span class="pre">--no-pre-mask</span></tt> flag.
+You can see the effect of pre-masking by supplying a file name to the <tt class="docutils literal"><span class="pre">--write-pre-masked</span></tt> flag.</p>
+<p>However, in certain situations this can lead to sequences other than the given sequence influencing the likelihood.
+Specifically, imagine that we have two sequences A and B that are non-gap in column sets X and Y, respectively, and that there are no all-gap columns in the reference alignment.
+Say that X and Y are disjoint sets.
+If we ran pplacer with pre-masking on A alone, or B alone, the alignment columns would be subset to X and Y, respectively.
+However, if we run them together, the columns would be subset to the union of X and Y.
+Then, when we are placing A in the presence of B, A&#8217;s gap entries in Y will influence the likelihood (similarly for B in the presence of A).
+These effects are subtle but nonzero.</p>
+<p>Therefore, we have a second procedure, which we call &#8220;masking,&#8221; that only computes likelihoods for the columns in each placement that are informative in that placement.
+This ensures identical behavior when sequences are run separately or together, and also makes things faster.
+This is now the default behavior, and you can see the results of masking by supplying the <tt class="docutils literal"><span class="pre">--write-masked</span></tt> flag.
+(Careful when using this, as it will make one fasta file for each query sequence.)</p>
+</div>
+<div class="section" id="groups">
+<h3>Groups<a class="headerlink" href="#groups" title="Permalink to this headline">¶</a></h3>
 <p>When placing metagenomic sequences onto trees built from very wide alignments (such as concatenations), we suggest using the &#8220;groups&#8221; feature.
 Using, say, <tt class="docutils literal"><span class="pre">--groups</span> <span class="pre">5</span></tt> will divide the alignment into 5 evenly spaced sectors across the width of the alignment.
 The reads are then grouped into which sector they fit into best, and each group is run sequentially.
@@ -605,7 +618,7 @@ Pplacer only knows about the GTR, WAG, LG, and JTT models, so use those to build
 If you are fond of another model and can convince me that I should implement it, I will.</p>
 <p>Both of these packages implement gamma rate variation among sites, which accomodates that some regions evolve more quickly than others.
 That&#8217;s generally a good thing, but if you have millions of query sequences, you might have to run pplacer with fewer rate parameters to make it faster.</p>
-<p>I run RAxML like so, on similar alignments (the &#8220;F&#8221; suffix on PROTGAMMAWAGF means to use the emperical amino acid frequencies):</p>
+<p>I run RAxML like so, on similar alignments (the &#8220;F&#8221; suffix on PROTGAMMAWAGF means to use the empirical amino acid frequencies):</p>
 <div class="highlight-python"><pre>raxmlHPC -m GTRGAMMA -n test -s nucleotides.phy
 raxmlHPC -m PROTGAMMAWAGF -n test -s amino_acids.phy</pre>
 </div>
@@ -775,11 +788,11 @@ get cleaned up.</p>
         <li class="right" >
           <a href="../index.html" title="pplacer documentation home"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer 1.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">pplacer v1.1.alpha14-145-gcc7b6d6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2011, Erick Matsen and Aaron Gallagher.
+        &copy; Copyright 2011-2013, Erick Matsen and Aaron Gallagher.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
     </div>
   </body>
