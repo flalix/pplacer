@@ -16,7 +16,7 @@ Options
 =======
 
 -c  Reference package path. Required.
---sqlite  Specify the database file to use.
+--sqlite  Specify the database file to use. Required.
 --seed  Set the random seed, an integer > 0. Default is 1.
 --classifier  Which classifier to use, out of 'pplacer', 'nbc', 'hybrid2', 'hybrid5' or 'rdp'. default: pplacer
 --cutoff  The default value for the likelihood_cutoff param. Default: 0.90

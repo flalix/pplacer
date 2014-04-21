@@ -16,7 +16,7 @@ Options
 =======
 
 -c  Reference package path. Required.
---sqlite  Specify the database file to use.
+--sqlite  Specify the database file to use. Required.
 
 Details
 =======
