@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>kr &mdash; pplacer v1.1.alpha16-2-gb964734 documentation</title>
+    <title>kr &mdash; pplacer v1.1.alpha16-4-g18429d9 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     'v1.1.alpha16-2-gb964734',
+        VERSION:     'v1.1.alpha16-4-g18429d9',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1.alpha16-2-gb964734 documentation" href="../index.html" />
+    <link rel="top" title="pplacer v1.1.alpha16-4-g18429d9 documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="kr_heat" href="guppy_kr_heat.html" />
     <link rel="prev" title="islands" href="guppy_islands.html" /> 
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="guppy_islands.html" title="islands"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-2-gb964734 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-4-g18429d9 documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
       </ul>
     </div>
@@ -158,7 +158,14 @@ for <img class="math" src="../_images/math/5a58efd690b4137cdc783ad299c311cabee73
 </div><p>which can be used to vary the impact of mass relative to transport.
 A larger <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb5504339011.png" alt="p"/> increases the impact of differences of mass, while a smaller <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb5504339011.png" alt="p"/> emphasizes distance traveled.</p>
 <p>Note that the significance p-values calculated by <tt class="docutils literal"><span class="pre">-s</span></tt> or <tt class="docutils literal"><span class="pre">--gaussian</span></tt> are not corrected for multiple comparison.</p>
-<p>See <a class="reference external" href="http://arxiv.org/abs/1005.1699">Evans and Matsen</a> for more details.</p>
+<p>The assessment of significance is tricky for metagenomic sampling.
+The randomization test (that seems to be very commonly used in association with UniFrac and that is implemented here with the <tt class="docutils literal"><span class="pre">-s</span></tt> flag) does not have wonderful properties when in the setting of incomplete sampling with non-independent observations.
+This is commonly the case for metagenomic sampling.
+Imagine, for example, that we have a random observation process on the tree equipped with some collection of &#8220;base observations.&#8221;
+Each process takes a random subset of those base observations and then throws down some number of reads for each observation in that set, the number of which has mean &gt;&gt; 1.
+If the set of base observations is large compared to the number of sample observations, then two draws will always appear significantly different even though they are from the same underlying process.
+Thus I would only trust a rejection of the null when sampling is quite deep and the same primers are used for the experiments being compared.</p>
+<p>See <a class="reference external" href="http://arxiv.org/abs/1005.1699">Evans and Matsen</a> for more details on phylogenetic KR.</p>
 </div>
 </div>
 
@@ -180,12 +187,12 @@ A larger <img class="math" src="../_images/math/36f73fc1312ee0349b3f3a0f3bd9eb55
         <li class="right" >
           <a href="guppy_islands.html" title="islands"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-2-gb964734 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-4-g18429d9 documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2011-2013, Erick Matsen and Aaron Gallagher.
+        &copy; Copyright 2011-2014, Matsen Group.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
     </div>
   </body>
