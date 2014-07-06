@@ -220,10 +220,10 @@ guppy subcommand:
             :ref:`kr <guppy_kr>`     calculates the Kantorovich-Rubinstein distance and corresponding p-values
   :ref:`kr_heat <guppy_kr_heat>`                                                             makes a heat tree
         :ref:`lpca <guppy_lpca>`                                          performs length principal components
-          :ref:`mcl <guppy_mcl>`                                                              cluster pqueries
+          :ref:`mcl <guppy_mcl>`                              cluster pqueries using Markov clustering via MCL
       :ref:`merge <guppy_merge>`                                                    merges placefiles together
           :ref:`mft <guppy_mft>`                                         Multi-Filter and Transform placefiles
-    :ref:`ograph <guppy_ograph>`                                finds the mass islands of one or more pqueries
+    :ref:`ograph <guppy_ograph>`                               finds the overlap graph of one or more pqueries
 :ref:`placemat <guppy_placemat>`                      prints out a pairwise distance matrix between placements
     :ref:`pmlpca <guppy_pmlpca>`                               performs poor-man's length principal components
 :ref:`rarefact <guppy_rarefact>`                                    calculates phylogenetic rarefaction curves

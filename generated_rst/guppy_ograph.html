@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ograph &mdash; pplacer v1.1.alpha16-5-ge8c0e39 documentation</title>
+    <title>ograph &mdash; pplacer v1.1.alpha16-6-gf41c47d documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     'v1.1.alpha16-5-ge8c0e39',
+        VERSION:     'v1.1.alpha16-6-gf41c47d',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1.alpha16-5-ge8c0e39 documentation" href="../index.html" />
+    <link rel="top" title="pplacer v1.1.alpha16-6-gf41c47d documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="placemat" href="guppy_placemat.html" />
     <link rel="prev" title="mft" href="guppy_mft.html" /> 
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="guppy_mft.html" title="mft"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-5-ge8c0e39 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-6-gf41c47d documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
       </ul>
     </div>
@@ -53,6 +53,7 @@
   <ul>
 <li><a class="reference internal" href="#">ograph</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +92,7 @@
             
   <div class="section" id="ograph">
 <span id="guppy-ograph"></span><h1>ograph<a class="headerlink" href="#ograph" title="Permalink to this headline">¶</a></h1>
-<p><cite>ograph</cite> finds the mass islands of one or more pqueries.</p>
+<p><cite>ograph</cite> finds the overlap graph of one or more pqueries.</p>
 <div class="highlight-python"><pre>usage: ograph [options] placefile</pre>
 </div>
 <div class="section" id="options">
@@ -115,6 +116,15 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>The overlap of a pair of pqueries is defined to be the inner product of their
+likelihood weight ratios (or posterior probabilities) as indexed by tree edges.</p>
+<p>This subcommand outputs all nonzero overlaps between pqueries in the form:</p>
+<div class="highlight-python"><pre>pquery_1 pquery_2 inner_product</pre>
+</div>
+<p>which is a specification of the weighted edges of a graph with pqueries as vertices.</p>
+</div>
 </div>
 
 
@@ -135,7 +145,7 @@
         <li class="right" >
           <a href="guppy_mft.html" title="mft"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-5-ge8c0e39 documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-6-gf41c47d documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 
       </ul>
     </div>
