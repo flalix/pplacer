@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>compress &mdash; pplacer v1.1.alpha16-6-gf41c47d documentation</title>
+    <title>compress &mdash; pplacer v1.1.alpha16-7-ga365c9a documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     'v1.1.alpha16-6-gf41c47d',
+        VERSION:     'v1.1.alpha16-7-ga365c9a',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="pplacer v1.1.alpha16-6-gf41c47d documentation" href="../index.html" />
+    <link rel="top" title="pplacer v1.1.alpha16-7-ga365c9a documentation" href="../index.html" />
     <link rel="up" title="guppy" href="guppy.html" />
     <link rel="next" title="demulti" href="guppy_demulti.html" />
     <link rel="prev" title="classify" href="guppy_classify.html" /> 
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="guppy_classify.html" title="classify"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-6-gf41c47d documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-7-ga365c9a documentation</a> &raquo;</li>
           <li><a href="guppy.html" accesskey="U">guppy</a> &raquo;</li> 
       </ul>
     </div>
@@ -53,6 +53,7 @@
   <ul>
 <li><a class="reference internal" href="#">compress</a><ul>
 <li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
 </ul>
 </li>
 </ul>
@@ -131,6 +132,27 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>A cutoff <em>c</em> is specified via a command line flag.
+The <cite>compress</cite> command merges pairs of pqueries that have KR distance between them less than <em>c</em>.</p>
+<p>To compress the pqueries:</p>
+<ul class="simple">
+<li>divide the pqueries into sets via <a class="reference internal" href="guppy_islands.html"><em>islands</em></a> or <a class="reference internal" href="guppy_mcl.html"><em>mcl</em></a></li>
+<li>for each pquery set, calculate all of the pairwise distances between the pqueries for that island and put them in a matrix</li>
+<li>build a graph such that the nodes are pqueries, and there is an edge between them if their distance is less than <em>c</em></li>
+<li>merge pqueries according to this graph as described below.</li>
+</ul>
+<p>Each original pquery (=node) will get merged into one of the the selected pqueries.
+This will happen as follows.
+Maintain a set of unmerged pqueries, and a set of pairs <em>(w, d(w))</em>, where <em>w</em> is a selected pquery and <em>d(w)</em> is the degree of <em>w</em> in the graph.</p>
+<ul class="simple">
+<li>find the <em>(w, d(w))</em> pair with the greatest d(w) and remove it from the set</li>
+<li>find all of the unmerged pqueries that are adjacent to <em>w</em> in the graph, and merge their mass into <em>w</em>. Remove <em>w</em> and all of the adjacent pqueries from the unmerged pquery set.</li>
+<li>repeat!</li>
+</ul>
+<p>Stop when the unmerged pquery set is empty.</p>
+</div>
 </div>
 
 
@@ -151,7 +173,7 @@
         <li class="right" >
           <a href="guppy_classify.html" title="classify"
              >previous</a> |</li>
-        <li><a href="../index.html">pplacer v1.1.alpha16-6-gf41c47d documentation</a> &raquo;</li>
+        <li><a href="../index.html">pplacer v1.1.alpha16-7-ga365c9a documentation</a> &raquo;</li>
           <li><a href="guppy.html" >guppy</a> &raquo;</li> 
       </ul>
     </div>
